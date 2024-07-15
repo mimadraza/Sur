@@ -45,29 +45,41 @@ public class DoublyLinkedList
 
     public void remove(Song song)
     {
-        if(head.data.equals(song))// if the first element is the song to be removed
-        {
-            head = head.next;
-            head.previous = null;
+        if (head == null)
+        { // If the list is empty
             return;
         }
 
-        Node temp = head;
-        Node previous = head.previous;
-
-        while ( temp !=  null)
-        {
-            if(temp.data.equals(song))
+        if (head.data.equals(song))
+        { // If the first element is the song to be removed
+            if (head.next != null)
             {
-                previous.next = temp.next;
-                temp.next.previous = previous;
+                head = head.next;
+                head.previous = null;
+            } else
+            {
+                head = null; // List becomes empty
+            }
+            return;
+        }
+
+        Node temp = head.next; // Start from the second element
+        while (temp != null)
+        {
+            if (temp.data.equals(song))
+            {
+                temp.previous.next = temp.next;
+
+                if (temp.next != null)
+                {
+                    temp.next.previous = temp.previous;
+                }
                 return;
             }
-
-            previous = temp;
             temp = temp.next;
         }
     }
+
 
     public int size()
     {
