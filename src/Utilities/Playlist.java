@@ -2,15 +2,20 @@ package Utilities;
 
 import DataStructures.DoublyLinkedList;
 
+import javax.swing.*;
+import java.awt.*;
+
 
 public class Playlist
 {
     private String name;
+    private Image image;
     private DoublyLinkedList list;
 
-    public Playlist(String name)
+    public Playlist(String name, String path)
     {
         this.name = name;
+        this.image = new ImageIcon(path).getImage();
         this.list = null;
     }
 
@@ -30,6 +35,15 @@ public class Playlist
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Image getImage()
+    {
+        return image;
     }
 
     @Override
