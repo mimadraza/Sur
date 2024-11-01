@@ -1,0 +1,35 @@
+.square{
+    width: 400px;
+    height: 400px;
+    background-color: rgb(36, 31, 31);
+    position: relative;
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.7;
+}
+button {
+    background-color: #704ae2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    color : rgb(7, 4, 4);
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    position: relative;
+}
+
+/* Focus effect */
+input[type="text"]:focus {
+    border-color: #4a90e2;
+}
+
