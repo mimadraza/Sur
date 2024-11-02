@@ -1,54 +1,57 @@
-.square{
+.square {
     width: 400px;
     height: 400px;
     background-color: rgb(36, 31, 31);
-    position: relative;
     border-radius: 15px;
-    z-index: -1;
-    opacity: 0.7;
 }
+
 button {
-    background-color: #704ae2;
+    background-color: #8866ee;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: relative;
 }
+
 input[type="text"] {
-    width: 200px;
+    width: 270px;
     padding: 10px;
     font-size: 16px;
-    color : rgb(7, 4, 4);
+    color: rgb(7, 4, 4);
     border: 2px solid #ccc;
     border-radius: 4px;
     outline: none;
     transition: border-color 0.3s ease;
-    position: relative;
 }
 
 /* Focus effect */
 input[type="text"]:focus {
     border-color: #4a90e2;
 }
-.image{
-    position: fixed;
-    height: 100vh;
-    width: 900px;
-    background: linear-gradient(45deg,#f5f3fc,#d6c2ea,#b48ed6,#935abf,#6b2f99,#3c1a47);
-    background-size: 300% 300%;
-    animation: color 12s ease-in-out infinite ;
+
+.gradient-container {
+    height: 98vh;
+    width: 1240px;
+    background: linear-gradient(45deg, 
+        #2f2f2f,
+        #4b2c4f,
+        #6b2f99,
+        #935abf,
+        #b48ed6,
+        #d88abf,
+        #e29fc4,
+        #e8c2c8,
+        #d8d8d8,
+        #f5f3fc,
+        #ffffff);
+    border-radius: 30px;
+    background-size: 400% 400%;
+    animation: color 11s ease-in-out infinite;
 }
 
 @keyframes color {
-    0%{
-        background-position: 0 50%;
-    }
-    50%{
-        background-position: 0 50%;
-    }
-    100%{
-        background-position: 0 50%;
-    }    
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
