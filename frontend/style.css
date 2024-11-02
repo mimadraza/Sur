@@ -32,4 +32,23 @@ input[type="text"] {
 input[type="text"]:focus {
     border-color: #4a90e2;
 }
+.image{
+    position: fixed;
+    height: 100vh;
+    width: 900px;
+    background: linear-gradient(45deg,#f5f3fc,#d6c2ea,#b48ed6,#935abf,#6b2f99,#3c1a47);
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite ;
+}
 
+@keyframes color {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 0 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }    
+}
