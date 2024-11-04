@@ -16,6 +16,7 @@ button {
 
 input[type="text"] {
     width: 270px;
+    height: 30px;
     padding: 10px;
     font-size: 16px;
     color: rgb(7, 4, 4);
@@ -54,4 +55,16 @@ input[type="text"]:focus {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+/* CSS */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('fonts/DansDisneyUi-x5Aq.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply the font */
+body {
+    font-family: 'CustomFont', sans-serif;
 }
