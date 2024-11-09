@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 from flask import Flask, request, render_template, redirect
 from config import Config
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
+=======
+import requests
+from flask import Flask, render_template
+from config import Config
+
+app = Flask(__name__)
+>>>>>>> 98a7967620d1c8822cf44d13ce2d4c37fa90eeee
 backendurl = Config.BACKEND_URL
 
 
