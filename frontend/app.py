@@ -7,9 +7,8 @@ backendurl = Config.BACKEND_URL
 
 
 @app.route('/')
-def hello_world():
-    response = requests.get(backendurl)
-    return response.text
+def index():  # put application's code here
+    return render_template('LoginPage.html')
 
 
 if __name__ == '__main__':
