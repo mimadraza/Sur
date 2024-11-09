@@ -13,17 +13,22 @@
         <div class="gradient-container" style="height: 690px; width: 700px; top: 60px; left: 50px; position: absolute;">
             <img src="static\images\سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 190px; left: 190px;">
         </div>
-        
-        <button style="width: 300px; height: 50px; position: absolute; top: 400px; left: 820px;">
-            Login
-        </button>
-        <button style="width: 300px; height: 50px; position: absolute; top: 465px; left: 820px;">
-            Sign-Up
-        </button>
-        
+     
         <div class="input-container">
-            <input type="text" placeholder="Email or Username" style="position: absolute; top:265px; left: 823px;">
-            <input type="text" placeholder="Password" style="position: absolute; top: 330px; left: 823px;">
+            <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Email" style="position: absolute; top:265px; left: 823px;">
+            <input type="text" name="username" placeholder="Username" style="position: absolute; top:330px; left: 823px;">
+            <input type="password" name="password" placeholder="Password" style="position: absolute; top: 395px; left: 823px;">
+            <button style="width: 300px; height: 50px; position: absolute; top: 465px; left: 820px;">
+                Login
+            </button>
+            </form>
+            <form action="/register" method="GET">
+            <button style="width: 300px; height: 50px; position: absolute; top: 530px; left: 820px;">
+            </form>
+                Sign-Up
+            </button>
+            
         </div>
     </div>
 </body>
