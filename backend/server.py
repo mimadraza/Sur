@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, jsonify, make_response
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def hello_world():
+    return make_response({"message": "Hello, Saad!"})
 
 
 if __name__ == '__main__':

@@ -1,15 +1,15 @@
+import requests
 from flask import Flask
 from config import Config
-import CORS
 
 app = Flask(__name__)
-CORS(app)
 backendurl = Config.BACKEND_URL
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def hello_world():
+    response = requests.get(backendurl)
+    return response.text
 
 
 if __name__ == '__main__':
