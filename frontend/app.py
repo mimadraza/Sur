@@ -1,15 +1,15 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from config import Config
-import CORS
+# import CORS
 
-app = Flask(__name__)
-CORS(app)
+app = Flask(__name__, static_folder='static')
+# CORS(app)
 backendurl = Config.BACKEND_URL
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def index():  # put application's code here
+    return render_template('LoginPage.html')
 
 
 if __name__ == '__main__':
