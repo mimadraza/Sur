@@ -27,13 +27,12 @@
     100% { background-position: 0% 50%; }
 }
 .container-outer {
-    display: flex;
     height: 100vh;
     position: relative;
 }
 
 .square {
-    width: 20%;
+    width: 90%;
     height: 100%;
     background-color: #1a1a1a;
     position: relative;
@@ -65,10 +64,10 @@
 }
 .music-player{
     position: relative;
-    width: 1500px;
+    top: 150px;
+    width: 1200px;
     height: 600px;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
     padding: 30px;
     overflow: hidden;
     color: #d5eebb;
@@ -81,25 +80,25 @@
 }
 .song-name
 {
-    font-size: 40px;
+    font-size: 80px;
     font-weight: 500;
     margin-bottom: 10px;
 }
 
 .artist-name{
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .disk{
     position: relative;
     display: block;
     margin: 40px auto;
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     background-image: url("../images/images.jpg");
     background-size: cover;
-    box-shadow: 0 0 0 0 100px rgba(255,255,255,0.001);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3), 0 0 30px 15px rgba(0, 0, 0, 0.2);
 }
 
 .disk::before{
@@ -125,4 +124,32 @@
         #ffffff);
     background-size: 200% 200%;
     animation: color 11s ease-in-out infinite;
+}
+.song-slider{
+    position: relative;
+    width: 100%;
+}
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background-color: #7fc8a9;
+    overflow: hidden;
+    cursor: pointer;
+}
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    height: 20px;
+    background-color: #000;
+    box-shadow: -400px 0 0 400px #d5eebb;
+}
+.current-time,.song-time{
+    font-size: 25px;
+    font-family: spof;
+}
+.song-time{
+    position: absolute;
+    right: 0;
 }
