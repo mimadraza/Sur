@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="static/css/style.css"> 
+    <link rel="stylesheet" href="static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="background-color: #676179;">
-    <div class="square" style="height: 800px; width: 1200px; top: 50px; left: 50%; transform: translateX(-50%); border-radius: 30px; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); position: relative; font-family: 'CustomFont', sans-serif;">
+    <div class="square" style="background-color: #161515; height: 800px; width: 1200px; top: 50px; left: 50%; transform: translateX(-50%); border-radius: 30px; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); position: relative; font-family: 'CustomFont', sans-serif;">
         
-        <h1 style="color: white; font-size: 4.5cqmax; text-align: right; position: absolute; top: -20px; left: 820px;">
-            Welcome<br>Back!
+        <h1 style="font-family: spof; color: white; font-size: 4.5cqmax; text-align: right; position: absolute; top: 20px; left: 790px;">
+            Welcome
         </h1>
         
-        <div class="gradient-container" style="height: 690px; width: 700px; top: 60px; left: 50px; position: absolute;">
-            <img src="static\images\سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 190px; left: 190px;">
+        <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
+            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
         </div>
      
-        <div class="input-container">
+        <div class="form-container" style="position: relative; left: 810px; top: 250px;">
+            <!-- Login Form -->
             <form action="/login" method="POST">
-            <input type="email" name="email" placeholder="Email" style="position: absolute; top:265px; left: 823px;">
-            <input type="text" name="username" placeholder="Username" style="position: absolute; top:330px; left: 823px;">
-            <input type="password" name="password" placeholder="Password" style="position: absolute; top: 395px; left: 823px;">
-            <button style="width: 300px; height: 50px; position: absolute; top: 465px; left: 820px;">
-                Login
-            </button>
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required style="font-family: spof;">
+                    <label for="email" style="font-family: spof;font-size: 20px;">Email</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required style="font-family: spof;">
+                    <label for="password" style="font-family: spof;font-size: 20px;">Password</label>
+                    <span class="toggle-password" onclick="togglePassword()">◉</span>
+                </div>
+                
+                <button type="submit" style="width: 300px; height: 50px; position: relative;left: 5px;font-family: spof;font-size: 20px; border-radius: 20px;">
+                    Login
+                </button>
             </form>
-            <form action="/register" method="GET">
-            <button style="width: 300px; height: 50px; position: absolute; top: 530px; left: 820px;">
-            </form>
-                Sign-Up
-            </button>
-            
+
+            <!-- Sign-Up Form -->
+            <div style="position: relative; top: 20px; left: 40px;">
+                <a style="color: #ffffff; font-family: spof;">
+                    Need an Account?
+                </a>
+                <a href="/register" style="color: #ffffff; font-size: 16px; text-decoration: none;font-family: spof;text-decoration: underline;">
+                    Sign-Up here
+                </a>
+            </div>
         </div>
     </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+    </script>
 </body>
 </html>

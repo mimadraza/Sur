@@ -58,13 +58,70 @@ input[type="text"]:focus {
 }
 /* CSS */
 @font-face {
-    font-family: 'CustomFont';
-    src: url('frontend/static/fonts/DansDisneyUi-x5Aq.ttf') format('truetype');
+    font-family: 'spof';
+    src: url('../fonts/MazzardSoftM-Bold.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-/* Apply the font */
-body {
-    font-family: 'CustomFont', sans-serif;
+.form-container {
+    width: 300px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 10px 10px 0;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #555;
+    color: #ddd;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-bottom-color: #888;
+}
+
+label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #777;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Move the label up on focus or when input has content */
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    color: #888;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    cursor: pointer;
+    color: #777;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #aaa;
 }

@@ -1,24 +1,70 @@
 <!DOCTYPE html>
-<html>
-    <link href="static/css/style.css" rel = "stylesheet">
-    <title>
-        Register
-    </title>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color: #676179;">
+    <div class="square" style="background-color: #161515; height: 800px; width: 1200px; top: 50px; left: 50%; transform: translateX(-50%); border-radius: 30px; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); position: relative; font-family: 'CustomFont', sans-serif;">
+        
+        <h1 style="font-family: spof; color: white; font-size: 3.5cqmax; text-align: right; position: absolute; top: -10px; left: 850px;">
+            Register
+        </h1>
+        
+        <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
+            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
+        </div>
+     
+        <div class="form-container" style="position: relative; left: 810px; top: 150px;">
+            <!-- Login Form -->
+            <form action="/login" method="POST" style="margin-bottom: 5px;">
+                <div class="input-group">
+                    <input type="text" id="interactive" name="first_name" required style="font-family: spof;">
+                    <label for="text" style="font-family: spof;font-size: 20px;">First Name</label>
+                </div>
 
-    <body style="background-color: blue;">
-        <div class = 'square' style="top: 100px; left : 500px; height: 510px;">
-            <button style="width: 100px; height: 50px; top: 450px;left: 153px;">
-                Create Account
-        </button>
-        <div class="input-container">
-            <input type="text" id="interactive" name = "first_name" placeholder="First Name" style="top: 5px; left: 83px;">
-            <input type="text" id="interactive" name = "last_name" placeholder="Last Name" style="top: 20px; left: 83px;">
-            <input type="email" id="interactive" name = "email" placeholder="Email" style="top: 35px; left: 83px;">
-            <input type="text" id="interactive" name = "country" placeholder="country" style="top: 50px; left: 83px;">
-            <input type="text" id="interactive" name = "username" placeholder="Username" style="top: 65px; left: 83px;">
-            <input type="password" id="interactive" name = "password" placeholder="Password" style="top: 80px; left: 83px;">
-            <input type="date" id="interactive" name = "dob" placeholder="Date of Birth" style="top: 95px; left: 83px;">
+                <div class="input-group">
+                    <input type="text" id="interactive" name="last_name" required style="font-family: spof;">
+                    <label for="text" style="font-family: spof;font-size: 20px;">Last Name</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required style="font-family: spof;">
+                    <label for="email" style="font-family: spof;font-size: 20px;">Email</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="interactive" name="country" required style="font-family: spof;">
+                    <label for="text" style="font-family: spof;font-size: 20px;">Country</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="interactive" name="username" required style="font-family: spof;">
+                    <label for="text" style="font-family: spof;font-size: 20px;">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required style="font-family: spof;">
+                    <label for="password" style="font-family: spof;font-size: 20px;">Password</label>
+                    <span class="toggle-password" onclick="togglePassword()">◉</span>
+                </div>
+                <div class="input-group">
+                    <input type="date" id="interactive" name="dob" required style="font-family: spof;">
+                    <label for="text" style="font-family: spof;font-size: 20px;">Date of Birth</label>
+                </div>
+                <button type="submit" style="width: 300px; height: 50px; position: relative;left: 5px;font-family: spof;font-size: 20px; border-radius: 20px;">
+                    Create Account
+                </button>
+            </form>
+
         </div>
-        </div>
-    </body>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+    </script>
+</body>
 </html>

@@ -23,7 +23,7 @@ def login():
     return render_template('LoginPage.html')
 
 @app.route('/register', methods=["GET","POST"])
-def register():  
+def register():
     if request.method == "POST":
         first_name = request.form["first_name"]
         last_name = request.form["last_name"]
