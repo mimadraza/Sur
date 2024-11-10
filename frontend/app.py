@@ -9,7 +9,7 @@ backendurl = Config.BACKEND_URL
 
 @app.route('/')
 def index():  
-    return redirect('/login') #Good practice
+    return render_template('homepage.html') #Good practice
 
 @app.route('/login', methods=["GET","POST"])
 def login():  

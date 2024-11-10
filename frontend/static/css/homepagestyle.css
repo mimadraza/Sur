@@ -6,25 +6,18 @@
 .background-gradient {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(55deg, 
-            #000000,
-            #1a1a1a,
-            #2f2f2f,
-            #3a3a3a,
-            #4f4f4f,
-            #636363,
-            #787878,
-            #8e8e8e,
-            #a4a4a4,
-            #b9b9b9,
-            #bab9bb, 
-            #b0aeb1,
-            #999699,
-            #aeaaaf,
-            #a5a1a5,
-            #b990b9,
-            #c598c5
-        );
+    background: linear-gradient(45deg, 
+        #2f2f2f,
+        #4b2c4f,
+        #6b2f99,
+        #935abf,
+        #b48ed6,
+        #d88abf,
+        #e29fc4,
+        #e8c2c8,
+        #d8d8d8,
+        #f5f3fc,
+        #ffffff);
     background-size: 200% 200%;
     animation: color 11s ease-in-out infinite;
 }
@@ -33,15 +26,103 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-.container-outer{
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 98%;
-    width: 98%;
-    border-radius: 20px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+.container-outer {
+    display: flex;
+    height: 100vh;
+    position: relative;
 }
+
 .square {
+    width: 20%;
+    height: 100%;
+    background-color: #1a1a1a;
+    position: relative;
+}
+
+/* Vertical line style */
+.vertical-line {
+    position: absolute;
+    width: 2px;
+    height: 100%; /* Adjust to fill the square completely */
+    background-color: rgb(134, 132, 132);
+    left: 50px;
+    top: 0; /* Start from the top of the container */
+}
+
+@font-face {
+    font-family: 'spof';
+    src: url('../fonts/MazzardSoftM-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.horizontal-line {
+    position: absolute;
     width: 100%;
-    height: 15%;
-    background-color: rgb(34, 32, 32);
+    height: 2px; /* Adjust to fill the square completely */
+    background-color: rgb(134, 132, 132);
+
+}
+.music-player{
+    position: relative;
+    width: 1500px;
+    height: 600px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    overflow: hidden;
+    color: #d5eebb;
+}
+
+.song-name,
+.artist-name{
+    text-align: center;
+    text-transform: capitalize;
+}
+.song-name
+{
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.artist-name{
+    font-size: 20px;
+}
+
+.disk{
+    position: relative;
+    display: block;
+    margin: 40px auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-image: url("../images/images.jpg");
+    background-size: cover;
+    box-shadow: 0 0 0 0 100px rgba(255,255,255,0.001);
+}
+
+.disk::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, 
+        #2f2f2f,
+        #4b2c4f,
+        #6b2f99,
+        #935abf,
+        #b48ed6,
+        #d88abf,
+        #e29fc4,
+        #e8c2c8,
+        #d8d8d8,
+        #f5f3fc,
+        #ffffff);
+    background-size: 200% 200%;
+    animation: color 11s ease-in-out infinite;
 }

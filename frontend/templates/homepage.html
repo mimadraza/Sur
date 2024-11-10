@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="frontend\static\css\homepagestyle.css">
+        <link rel="stylesheet" href="static/css/homepagestyle.css">
         <title>
             Homepage
         </title>
     </head>
-    <body >
+    <body>
         <div class="background-gradient" style="position: relative; overflow: hidden;">
-        <div class="container-outer" style="position: absolute; top: 10px; left: 20px;">
-            <div class="square" style="position: absolute;top: 85%;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px; opacity: 1;"></div>
-            <div class="square" style="position: absolute;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px; opacity: 1;height: 10%; opacity: 0.4;"></div>
-            <div class="square" style="position: absolute; top:11%; opacity: 1;height: 73% ;width: 15%; opacity: 0.7;border-radius: 20px;"></div>
+            <div class="container-outer">
+                <!-- First square with vertical line -->
+                 
+                <div class="square">
+                    <h1 style="font-family: spof; color: white; font-size: 2.2cqmax; text-align: right; position: absolute; top: 20px; left: 130px;">
+                        Your Library
+                    </h1>
+                    <div class="vertical-line" style="position: relative; left: 100px;opacity: 0.7;"></div>
+                </div>
+                <div class="square" style="width: 60%; backdrop-filter: blur(40px); background-color:  rgba(255, 255, 255, 0.1);">
+                    <div class="horizontal-line" style="top: 80px;">
+
+                    </div>
+                    <div class="music-player" style="top: 100px;width: 100%;">
+                            <h1 class="song-name" style="font-family: spof;">
+                                Song name
+                            </h1>
+                            <p class="artist-name" style="font-family: spof;">
+                                Artist
+                            </p>
+                            <div class="disk">
+
+                            </div>
+                    </div>
+                </div>    
+                <!-- Second square -->
+                <div class="square" style="margin-left: auto;">
+                    <!-- Content for second square -->
+                </div>
+            </div>
         </div>
-    </div>
-    
-        
     </body>
 </html>
