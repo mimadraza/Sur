@@ -34,18 +34,18 @@ input[type="text"]:focus {
 .gradient-container {
     height: 98vh;
     width: 1240px;
-    background: linear-gradient(45deg, 
-        #2f2f2f,
-        #4b2c4f,
-        #6b2f99,
-        #935abf,
-        #b48ed6,
-        #d88abf,
-        #e29fc4,
-        #e8c2c8,
-        #d8d8d8,
-        #f5f3fc,
-        #ffffff);
+   background: linear-gradient(45deg, 
+        #1e3a8a,  /* Deep Blue */
+        #2563eb,  /* Blue */
+        #60a5fa,  /* Light Blue */
+        #93c5fd,  /* Sky Blue */
+        #bfdbfe,  /* Soft Blue */
+        #e0f2fe,  /* Very Light Blue */
+        #eff6ff,  /* Pale Blue */
+        #f3f8ff,  /* Almost White */
+        #f8fbff,  /* Barely Blue */
+        #ffffff   /* White */
+);
     border-radius: 30px;
     background-size: 400% 400%;
     animation: color 11s ease-in-out infinite;

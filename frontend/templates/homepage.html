@@ -1,50 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="static/css/homepagestyle.css">
-        <title>
-            Homepage
-        </title>
-    </head>
-    <body>
-        <div class="background-gradient" style="display: grid; grid-template-columns: 10fr 20fr 10fr;gap: 0px;">
-            <div class="square" style="border-top-right-radius: 25px; border-bottom-right-radius: 25px;">
-            </div>
-            <div class="music-container" style="height: 100%; width: 100%; background-color: rgba(255, 255, 255, 0.1);">
-<<<<<<< HEAD
-                <div class="music-player">
-                    <h1 class = "song-name" style="font-family: spof;align-self: center;">
-                        Too Sweet For me
-=======
-                <div class="horizontal-line" style="top: 80px;opacity: 0.4;"></div>
-                <div class="music-player">
-                    <h1 class = "song-name" style="font-family: spof;align-self: center;">
-                        Too Sweet
->>>>>>> f6a080378407d4212bec00c1b068478ed8e7fc3d
-                    </h1>
-                    <p class = "artist-name" style="font-family: spof;align-self: center;">
-                        Hozier
-                    </p>
-                    <div class="disk"></div>
-                    <div class="song-slider">
-                        <input type = "range" value = "0" class = "seek-bar">
-                        <span class="current-time">00:00</span>
-                        <span class="song-time">00:00</span>
-                    </div>
-<<<<<<< HEAD
-=======
-                    <div class="controls">
-                        <!-- <button class="btn backward-btn"><img src=""></button> -->
-                        <button class="play-btn pause">
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
->>>>>>> f6a080378407d4212bec00c1b068478ed8e7fc3d
-                </div>
-            </div>
-            <div class="square" style="margin-left: auto;border-top-left-radius: 25px; border-bottom-left-radius: 25px;">
-            </div>
+<head>
+    <link rel="stylesheet" href="static/css/loginstyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-color: #676179;">
+    <div class="square" style="background-color: #161515; height: 800px; width: 1500px; top: 50px; left: 50%; transform: translateX(-50%); border-radius: 30px; box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3); position: relative; font-family: 'CustomFont', sans-serif;">
+        
+        <h1 style="font-family: spof; color: white; font-size: 4.5cqmax; text-align: right; position: absolute; top: -40px; left: 950px;">
+            Start
+        </h1>
+        <h2 style="font-family: spof; color: white; font-size: 4.5cqmax; text-align: right; position: absolute; top: 40px; left: 900px;">
+            Listening
+        </h2>
+        <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
+            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
         </div>
-    </body>
+     
+        <div class="form-container" style="position: relative; left: 810px; top: 250px;">
+            <form action="/login" method="POST">
+               
+            </form>        
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+    </script>
+</body>
 </html>

@@ -9,7 +9,7 @@ backendurl = Config.BACKEND_URL
 
 @app.route('/')
 def index():  
-    return render_template('homepage.html') #Good practice
+    return render_template('userdashboard.html') #Good practice
 
 @app.route('/login', methods=["GET","POST"])
 def login():  
@@ -20,7 +20,7 @@ def login():
         print(username ,email, password)
         return 'JSONOSCAS'
     
-    return render_template('LoginPage.html')
+    return render_template('loginPage.html')
 
 @app.route('/register', methods=["GET","POST"])
 def register():
@@ -33,7 +33,7 @@ def register():
         dob = request.form["dob"]
         print(first_name, last_name)
     
-    return render_template('registerpage.html')
+    return render_template('userregisterpage.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
