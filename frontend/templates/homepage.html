@@ -7,8 +7,14 @@
         </title>
     </head>
     <body>
-        <div class="background-gradient" style="display: grid; grid-template-columns: 10fr 20fr 10fr;gap: 0px;">
+        <div class="background-gradient" style="display: grid; grid-template-columns: 20fr 20fr 20fr;gap: 0px;">
             <div class="square" style="border-top-right-radius: 25px; border-bottom-right-radius: 25px;">
+                <div class="search-bar-container" style="left: 130px; top: 10px;">
+                    <input type="text" class="search-input" placeholder="Search">
+                </div>
+                <div class="square" style="background-color: rgb(25, 23, 26); width: 100px; border-radius:15px;top: -40px;">
+                    <div class="vertical-line" style="left: 100px;height: 100%;"></div>
+                </div> 
             </div>
             <div class="music-container" style="height: 100%; width: 100%; background-color: rgba(255, 255, 255, 0.1);">
                 <div class="horizontal-line" style="top: 80px;opacity: 0.4;"></div>
@@ -19,18 +25,19 @@
                     <p class = "artist-name" style="font-family: spof;align-self: center;">
                         Hozier
                     </p>
-                    <div class="disk"></div>
+                    <div class="disk play"></div>
                     <div class="song-slider">
                         <input type = "range" value = "0" class = "seek-bar">
                         <span class="current-time">00:00</span>
                         <span class="song-time">00:00</span>
                     </div>
                     <div class="controls">
-                        <!-- <button class="btn backward-btn"><img src=""></button> -->
+                        <button class="btn"><img src="static/images/prev.png" alt="Previous"></button>
                         <button class="play-btn pause">
                             <span></span>
                             <span></span>
                         </button>
+                        <button class="btn"><img src="static/images/next.png" alt="Next"></button>
                     </div>
                 </div>
             </div>
