@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/test.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form class="form">
+    <div class="input-group">
+      <input
+        class="input-group__input"
+        value="Hel"
+        id="email"
+        type="email"
+        placeholder=""
+      />
+      <label
+        class="input-group__label"
+        for="email"
+        >Email</label
+      >
+      <span class="input-group__error">
+        Not a valid email
+      </span>
+    </div>
+    <div class="input-group">
+      <input
+        class="input-group__input"
+        type="password"
+        id="password"
+        placeholder=""
+        pattern="[a-z0-9]{8,}"
+      />
+      <label
+        class="input-group__label"
+        for="password"
+        >Password</label
+      >
+      <span class="input-group__error">
+        Digits or letters, min 8 chars
+      </span>
+    </div>
+    <div class="input-group">
+      <button class="submit-btn" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</body>
+</html>
+
+  
+  

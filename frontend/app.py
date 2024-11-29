@@ -7,13 +7,16 @@ app = Flask(__name__, static_folder='static')
 CORS(app)
 backendurl = Config.BACKEND_URL
 login_validations = (('email',gl.required, gl.format_email), ('password', gl.required) )
-register_validations = (('first_name', gl.required, gl.type_(str)),('last_name', gl.required, gl.type_(str)),
-                        ('email',gl.required, gl.format_email), ('password', gl.required), ('country', gl.required), ('dob', gl.required))
 
+register_validations = (('first_name', gl.required, gl.type_(str), gl.regex_('^[^0-9]*$')),
+                        ('last_name', gl.required, gl.type_(str),gl.regex_('^[^0-9]*$')),
+                        ('email',gl.required, gl.format_email), ('password', gl.required),
+                        ('country', gl.required, gl.type_(str), gl.regex_('^[^0-9]*$')), 
+                        ('dob', gl.required))
 
 @app.route('/')
 def index():  
-    return render_template('homepage.html') #Good practice
+    return render_template('homepage.html') 
 
 @app.route('/login', methods=["GET","POST"])
 def login():  
@@ -24,10 +27,11 @@ def login():
                 "password" : request.form['password']}
         
         result = gl.validate(login_validations, data) #returns true if all validations passed
-        if result :  
-            response = request.get_json(backendurl)
-            if (response.statuscode == 200):    
-                return redirect("userdashboard.html")
+        if result:  #uncoment below once backend becomes functional
+            # response = request.get_json(backendurl)
+            # if (response.statuscode == 200):    
+            #     return redirect("userdashboard.html")
+            print('All is Good')
         
     return render_template('LoginPage.html')
 
@@ -44,12 +48,17 @@ def userregister():
         }
         
         result = gl.validate(register_validations, data) #returns true if all validations passed
-        if result :  
-            response = request.get_json(backendurl)
-            if (response.statuscode == 200):    
-                return redirect("LoginPage.html")
+
+        if result.success:  #uncoment below once backend becomes functional
+            # response = request.get_json(backendurl)
+            # if (response.statuscode == 200):    
+            #     return redirect("/login")
+            return redirect('/login')
+        else:
+            return render_template('userregisterpage.html', visibility = "visible")
+
     
-    return render_template('userregisterpage.html')
+    return render_template('userregisterpage.html', visibility = "hidden")
 
 @app.route('/artistregister', methods=["GET","POST"])
 def artistregister():
@@ -64,12 +73,24 @@ def artistregister():
         }
         
         result = gl.validate(register_validations, data) #returns true if all validations passed
-        if result :  
-            response = request.get_json(backendurl)
-            if (response.statuscode == 200):    
-                return redirect("artistdashboard.html")
+        if result:  #uncoment below once backend becomes functional
+            # response = request.get_json(backendurl)
+            # if (response.statuscode == 200):    
+            #     return redirect("/login")
+            return redirect('/login')
     
     return render_template('artistregister.html')
+
+@app.route('/userdashboard', methods=['GET', 'POST'])
+def userdashboard():
+
+    return render_template('userdashboard.html')
+
+@app.route('/artistdashboard', methods=['GET', 'POST'])
+def artistdashboard():
+
+    return render_template('artistdashboard.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
