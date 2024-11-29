@@ -1,0 +1,24 @@
+Band,Rating,Plays
+Bob Dylan,7,512
+Led Zeppelin,1,193
+David Bowie,5,290
+Arcade Fire,9,402
+Creedence Clear Water,9,789
+Queen,6,116
+Neil Young,4,1000
+Foo Fighters,5,777
+Pink Floyd,10,420
+5 Seconds of Summer,8,362
+A Tribe Called Quest,10,135
+Surfaces,8,12351
+Coldplay,7,1246
+One Direction,10,543
+Fifth Harmony,6,777
+Rush,7,1261
+The Arkells,4,161
+Gorillaz,10,1241
+Nas,10,0
+Mitski,9,99
+Abba, 8, 600
+Ed Sheeran, 0, 323
+Elton John, 9, 45
