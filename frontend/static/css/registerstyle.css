@@ -125,3 +125,8 @@ input:not(:placeholder-shown) + label {
 .toggle-password:hover {
     color: #aaa;
 }
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none; /* Initially hidden */
+}
