@@ -14,7 +14,7 @@ login_validations = (('email',gl.required, gl.format_email), ('password', gl.req
 register_validations = (('first_name', gl.required, gl.type_(str), gl.regex_('^[^0-9]*$')),
                         ('last_name', gl.required, gl.type_(str),gl.regex_('^[^0-9]*$')),
                         ('email',gl.required, gl.format_email), ('password', gl.required),
-                        ('country', gl.required, gl.type_(str), gl.regex_('^[^0-9]*$')), 
+                        ('country', gl.required, gl.regex_('^[^0-9]*$')), 
                         ('dob', gl.required))
 
 #Need to set a secret key so that no invalid users can access session information
