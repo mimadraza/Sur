@@ -5,6 +5,11 @@
     border-radius: 15px;
 }
 
+:root {
+    --color-invalid: rgb(255, 68, 68);
+    --color-valid: green;
+}
+
 button {
     background-color: #8866ee;
     color: white;
@@ -34,7 +39,7 @@ input[type="text"]:focus {
 .gradient-container {
     height: 98vh;
     width: 1240px;
-   background: linear-gradient(45deg, 
+    background: linear-gradient(45deg, 
         #1e3a8a,  /* Deep Blue */
         #2563eb,  /* Blue */
         #60a5fa,  /* Light Blue */
@@ -45,7 +50,7 @@ input[type="text"]:focus {
         #f3f8ff,  /* Almost White */
         #f8fbff,  /* Barely Blue */
         #ffffff   /* White */
-);
+    );
     border-radius: 30px;
     background-size: 400% 400%;
     animation: color 11s ease-in-out infinite;
@@ -56,6 +61,7 @@ input[type="text"]:focus {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
 /* CSS */
 @font-face {
     font-family: 'spof';
@@ -75,7 +81,8 @@ input[type="text"]:focus {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     width: 100%;
     padding: 10px 10px 10px 0;
     font-size: 16px;
@@ -85,11 +92,13 @@ input[type="password"] {
     color: #ddd;
     outline: none;
     transition: border-color 0.3s ease;
+    resize : none;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+textarea:focus {
     border-bottom-color: #888;
 }
 
@@ -125,8 +134,124 @@ input:not(:placeholder-shown) + label {
 .toggle-password:hover {
     color: #aaa;
 }
-.error-message {
-    color: red;
-    font-size: 12px;
-    display: none; /* Initially hidden */
+
+.input-group__input {
+    font-weight: bold;
+    resize:none;
+}
+
+.input-group__input:focus {
+    outline-offset: 5px;
+}
+
+.input-group {
+    position: relative;
+    --x: 20px;
+    --y: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group__label,
+.input-group__input,
+.submit-btn {
+    font-size: 1.2rem;
+}
+
+.input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+    width: 100%;
+    padding: var(--y) var(--x);
+}
+
+.input-group__input,
+.input-group__error {
+    --left: 0;
+    left: var(--left);
+    position: relative;
+}
+
+/* Label positioning when valid */
+.input-group__input:is(:focus, :not(:placeholder-shown)) ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+}
+
+.input-group__label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #777;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Error message styling */
+.input-group__error {
+    color: var(--color-invalid);
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+    margin-top: 1px;
+    font-size: 0.6rem;
+}
+
+/* Invalid styling only after user interaction */
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) {
+    color: var(--color-invalid);
+    animation: error-shake 600ms;
+    border: 2px solid var(--color-invalid);
+}
+
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__error {
+    visibility: visible;
+    animation: error-shake 600ms;
+}
+
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__label {
+    color: var(--color-invalid);
+    border-color: var(--color-invalid);
+}
+/* Invalid Styling for Textarea */
+textarea:not(:focus):invalid:not(:placeholder-shown),
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) {
+    color: var(--color-invalid);
+    animation: error-shake 600ms;
+    border: 2px solid var(--color-invalid);
+}
+
+textarea:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__error,
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__error {
+    visibility: visible;
+    animation: error-shake 600ms;
+}
+
+textarea:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__label,
+.input-group__input:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__label {
+    color: var(--color-invalid);
+    border-color: var(--color-invalid);
+}
+/* Shake animation */
+@keyframes error-shake {
+    0% {
+        --left: -10px;
+    }
+    20% {
+        --left: 8px;
+    }
+    40% {
+        --left: -6px;
+    }
+    60% {
+        --left: 4px;
+    }
+    80% {
+        --left: -2px;
+    }
+    100% {
+        --left: 0;
+    }
 }
