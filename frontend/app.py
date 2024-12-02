@@ -13,7 +13,7 @@ register_validations = (('first_name', gl.required, gl.type_(str)),('last_name',
 
 @app.route('/')
 def index():  
-    return render_template('homepage.html') #Good practice
+    return render_template('userdashboard.html') #Good practice
 
 @app.route('/login', methods=["GET","POST"])
 def login():  
