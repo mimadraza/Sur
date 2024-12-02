@@ -36,6 +36,9 @@
         -webkit-backdrop-filter: blur(50px);z-index: 3; display: flex;">
         <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
             <div class="symbol"></div>
+            <div class="line"></div>  
+            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+
         </div>
     </div>
     <div class="square" style="overflow: hidden;overflow-y:scroll;background-color: inherit; height: 83vh; width: 75%; position: absolute; right:10%;top:0 ;display: flex;justify-content: center;align-items: center;">
@@ -92,10 +95,21 @@
             Albums
             </div>
           <!--outer-container-horizonatal-->
-          <div class="Album" style="top: 150%; width: 80%; position: absolute; 
-        top: 150%; left: 46%; transform: translate(-50%, -50%);">
+          <div class="Album-container" style="height: 300px; width: 80%; position: absolute; 
+            top: 155%; left: 46%; transform: translate(-50%, -50%); 
+            display: flex; justify-content: space-evenly; 
+            align-items: center; gap: 20px;">
             
-          </div>
+            <div class="album"style="display:flex;align-items: center;">
+                <div class="song-image" style="background-image: url('static/images/Church.jpg');height: 150px; width: 150px; align-self: center;"></div> 
+            </div>
+            <div class="album"></div> 
+            <div class="album"></div> 
+            <div class="album"></div>             
+            <div class="album"></div> 
+
+        </div>
+
     </div>
     <div class="square" style="background-color: #282424; height: 100vh; width: 15%; position: absolute; right: 0; top:0;"> <!--Right Div-->
       <div class="song-title" style="width: 200px; height: 50px; position: relative; left: 70px; font-family: spof; font-size: 40px; border-radius: 20px; top: 100px;" >

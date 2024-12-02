@@ -51,7 +51,12 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'spof2';
+    src: url('../fonts/MazzardSoftM-Light.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .music-player{
     position: relative;
@@ -91,6 +96,7 @@
     background-size: cover;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3), 0 0 30px 15px rgba(0, 0, 0, 0.2);
 }
+
 
 .disk::before{
     content: '';
@@ -205,7 +211,6 @@
         box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.4)
     }
 }
-
 .song {
     display: flex;
     align-items: center;
@@ -261,9 +266,9 @@
   .symbol{
     border-radius: 50%;
     background-color: white;
-    height: 30px;
-    width: 30px;
-    top: 7px;
+    height: 26px;
+    width: 26px;
+    top: 10px;
     left:10px ;
     position: relative;
   }
@@ -273,14 +278,50 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color:#282424;
   }
   .line{
-    height: 10px;
-    width: 1px;
-    transform: rotate(45deg);
+    position: relative;
+    height:10px;
+    width: 2px;
+    top: 3px;
+    left: 34px;
+    transform: rotate(-45deg);
     background-color: white;
   }
+
+  input[type="text"] {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  margin-left: 10px; /* Space between icon and text box */
+  width: 100%;  /* Makes text box take full width within the container */
+  height: 30px;
+  padding: 5px;
+  border-radius: 20px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+.search:hover,.album:hover {
+    background-color: #333;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+.search:focus-within  {
+    background-color: #333;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+.album{
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    position: relative;
+    bottom: 40px;
+}
