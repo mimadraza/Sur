@@ -19,7 +19,6 @@ playBtn.addEventListener('click' , () => {
 
 const setMusic = (audioURL) => {
     seekBar.value = 0;
-    playSong('Song 1');
     music.src = audioURL; 
     currentTime.innerHTML = '00:00';
     setTimeout(() => {
@@ -53,7 +52,8 @@ function playSong(songName) {
         .then(data => {
             const audioURL = URL.createObjectURL(data);  // Create a URL for the audio blob
             setMusic(audioURL);
-
+            playBtn.classList.toggle('pause');
+            music.play();
         })
         .catch(error => console.error('Error fetching song:', error));
 
