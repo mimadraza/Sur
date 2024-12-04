@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/artistdashboard.css">
+    <title>Dashboard</title>
+   
+</head>
+<body style="background: #0e0d0d;">
+    <audio src = "" id = "audio"></audio>
+    <!--left bar-->
+    <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;" >
+            Home
+          </button>
+        </div>
+        <!--button 2-->
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;">
+            Stats
+          </button>
+        </div>
+        <!--button 3-->
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;">
+            Discover
+          </button>
+        </div>
+        <!--button 4-->
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;">
+            Upload
+          </button>
+        </div>      
+    </div>
+     <!--top bar-->
+    <div class="square" style="background-color:linear-gradient(to top, 
+        #000000, #474747 50%, #555454); width: 70%;height: 100px;backdrop-filter: blur(50px); position: absolute;right: 15%;top: 0;
+        -webkit-backdrop-filter: blur(50px);z-index: 3; display: flex;">
+        <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
+            <div class="symbol"></div>
+            <div class="line"></div>  
+            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+        </div>
+    </div>
+    <!--main board-->
+    <div class="square" style="overflow: hidden; background-color: inherit; height: 83vh; width: 75%; position: absolute; right: 10%; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 40px;overflow: hidden;overflow-y: scroll;">
+
+      <!-- Image Container (musical background and artist image) -->
+      <div class="square" style="height: 300px; width: 80%; background-image: url('{{ artist.background_url }}'); position: relative; border-radius: 15px; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 40px; right:50px; top:50px">
+        <a href="{{ artist.profile_url }}" style="text-decoration: none; color: inherit;">
+            <div class="circle-image" style="height: 250px; width: 250px; background-image: url('{{ artist.image_url }}'); background-size: cover; background-position: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; top: 20px;">
+            </div>
+        </a>
+     </div>
+    
+    
+      <!-- Popular Title (aligned left) -->
+      <div class="song-title" style="font-size: 40px; text-align: left; width: 80%; padding-left: 20px; position: relative;right:55px;top: 40px;">Popular</div>
+    
+      <!-- First Song (song image left-aligned with centered text) -->
+      {% for song in songs %}
+        <div class="song" style="display: flex; align-items: center; justify-content: center; width: 80%; position: relative; right: 55px;">
+            <button class="song-image" style="height: 90px; width: 90px; background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; " onclick="playSong('Song 1')">
+            </button>
+            <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+            <i class="fas fa-play"></i> <!-- Play Icon -->
+        </div> 
+      {% endfor %}
+
+            <div class="song-title" style="top:150px;right:550px;font-size: 40px; color: white; position: absolute; 
+              top: 135%; left: 25%; transform: translate(-50%, -50%);" >
+              Albums
+              </div>
+            <!--outer-container-horizonatal-->
+            <div class="Album-container" style="height: 300px; width: 80%; position: absolute; top: 160%; left: 46%; transform: translate(-50%, -50%); display: flex; justify-content: space-evenly; 
+              align-items: center; gap: 20px;">
+              {% for album in albums %}
+              <div class="album" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 200px; height: 200px; text-align: center;">
+                  <div class="song-image" style="background-image: url('{{ album.image_url }}'); height: 150px; width: 150px; background-size: cover; background-position: center; margin-bottom: 10px;"></div>
+                  <div class="song-text" style="font-family: spof; color: #ffffff;">
+                      <p>{{ album.title }}</p>
+                  </div>
+              </div>
+              {% endfor %}     
+          </div>
+      </div>
+    <!--right bar-->
+    <div class="square" style="background-color: #282424; height: 100vh; width: 15%; position: absolute; right: 0; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+      <div class="Bio-container" style="width: 95%; height: 45%; background: rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); position: relative; top: 10%; margin-top: 20px; overflow-y: scroll; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+  
+        <!-- Bio Image (Centered, inside the scrollable container) -->
+        <div class="bio-image" style="background-image: url('static/images/Hozier.webp'); background-size: cover; background-position: center; width: 100%; height: 1000px; border-radius: 10px;">
+        </div>
+        
+        <!-- Bio Title -->
+        <div class="song-title" style="width: 200px; height: 50px; font-family: spof2; font-size: 20px; border-radius: 20px; text-align: left; margin-top: 20px;">
+            About The Artist
+        </div>
+        
+        <!-- Bio Content (Scrollable) -->
+        <div class="bio-text" style="width: 90%; font-family: spof; font-size: 18px; color: white; margin-top: 20px;">
+            This is the bio section where you can add information about yourself or anything you'd like. Taylor Swift is the best singer of all time. Imad is the biggest swiftie EVER. Here's a bit more about this section with some longer text to fill up space. You can add whatever you want in here to make your bio more interesting.
+        </div>
+    </div>
+  </div>
+</div>
+  <!--music player-->
+  <div class="square" style="background-color: linear-gradient(to top,#000000, #474747 50%, #555454); height: 150px; width: 100%; position: absolute; bottom:0; backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(10px); border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid rgb(203, 222, 221);">
+    <div class="song-slider" style="position: absolute; top: 22%; left: 50%; transform: translate(-50%, -50%); width: 60%; max-width: 300px;">
+        <input type="range" value="0" class="seek-bar" style="width: 100%;">
+        <span class="current-time">00:00</span>
+        <span class="song-time">00:00</span>
+    </div>
+    <div class="controls">
+        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/prev.png" alt = ""></button>
+        <button class="play-btn pause" style="top: 40px;">
+            <span></span>
+            <span></span>
+        </button>
+        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/next.png" alt = ""></button>
+    </div>
+</div>
+
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/script.js"></script>
+</body>
+</html>

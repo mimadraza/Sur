@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --color-invalid: rgb(255, 68, 68);
+    --color-valid: green;
+  }
+
+  body {
+    margin: 0;
+    padding: 80px 20px;
+    font-family: Poppins;
+    background-size: cover;
+  }
+
+  .form {
+    position: relative;
+    backdrop-filter: blur(1px);
+    background-color: color-mix(
+      in srgb,
+      white,
+      transparent 20%
+    );
+    border-radius: 20px;
+    padding: 50px;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .input-group__input {
+    font-weight: bold;
+  }
+
+  .input-group__input:focus {
+    outline-offset: 5px;
+  }
+
+  .input-group {
+    position: relative;
+    --x: 20px;
+    --y: 10px;
+    margin-bottom: 15px;
+  }
+
+  .input-group__label,
+  .input-group__input,
+  .submit-btn {
+    font-size: 1.2rem;
+  }
+
+  .input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+    width: 100%;
+    padding: var(--y) var(--x);
+  }
+  
+  .input-group__input, .input-group__error {
+    --left: 0;
+    left: var(--left);
+    position: relative;
+  }
+
+  .input-group__input:is(
+      :focus,
+      :not(:placeholder-shown)
+    )
+    ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+  }
+
+  .input-group__label {
+    position: absolute;
+    background-color: white;
+    left: calc(var(--x) - 6px);
+    top: calc(var(--y) - 3px);
+    border: 1px solid transparent;
+    padding: 0 6px;
+    margin: 0;
+    cursor: text;
+    transition: top 300ms, font-size 300ms,
+      border-color 300ms;
+  }
+
+  .input-group__error {
+    color: var(--color-invalid);
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+    margin-top: 1px;
+    font-size: 0.6rem;
+  }
+
+  .input-group__input:not(:focus):invalid {
+    color: var(--color-invalid);
+    animation: error-shake 600ms;
+    border: 2px solid var(--color-invalid);
+  }
+
+  .input-group__input:not(:focus):invalid ~ .input-group__error {
+    visibility: visible;
+    animation: error-shake 600ms;
+  }
+
+  @keyframes error-shake {
+    0% {
+      --left: -10px;
+    }
+    20% {
+      --left: 8px;
+    }
+    40% {
+      --left: -6px;
+    }
+    60% {
+      --left: 4px;
+    }
+    80% {
+      --left: -2px;
+    }
+    100% {
+      --left: 0;
+    }
+  }
+
+  .input-group__input:not(:focus):invalid ~ .input-group__label {
+    color: var(--color-invalid);
+    border-color: var(--color-invalid);
+  }
+
+  .submit-btn {
+    max-width: 300px;
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(0, 128, 55);
+    color: white;
+  }

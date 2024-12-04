@@ -1,0 +1,331 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.square{
+     
+}
+
+.circle-image {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 50%; /* Make the image circular */
+    background-size: cover;
+    background-position: center;
+    background-color: #444; /* Fallback color */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Border around the circle */
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.4);
+  }  
+.background-gradient {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, 
+        #2f2f2f,
+        #4b2c4f,
+        #6b2f99,
+        #935abf,
+        #b48ed6,
+        #d88abf,
+        #e29fc4,
+        #e8c2c8,
+        #d8d8d8,
+        #9e8dda,
+        #c698ea);
+    background-size: 200% 200%;
+    animation: color 11s ease-in-out infinite;
+}
+@keyframes color {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+@font-face {
+    font-family: 'spof';
+    src: url('../fonts/MazzardSoftM-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'spof2';
+    src: url('../fonts/MazzardSoftM-Light.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.music-player{
+    position: relative;
+    top: 150px;
+    width: 1200px;
+    height: 600px;
+    border-radius: 20px;
+    padding: 30px;
+    overflow: hidden;
+    color: #d5eebb;
+}
+
+.song-name,
+.artist-name{
+    text-align: center;
+    text-transform: capitalize;
+}
+.song-name
+{
+    font-size: 80px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.artist-name{
+    font-size: 40px;
+}
+
+.disk{
+    position: relative;
+    display: block;
+    margin: 40px auto;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-image: url("../images/images.jpg");
+    background-size: cover;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3), 0 0 30px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.disk::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, 
+        #2f2f2f,
+        #4b2c4f,
+        #6b2f99,
+        #935abf,
+        #b48ed6,
+        #d88abf,
+        #e29fc4,
+        #e8c2c8,
+        #d8d8d8,
+        #f5f3fc,
+        #ffffff);
+    background-size: 200% 200%;
+    animation: color 11s ease-in-out infinite;
+}
+.song-slider{
+    position: relative;
+    width: 100%;
+}
+.seek-bar{
+    -webkit-appearance: none;
+    width: 3c0%;
+    height: 5px;
+    border-radius: 10px;
+    background-color: #7fc8a9;
+    overflow: hidden;
+    cursor: pointer;
+}
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    height: 20px;
+    background-color: #000;
+    box-shadow: -400px 0 0 400px #d5eebb;
+}
+.current-time,.song-time{
+    font-size: 25px;
+    font-family: spof;
+    color: white;
+}
+.song-time{
+    position: absolute;
+    right: 0;
+}
+.controls{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.play-btn{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #d5eebb ;
+    cursor: pointer;
+    border: none;
+}
+.play-btn span{
+    position:absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 30px;
+    border-radius: 2px;
+    background:#5f7a61 ;
+    transition: .5s;
+    clip-path: polygon(0 0,100% 0 ,100% 100%,0% 100%);
+}
+.play-btn :nth-child(2)
+{
+    left: 55%;
+    transform-origin: center;
+}
+.play-btn.pause span:nth-child(2)
+{
+    transform: translateY(-50%) scaleY(0);
+}
+.play-btn.pause span:nth-child(1){
+    width: 35%;
+    left: 53%;
+    transform: translate(-50%,-50%);
+    border-radius: 0;
+    clip-path: polygon(0 0,100% 50%,100% 50%,0% 100%);
+}
+
+.play-btn.pause{
+    animation: pulse 2s linear infinite ;
+}
+@keyframes pulse{
+    0%{
+        box-shadow: 0;
+    }
+    50%{
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+    100%{
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.4)
+    }
+}
+.song {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    background-color: inherit;
+    padding: 15px;
+    width:80%;
+    height: 100px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .song:hover {
+      background-color: #333;
+      box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); /* Glow effect */
+      transform: translateX(-10px) scale(1.01); 
+  }
+
+  .song-title {
+    position: relative;
+    font-family: spof;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fdfdfd;
+    
+  }
+
+  .song-title span {
+    color: #999;
+    font-size: 14px;
+  }
+  .song-image{
+    height:90px;
+    width: 90px;
+    border-radius: 15px;
+  }
+  .song i {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    
+  }
+
+  .song i:hover {
+    color: #fff;
+  
+  }
+  .search{
+    
+  }
+  .symbol{
+    border-radius: 50%;
+    background-color: white;
+    height: 26px;
+    width: 26px;
+    top: 10px;
+    left:10px ;
+    position: relative;
+  }
+  .symbol::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color:#282424;
+  }
+  .line{
+    position: relative;
+    height:10px;
+    width: 2px;
+    top: 3px;
+    left: 34px;
+    transform: rotate(-45deg);
+    background-color: white;
+  }
+
+  input[type="text"] {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  margin-left: 10px; /* Space between icon and text box */
+  width: 100%;  /* Makes text box take full width within the container */
+  height: 30px;
+  padding: 5px;
+  border-radius: 20px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+.search:hover,.album:hover {
+    background-color: #333;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+.search:focus-within  {
+    background-color: #333;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+.album{
+    width: 200px;
+    height: 200px;
+    background-color: rgba(71, 71, 71, 0.5);
+    border-radius: 10px;
+    position: relative;
+    bottom: 40px;
+    cursor: pointer;
+}
