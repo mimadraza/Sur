@@ -171,7 +171,7 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #d5eebb ;
+    background: #fdfdfd ;
     cursor: pointer;
     border: none;
 }
@@ -183,7 +183,7 @@ body {
     width: 10px;
     height: 30px;
     border-radius: 2px;
-    background:#5f7a61 ;
+    background:#0a0a0a ;
     transition: .5s;
     clip-path: polygon(0 0,100% 0 ,100% 100%,0% 100%);
 }
@@ -264,11 +264,13 @@ header {
   grid-column: 2 / 3;
   background-color: #181414;
   border-radius:10px;
+  overflow : hidden;
   overflow-y: scroll;
   display: flex;
   min-height: 10vh;
   flex-direction: column;
   padding: 20px;
+  scrollbar-width: none;
 }
 
 .sidebar-right {
