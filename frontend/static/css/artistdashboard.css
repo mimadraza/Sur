@@ -128,7 +128,7 @@
 }
 .seek-bar{
     -webkit-appearance: none;
-    width: 3c0%;
+    width: 30%;
     height: 5px;
     border-radius: 10px;
     background-color: #7fc8a9;
@@ -328,4 +328,120 @@ input[type="text"]:focus {
     position: relative;
     bottom: 40px;
     cursor: pointer;
+}
+.chart-container{
+    margin: 0;
+    padding: 0;
+    height: inherit;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: spof2;
+    position: relative;
+    left: 700px;
+}
+.chart{
+    width: 600px;
+    height: 300px;
+    display: block;
+    position: absolute;
+    
+}
+
+.numbers{
+    color: #fff;
+    margin:0;
+    padding:0;
+    width: 50px;
+    height: 100%;
+    display: inline-block;
+    float: left;
+   
+}
+
+.numbers li{
+    list-style: none;
+    height: 150px;
+    position: relative;
+    bottom:145px;
+    font-family: spof2;
+}
+.numbers span{
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+}
+
+.bars{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    background: #555;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 500px;
+    height: 300px;
+    box-shadow: 0 0 10px 0 #555;
+    border-radius: 5px;
+}
+
+.bars li{
+    display: table-cell;
+    width: 100px;
+    height: 300px;
+    position: relative;
+    font-family: spof2;
+}
+.bars span{
+    width: 100%;
+    position: absolute;
+    bottom: -30px;
+    text-align: center;
+}
+.bars .bar{
+    display: block;
+    background: #17C0EB ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 20px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 45px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgba(23, 192, 235,0.5);
+    transition: 0.5s;
+    transition-property: background, box-shadow;
+}
+.bars .bar:hover{
+    background: #55EFC4;
+    box-shadow: 0 0 10px 0 rgba(85,239,196,0.5);
+    cursor: pointer;
+}
+.bars .bar:before{
+    color : #fff;
+    content: attr(data-percentage) '%';
+    position: relative;
+    bottom: 20px;
+}
+
+
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.flex-container{
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 50px; /* Space between items */
+    padding-top: 20px;
 }

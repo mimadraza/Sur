@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/artistdashboard.css">
+    <title>Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
+</head>
+<body style="background: #0e0d0d;">
+    <audio src = "" id = "audio"></audio>
+    <!--left bar-->
+    <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;"onclick="location.href='/artistdashboard'">
+            Home
+          </button>
+        </div>
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;">
+            Stats
+          </button>
+        </div>
+        <!--button 3-->
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;" onclick="location.href='/artistdashboard'">
+            Discover
+          </button>
+        </div>
+        <!--button 4-->
+        <div class ="side-buttons">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;" onclick="location.href='/artistdashboard'">
+            Upload
+          </button>
+        </div>      
+    </div>
+     <!--top bar-->
+    <div class="square" style="background-color:linear-gradient(to top, 
+        #000000, #474747 50%, #555454); width: 70%;height: 100px;backdrop-filter: blur(50px); position: absolute;right: 15%;top: 0;
+        -webkit-backdrop-filter: blur(50px);z-index: 3; display: flex;">
+        <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
+            <div class="symbol"></div>
+            <div class="line"></div>  
+            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+        </div>
+    </div>
+    <!--main board-->
+    <div class="square" style="overflow: hidden; background-color: inherit; height: 83vh; width: 75%; position: absolute; right: 10%; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 40px;overflow: hidden;overflow-y: scroll;">
+        
+        <div class="square" style="width: 100%;height: 300px; position: relative; top: 100px;">
+            <div class="chart-container" >
+                <div class="chart">
+                    <ul class="numbers">
+                        <li><span>100%</span></li>
+                        <li><span>50%</span></li>
+                        <li><span>0%</span></li>
+                    </ul>
+                    <ul class="bars glass">
+                        {% for song in artist_data.songs %}
+                        <li><div class ='bar' data-percentage="{{ song.percent }}"></div><span>{{ song.title }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="square glass flex-container" style="width: 600px; height: 300px; position: relative; bottom: 300px; left: 100px;border-radius: 10px; gap: 20px;">
+                <p style="font-family: spof;color: white; font-size: 4.5cap;align-self: center;">Artist Rank</p>
+                <div class="circle-image" style="display: flex;flex-direction: column;width: 150px; height: 150px;:hover{
+                        transform: scale(1.01);}">
+                    <p style="font-family: spof;color: white; font-size: 6.5cap;align-self: center;margin-top: 30%;">{{ artist_data.Artist_rank }}</p>
+                </div>
+            </div>
+        </div>
+         <div class="square glass flex-container" style="width: 600px; height:500px;position: absolute; top: 60%; right : 51%;">
+            <p style="font-family: spof2;color: white; font-size: 4.5cap;align-self: center;">Media Statistics</p>
+            <p style="font-family: spof2;color: white;font-size: 4.5cap;align-self:center;"> Likes : {{ artist_data.Artist_likes }}</p>
+            <p style="font-family: spof2;color: white;font-size: 4.5cap;align-self:center;"> Followers : {{ artist_data.Artist_Followers }}</p>
+        </div>
+
+        <div class="chart-container"  style="height: 400px; width: 500px; position: absolute; top: 60%; left: 53%;">
+            <div class="chart">
+                <ul class="numbers">
+                    <li><span>100%</span></li>
+                    <li><span>50%</span></li>
+                    <li><span>0%</span></li>
+                </ul>
+                <ul class="bars glass">
+                    {% for song in artist_data.songs %}
+                    <li><div class ='bar' data-percentage="{{ song.percent }}"></div><span>{{ song.title }}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--right bar-->
+    <div class="square" style="background-color: #282424; height: 100vh; width: 15%; position: absolute; right: 0; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
+      
+</div>
+  <!--music player-->
+  <div class="square" style="background-color: linear-gradient(to top,#000000, #474747 50%, #555454); height: 150px; width: 100%; position: absolute; bottom:0; backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(10px); border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid rgb(203, 222, 221);">
+    <div class="song-slider" style="position: absolute; top: 22%; left: 50%; transform: translate(-50%, -50%); width: 60%; max-width: 300px;">
+        <input type="range" value="0" class="seek-bar" style="width: 100%;">
+        <span class="current-time">00:00</span>
+        <span class="song-time">00:00</span>
+    </div>
+    <div class="controls">
+        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/prev.png" alt = ""></button>
+        <button class="play-btn pause" style="top: 40px;">
+            <span></span>
+            <span></span>
+        </button>
+        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/next.png" alt = ""></button>
+    </div>
+</div>
+
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/script.js"></script>
+  <script>
+    $(function(){
+        $('.bars li .bar').each(function(key,bar){
+            var percentage = $(this).data('percentage');
+            $(this).animate({
+                'height' : percentage + '%'
+            },1000);
+        });
+    });
+  </script>
+</body>
+</html>

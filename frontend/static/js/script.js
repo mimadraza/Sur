@@ -46,6 +46,20 @@ setInterval(() => {
     currentTime.innerHTML = formatTime(music.currentTime);
 },500)
 
+
+seekBar.addEventListener('change', () =>{
+    music.currentTime = seekBar.value;
+})
+
+forwardBtn.addEventListener('click' , () =>
+{
+
+})
+
+backwardBtn.addEventListener('click' , () =>
+{
+    
+})
 function playSong(songName) {
     fetch(`/get_music_from_backend/${songName}`)
         .then(response => response.blob())  // Response as a blob (binary data)
@@ -55,7 +69,21 @@ function playSong(songName) {
             playBtn.classList.toggle('pause');
             music.play();
         })
-        .catch(error => console.error('Error fetching song:', error));
+        .catch(error => console.error('Error fetching song:', error));    
+}
 
+function loadContent(page) {
+    const contentDiv = document.querySelector('.square[style*="overflow: hidden;"]');
+    contentDiv.innerHTML = "Loading...";  // Loading state
     
+    // Fetch new content via AJAX
+    fetch(`/get-content/${page}`)
+        .then(response => response.text())
+        .then(data => {
+            contentDiv.innerHTML = data;  // Update the center div with the new content
+        })
+        .catch(error => {
+            console.error('Error loading content:', error);
+            contentDiv.innerHTML = "Error loading content.";
+        });
 }

@@ -10,13 +10,13 @@
     <!--left bar-->
     <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;" >
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;" onclick="location.href='/artistdashboard'">
             Home
           </button>
         </div>
         <!--button 2-->
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;" onclick="location.href='/stats'">
             Stats
           </button>
         </div>
@@ -47,9 +47,8 @@
     <div class="square" style="overflow: hidden; background-color: inherit; height: 83vh; width: 75%; position: absolute; right: 10%; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 40px;overflow: hidden;overflow-y: scroll;">
 
       <!-- Image Container (musical background and artist image) -->
-      <div class="square" style="height: 300px; width: 80%; background-image: url('{{ artist.background_url }}'); position: relative; border-radius: 15px; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 40px; right:50px; top:50px">
-        <a href="{{ artist.profile_url }}" style="text-decoration: none; color: inherit;">
-            <div class="circle-image" style="height: 250px; width: 250px; background-image: url('{{ artist.image_url }}'); background-size: cover; background-position: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; top: 20px;">
+      <div class="square" style="height: 300px; width: 80%; background-image: url('{{ artist_data.background_url }}'); position: relative; border-radius: 15px; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 40px; right:50px; top:50px">
+                    <div class="circle-image" style="height: 250px; width: 250px; background-image: url('{{ artist_data.profile_url }}'); background-size: cover; background-position: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); position: relative; top: 20px;">
             </div>
         </a>
      </div>
@@ -59,7 +58,7 @@
       <div class="song-title" style="font-size: 40px; text-align: left; width: 80%; padding-left: 20px; position: relative;right:55px;top: 40px;">Popular</div>
     
       <!-- First Song (song image left-aligned with centered text) -->
-      {% for song in songs %}
+      {% for song in artist_data.songs %}
         <div class="song" style="display: flex; align-items: center; justify-content: center; width: 80%; position: relative; right: 55px;">
             <button class="song-image" style="height: 90px; width: 90px; background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; " onclick="playSong('Song 1')">
             </button>
@@ -69,13 +68,13 @@
       {% endfor %}
 
             <div class="song-title" style="top:150px;right:550px;font-size: 40px; color: white; position: absolute; 
-              top: 135%; left: 25%; transform: translate(-50%, -50%);" >
+              top: 150%; left: 25%; transform: translate(-50%, -50%);" >
               Albums
               </div>
             <!--outer-container-horizonatal-->
-            <div class="Album-container" style="height: 300px; width: 80%; position: absolute; top: 160%; left: 46%; transform: translate(-50%, -50%); display: flex; justify-content: space-evenly; 
+            <div class="Album-container" style="height: 300px; width: 80%; position: absolute; top: 175%; left: 46%; transform: translate(-50%, -50%); display: flex; justify-content: space-evenly; 
               align-items: center; gap: 20px;">
-              {% for album in albums %}
+              {% for album in artist_data.albums %}
               <div class="album" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 200px; height: 200px; text-align: center;">
                   <div class="song-image" style="background-image: url('{{ album.image_url }}'); height: 150px; width: 150px; background-size: cover; background-position: center; margin-bottom: 10px;"></div>
                   <div class="song-text" style="font-family: spof; color: #ffffff;">

@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, jsonify, request, render_template, redirect
 from config import Config
 import requests
 from flask_cors import CORS
@@ -6,7 +6,27 @@ import gladiator as gl
 #Use session to dictate whether artist is trying to log in or user
 from flask import session
 import os
-
+artist_data = {
+        'background_url': 'static/images/artistbackground.jpg',
+        'profile_url': 'static/images/Hozier.webp',
+        'Artist_rank': 12,
+        'Artist_Followers': 100,
+        'Artist_likes': 100,
+        'songs': [
+            {'title': 'Too Sweet', 'image_url': 'static/images/images.jpg' , 'percent': '40'},
+            {'title': 'Sweet Melody', 'image_url': 'static/images/dinner.jpg', 'percent': '100'},
+            {'title': 'Angel of Sweet death and Codiene Scene', 'image_url': 'static/images/angel.jpg', 'percent': '60'},
+            {'title': 'Take me to Church', 'image_url': 'static/images/church.jpg', 'percent': '70'},
+            {'title': 'Dinner', 'image_url': 'static/images/church.jpg', 'percent': '50'}
+        ],
+        'albums' : [
+        {'title': 'Unreal Unearth', 'image_url': 'static/images/Church.jpg'},
+        {'title': 'Future Nostalgia', 'image_url': 'static/images/dinner.jpg'},
+        {'title': 'After Hours', 'image_url': 'static/images/angel.jpg'},
+        {'title': 'Wasteland Baby!', 'image_url': 'static/images/image.jpg'},
+        {'title': 'After Hours', 'image_url': 'static/images/after_hours.jpg'}
+        ]
+}
 app = Flask(__name__, static_folder='static')
 CORS(app)
 backendurl = Config.BACKEND_URL
@@ -26,7 +46,7 @@ app.secret_key = os.urandom(24)
 def index():  
     # return render_template('homepage.html') 
     
-    return redirect('/artistdashboard')
+    return redirect('/userdashboard')
 @app.route('/login', methods=["GET","POST"])
 def login():  
     #Make sure artist and user have different hits on backend SOLVED: USING SESSION
@@ -117,29 +137,13 @@ def profilesetup():
 @app.route('/userdashboard', methods=['GET', 'POST'])
 def userdashboard():
 
-    return render_template('userdashboard.html')
+    return render_template('userdashboard.html', artist_data = artist_data)
 
 @app.route('/artistdashboard', methods=['GET', 'POST'])
 def artistdashboard():
-    songs = [
-        {'title': 'Too Sweet', 'image_url': 'static/images/images.jpg'},
-        {'title': 'Sweet Melody', 'image_url': 'static/images/dinner.jpg'},
-        {'title': 'Angel of Sweet death and Codiene Scene', 'image_url': 'static/images/angel.jpg'},
-        {'title': 'Take me to Church', 'image_url': 'static/images/church.jpg'}
-    ]
-    albums = [
-        {'title': 'Unreal Unearth', 'image_url': 'static/images/Church.jpg'},
-        {'title': 'Future Nostalgia', 'image_url': 'static/images/dinner.jpg'},
-        {'title': 'After Hours', 'image_url': 'static/images/angel.jpg'},
-        {'title': 'Wasteland Baby!', 'image_url': 'static/images/image.jpg'},
-        {'title': 'After Hours', 'image_url': 'static/images/after_hours.jpg'}
-    ]
-    artist = {
-        'profile_url': '/artist/hozier',  # Link to artist profile page
-        'background_url': 'static/images/artistbackground.jpg',  # Background image for the card
-        'image_url': 'static/images/Hozier.webp'  # Artist's circular image
-    }
-    return render_template('artistdashboard.html', songs = songs,albums = albums,artist=artist)
+    #define this as a global array in a seperate route where data is moved for both user and artist.
+    
+    return render_template('artistdashboard.html', artist_data = artist_data)
 
 
 @app.route('/set_flag')
@@ -158,6 +162,21 @@ def get_music_from_backend(song_name):
         return response.content  # This sends the raw binary data of the MP3 file
     else:
         return "Error fetching song", 404
+
+@app.route('/stats')
+def stats():
+    # Render the stats page (you can add actual stats data here)
+    return render_template('Analytics.html',artist_data = artist_data)
+
+# @app.route('/discover')
+# def discover():
+#     # Render the discover page
+#     return render_template('discover.html')
+
+# @app.route('/upload')
+# def upload():
+#     # Render the upload page
+#     return render_template('upload.html')
 
 
 if __name__ == '__main__':
