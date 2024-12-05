@@ -1,60 +1,34 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-.background-gradient {
-    height: 100vh;
-    width: 100%;
-    background: linear-gradient(45deg, 
-        #2f2f2f,
-        #4b2c4f,
-        #6b2f99,
-        #935abf,
-        #b48ed6,
-        #d88abf,
-        #e29fc4,
-        #e8c2c8,
-        #d8d8d8,
-        #9e8dda,
-        #c698ea);
-    background-size: 200% 200%;
-    animation: color 11s ease-in-out infinite;
-}
-@keyframes color {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+body {
+    text-align: center;
+  }
+  
+.grid {
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-template-rows: 10vh 75vh 10vh; 
+    grid-gap: 0.5em;
+    min-height: 100%;
 }
 
-.outer-container {
+.circle-image {
     position: relative;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%; 
-    height: 750px; 
-    padding: 10px; 
-  }
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 50%; /* Make the image circular */
+    background-size: cover;
+    background-position: center;
+    background-color: #444; /* Fallback color */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Border around the circle */
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.4);
+  }  
 
-.square {
-    width: 90%;
-    height: 100%;
-    background-color: #313131;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: move;
-    border-radius: 15px;
+@font-face {
+    font-family: 'spof2';
+    src: url('../fonts/MazzardSoftM-Light.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
-.square:active {
-    background-color: #ddd;
-  }
 
 @font-face {
     font-family: 'spof';
@@ -163,7 +137,7 @@
     width: 100%;
     height: 5px;
     border-radius: 10px;
-    background-color: #7fc8a9;
+    background-color: #6b6c6c;
     overflow: hidden;
     cursor: pointer;
 }
@@ -172,11 +146,12 @@
     width: 1px;
     height: 20px;
     background-color: #000;
-    box-shadow: -400px 0 0 400px #d5eebb;
+    box-shadow: -400px 0 0 400px #d6d9d5;
 }
 .current-time,.song-time{
     font-size: 25px;
     font-family: spof;
+    color: white;
 }
 .song-time{
     position: absolute;
@@ -244,3 +219,179 @@
     }
 }
 
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+header,
+aside,
+article,
+footer {
+  padding: 1em;
+}
+
+header {
+  grid-row: 1;
+  grid-column: 1 / 4;
+  background-color:linear-gradient(to top, 
+        #000000, #474747 50%, #aba5a5); 
+  backdrop-filter: blur(50px); 
+  -webkit-backdrop-filter: blur(50px);
+  background-color : inherit;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: grid;
+  align-items: stretch;
+  grid-template-columns : 300px auto 300px; /* Divide the container into 3 equal columns */
+  grid-template-rows:inherit ;
+  padding: 25px;
+  gap: 10px;
+}
+
+.sidebar-left {
+  grid-row: 2;
+  grid-column: 1 / 2;
+  border-radius: 10px;
+  background-color: #181414;
+}
+
+.main-dash {
+  grid-row: 2;
+  grid-column: 2 / 3;
+  background-color: #181414;
+  border-radius:10px;
+  overflow-y: scroll;
+  display: flex;
+  min-height: 10vh;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-right {
+  border-radius:10px;
+  grid-row: 2;
+  grid-column: 3 / 4;
+  background-color: #181414;
+}
+
+footer {
+  grid-row: 3;
+  grid-column: 1 / 4;
+  background-color: inherit;
+}
+.search{
+    
+}
+.symbol{
+  border-radius: 50%;
+  background-color: white;
+  height: 26px;
+  width: 26px;
+  top: 10px;
+  left:10px ;
+  position: relative;
+}
+.symbol::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color:#282424;
+}
+.line{
+  position: relative;
+  height:10px;
+  width: 2px;
+  top: 3px;
+  left: 34px;
+  transform: rotate(-45deg);
+  background-color: white;
+}
+
+input[type="text"] {
+border: none;
+background: transparent;
+color: white;
+font-size: 16px;
+margin-left: 10px; /* Space between icon and text box */
+width: 100%;  /* Makes text box take full width within the container */
+height: 30px;
+padding: 5px;
+border-radius: 20px;
+outline: none;
+}
+
+input[type="text"]:focus {
+outline: none;
+}
+.search:hover,.album:hover {
+  background-color: #333;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+.search:focus-within  {
+  background-color: #333;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    bottom:20px;
+}
+.song {
+    justify-content: space-between;
+    background-color: inherit;
+    padding: 15px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .song:hover {
+      background-color: #333;
+      box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); /* Glow effect */
+      transform: translateX(-10px) scale(1.01); 
+  }
+
+  .song-title {
+    position: relative;
+    font-family: spof;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fdfdfd;
+    
+  }
+
+  .song-title span {
+    color: #999;
+    font-size: 14px;
+  }
+  .song-image{
+    height:inherit;
+    width: 10%;
+    border-radius: 15px;
+  }
+  .song i {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    
+  }
+
+  .song i:hover {
+    color: #fff;
+  
+  }
