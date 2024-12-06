@@ -9,7 +9,7 @@
     <header>
         <div class="section"></div>
         <div class="section">
-          <div class="circle-image" style="width:6%; height:75%; position: absolute; left: 0;">
+          <div class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;">
           </div>
           <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
@@ -21,17 +21,17 @@
         </div></div>
     </header>
 
-    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0;">
+    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0; gap:2%">
 
         <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
               <h1 style="font-family: spof;">
                   Your Library
               </h1>
         </div>
-        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;">
+        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px;">
           {% for song in artist_data.songs %}
-          <div class="playlist" style="display: flex; flex-direction: row; width: inherit;height: 10%;">
-              <div class="song-image" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; " onclick="playSong('Song 1')">
+          <div class="playlist">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
@@ -41,19 +41,23 @@
     </aside>
   
     <div class = "main-dash glass">
-      <div style="width: inherit;height: 90%; display: grid;
+      <div style="width: inherit;height: inherit; display: grid;
       grid-template-columns: 50% 50%;
-      grid-template-rows: 33% 33% 33%;padding: 5px 5px;">
+      grid-template-rows:33% 33% 33%;padding: 5px 5px; gap: 10px;">
         {% for song in artist_data.songs %}
-          <div class="song glass" style="display: flex; align-items: center; justify-content: center; width: inherit;height: 40%;">
-              <div class="song-image" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; " onclick="playSong('Song 1')">
+          <div class="song glass" style="display:flex; flex-direction: row; width: inherit;height: 100%;">
+              <div class="song-image" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 15%; " onclick="playSong('Song 1')">
               </div>
+              <div style="margin-top: 7%;margin-left: 1%;">
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+            </div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
           </div> 
         {% endfor %}
       </div>
-      <h1 style="font-family: spof;color: white; position: relative;right: 270px;"> Made For You </h1>
+      <div style="text-align: left; margin-left: 2%;">
+        <h1 style="font-family: spof;color: white;"> Made For You </h1>
+      </div>
       <div style="width: inherit;height: 200px; display: grid; 
         grid-template-columns: 20% 20% 20% 20% 20%;
         grid-template-rows: 200px;">
