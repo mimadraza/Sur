@@ -10,7 +10,7 @@
     <header>
         <div class="section"></div>
         <div class="section">
-          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdashboard'">
+          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdash/dashboard'">
           </button>
           <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
@@ -18,7 +18,7 @@
             <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
           </div>
         </div>
-        <div class="section"><div class="circle-image" style="width:25%; height:75%; position: absolute; right: 0; background-image: url('static/images/user.jpg');">
+        <div class="section"><div class="circle-image" style="width:25%; height:75%; position: absolute; right: 0; background-image: url('../static/images/user.jpg');">
         </div></div>
     </header>
 
@@ -94,12 +94,12 @@
     
     <footer>
       <div class="controls">
-          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/prev.png" alt = ""></button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
           <button class="play-btn pause" style="bottom: 30px;" >
               <span></span>
               <span></span>
           </button>
-          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/next.png" alt = ""></button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}"" alt = ""></button>
       </div>
       <div class="song-slider" >
         <input type="range" value="0" class="seek-bar" style="width: 100%;">

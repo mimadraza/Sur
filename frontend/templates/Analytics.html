@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="static/css/artistdashboard.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/artistdashboard.css') }}">
     <title>Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" charset="utf-8"></script>
 </head>
@@ -10,24 +10,24 @@
     <!--left bar-->
     <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;"onclick="location.href='/artistdashboard'">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;"onclick="location.href='/artistdash/dashboard'">
             Home
           </button>
         </div>
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;" onclick="location.href='/artistdash/stats'">
             Stats
           </button>
         </div>
         <!--button 3-->
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;" onclick="location.href='/artistdashboard'">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;" onclick="location.href='/artistdash/dashboard'">
             Discover
           </button>
         </div>
         <!--button 4-->
         <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;" onclick="location.href='/artistdashboard'">
+          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;" onclick="location.href='/artistdash/upload'">
             Upload
           </button>
         </div>      
@@ -103,12 +103,12 @@
         <span class="song-time">00:00</span>
     </div>
     <div class="controls">
-        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/prev.png" alt = ""></button>
+        <button class="btn backward-btn" style="top: 50px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
         <button class="play-btn pause" style="top: 40px;">
             <span></span>
             <span></span>
         </button>
-        <button class="btn backward-btn" style="top: 50px;"><img src="static/images/next.png" alt = ""></button>
+        <button class="btn backward-btn" style="top: 50px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
     </div>
 </div>
 

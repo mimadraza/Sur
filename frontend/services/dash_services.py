@@ -1,24 +1,24 @@
 import requests
 #artist data and user_data should be globally declared
 artist_data = {
-        'background_url': 'static/images/artistbackground.jpg',
-        'profile_url': 'static/images/Hozier.webp',
+        'background_url': '../static/images/artistbackground.jpg',
+        'profile_url': '../static/images/Hozier.webp',
         'Artist_rank': 12,
         'Artist_Followers': 100,
         'Artist_likes': 100,
         'songs': [
-            {'title': 'Too Sweet', 'image_url': 'static/images/images.jpg' , 'percent': '40'},
-            {'title': 'Sweet Melody', 'image_url': 'static/images/dinner.jpg', 'percent': '100'},
-            {'title': 'Angel of Sweet death and Codiene Scene', 'image_url': 'static/images/angel.jpg', 'percent': '60'},
-            {'title': 'Take me to Church', 'image_url': 'static/images/church.jpg', 'percent': '70'},
-            {'title': 'Dinner', 'image_url': 'static/images/church.jpg', 'percent': '50'}
+            {'title': 'Too Sweet', 'image_url': '../static/images/images.jpg' , 'percent': '40'},
+            {'title': 'Sweet Melody', 'image_url': '../static/images/dinner.jpg', 'percent': '100'},
+            {'title': 'Angel of Sweet death and Codiene Scene', 'image_url': '../static/images/angel.jpg', 'percent': '60'},
+            {'title': 'Take me to Church', 'image_url': '../static/images/church.jpg', 'percent': '70'},
+            {'title': 'Dinner', 'image_url': '../static/images/church.jpg', 'percent': '50'}
         ],
         'albums' : [
-        {'title': 'Unreal Unearth', 'image_url': 'static/images/Church.jpg'},
-        {'title': 'Future Nostalgia', 'image_url': 'static/images/dinner.jpg'},
-        {'title': 'After Hours', 'image_url': 'static/images/angel.jpg'},
-        {'title': 'Wasteland Baby!', 'image_url': 'static/images/image.jpg'},
-        {'title': 'After Hours', 'image_url': 'static/images/after_hours.jpg'}
+        {'title': 'Unreal Unearth', 'image_url': '../static/images/Church.jpg'},
+        {'title': 'Future Nostalgia', 'image_url': '../static/images/dinner.jpg'},
+        {'title': 'After Hours', 'image_url': '../static/images/angel.jpg'},
+        {'title': 'Wasteland Baby!', 'image_url': '../static/images/image.jpg'},
+        {'title': 'After Hours', 'image_url': '../static/images/after_hours.jpg'}
         ]
 }
 

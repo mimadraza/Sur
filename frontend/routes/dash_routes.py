@@ -12,13 +12,14 @@ artistdash_blueprint = Blueprint('artistdash', __name__)
 @userdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.user_dashboard()
-
     return render_template('userdashboard.html', artist_data = user_data)
 
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.artist_dashboard()
-
+    print("hello")
+    print(user_data)
+    
     return render_template('artistdashboard.html', artist_data = user_data)
 
 @artistdash_blueprint.route('/stats', methods = ['GET', 'POST'])
