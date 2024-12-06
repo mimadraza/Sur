@@ -173,10 +173,10 @@ def stats():
 #     # Render the discover page
 #     return render_template('discover.html')
 
-# @app.route('/upload')
-# def upload():
-#     # Render the upload page
-#     return render_template('upload.html')
+@app.route('/upload')
+def upload():
+    # Render the upload page
+    return render_template('upload.html')
 
 
 if __name__ == '__main__':
