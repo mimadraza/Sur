@@ -56,7 +56,7 @@ def login():
     if request.method == "POST":
         data = {"email" : request.form['email'],
                 "password" : request.form['password']}
-        
+        return redirect('/artistdashboard')
         result = gl.validate(login_validations, data) #returns true if all validations passed
         if result:  #uncoment below once backend becomes functional
             # response = request.get_json(backendurl)
