@@ -21,17 +21,17 @@
         </div></div>
     </header>
 
-    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0;">
+    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0; gap:2%">
 
         <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
               <h1 style="font-family: spof;">
                   Your Library
               </h1>
         </div>
-        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;">
+        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px;">
           {% for song in artist_data.songs %}
           <div class="playlist">
-              <div class="song-image" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center;width: 10%; " onclick="playSong('Song 1')">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
