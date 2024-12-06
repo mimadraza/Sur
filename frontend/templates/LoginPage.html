@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="static/css/loginstyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registerstyle.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,12 +15,12 @@ margin: 0;">
         </h1>
         
         <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
-            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
+            <img src="{{ url_for('static', filename='images/سُر_no_background (1).png') }}" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
         </div>
      
         <div class="form-container" style="position: relative; left: 810px; top: 250px;">
             <!-- Login Form -->
-            <form action="/login" method="POST">
+            <form action="/userauth/login" method="POST">
                 <div class="input-group">
                     <input type="email" id="email" name="email" required style="font-family: spof;">
                     <label for="email" style="font-family: spof;font-size: 20px;">Email</label>

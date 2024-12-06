@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="static/css/registerstyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registerstyle.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,12 +15,12 @@ margin: 0;">
         </h1>
         
         <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
-            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
+            <img src="{{ url_for('static', filename='images/سُر_no_background (1).png') }}" style="height: 300px; width: 300px; position: absolute; top: 210px; left: 180px;">
         </div>
 
         <div class="form-container" style="position: relative; left: 810px; top: 180px;">
             <!-- Registration Form -->
-            <form action="/userregister" method="POST" style="margin-bottom: 5px;">
+            <form action="/artistauth/register" method="POST" style="margin-bottom: 5px;">
                 <div class="input-group">
                     <input class="input-group__input" type="text" name="first_name" placeholder="" pattern="^[^0-9]*$" required style="font-family: spof;">
                     <label class="input-group__label" for="first_name" style="font-family: spof; font-size: 20px;">First Name</label>

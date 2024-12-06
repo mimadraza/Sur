@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="static/css/homepagestyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepagestyle.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -17,15 +17,15 @@ margin: 0;">
         <div class="horizontal-line" style="top: 240px; width: 400px; left: 920px;">
         </div>
         <div class="gradient-container" style="height: 750px; width: 700px; top: 25px; left: 20px; position: absolute;">
-            <img src="static/images/سُر_no_background (1).png" style="height: 300px; width: 300px; position: absolute; top: 220px; left: 180px;">
+            <img src="{{ url_for('static', filename='images/سُر_no_background (1).png') }}" style="height: 300px; width: 300px; position: absolute; top: 220px; left: 180px;">
         </div>
-            <div class="typebutton" role = "button" onclick="window.location.href='artistregister'" style= "left: 800px; top:300px;" >
+            <div class="typebutton" role = "button" onclick="window.location.href='/artistauth/register'" style= "left: 800px; top:300px;" >
                 <div class="circle-image" style="background-image: url('static/images/artist.jpeg'); top: 40px;"></div>
                 <h1 style="position: relative;font-family: spof; color: white; font-size: 2.5cqmax; top: 40px;">
                     Artist
                 </h1>
             </div>
-            <div class="typebutton" role = "button" onclick="window.location.href='userregister'" style="left: 1120px; top:-45px;" >
+            <div class="typebutton" role = "button" onclick="window.location.href='/userauth/register'" style="left: 1120px; top:-45px;" >
                 <div class="circle-image" style="background-image: url('static/images/user.jpg'); top: 40px;"></div> 
                 <h1 style="position: relative;font-family: spof; color: white; font-size: 2.5cqmax; top: 40px;">
                     User
