@@ -137,7 +137,7 @@ def profilesetup():
 @app.route('/userdashboard', methods=['GET', 'POST'])
 def userdashboard():
 
-    return render_template('userdashboard.html', artist_data = artist_data)
+    return render_template('albums.html', artist_data = artist_data)
 
 @app.route('/artistdashboard', methods=['GET', 'POST'])
 def artistdashboard():
