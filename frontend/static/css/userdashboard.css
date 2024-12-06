@@ -381,19 +381,23 @@ outline: none;
     font-size: 14px;
   }
   .song-image{
-    height:inherit;
-    width: 10%;
-    border-radius: 15px;
+    height:100%;
   }
   .song i {
     font-size: 24px;
     color: #ccc;
     cursor: pointer;
     transition: color 0.3s ease;
-    
+    padding: 0;
   }
 
   .song i:hover {
     color: #fff;
   
   }
+.playlist{
+  display: flex; 
+  flex-direction: row;
+  width: inherit;
+  height: 10%;
+}
