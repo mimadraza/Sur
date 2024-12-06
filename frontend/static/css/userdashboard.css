@@ -271,6 +271,7 @@ header {
   flex-direction: column;
   padding: 20px;
   scrollbar-width: none;
+  gap: 5%;
 }
 
 .sidebar-right {
@@ -351,9 +352,7 @@ outline: none;
     bottom:20px;
 }
 .song {
-    justify-content: space-between;
     background-color: inherit;
-    padding: 15px;
     margin: 10px;
     transition: background-color 0.3s ease;
     opacity: 0.8;
@@ -369,8 +368,8 @@ outline: none;
 
   .song-title {
     position: relative;
-    font-family: spof;
-    font-size: 10px;
+    font-family: spof2;
+    font-size: 12px;
     font-weight: bold;
     color: #fdfdfd;
     
@@ -378,10 +377,13 @@ outline: none;
 
   .song-title span {
     color: #999;
-    font-size: 14px;
+    font-size: 20px;
+
   }
   .song-image{
     height:100%;
+    border-bottom-left-radius:5px ;
+    border-top-left-radius: 5px;
   }
   .song i {
     font-size: 24px;
