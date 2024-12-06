@@ -225,12 +225,17 @@ def stats():
 #                             ('albumSongs', (song_file.filename, song_file.stream, song_file.content_type))
 #                         )
                 
-#                 data = {'uploadType': 'album', 'albumTitle': album_title, 'albumType': album_type}
-#                 response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
-#                 return f"Backend Response: {response.status_code} - {response.text}"
-#             else:
-#                 return "Missing album details or files.", 400
-#     else:
-#         return render_template('upload.html')
+                data = {'uploadType': 'album', 'albumTitle': album_title, 'albumType': album_type}
+                response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
+                return f"Backend Response: {response.status_code} - {response.text}"
+            else:
+                return "Missing album details or files.", 400
+    else:
+        return render_template('upload.html')
+    
+@app.route('/album_page')
+def album_page():
+    return render_template('albums.html', artist_data = artist_data)
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

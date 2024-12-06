@@ -5,12 +5,13 @@
     <title>Dashboard</title>
 </head>
 <body style="background-color: black;">
+  <audio src = "" id = "audio"></audio>
   <div class="grid">
     <header>
         <div class="section"></div>
         <div class="section">
-          <div class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;">
-          </div>
+          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdashboard'">
+          </button>
           <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
             <div class="line"></div>  
@@ -28,14 +29,14 @@
                   Your Library
               </h1>
         </div>
-        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px;">
+        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px; align-items: center;">
           {% for song in artist_data.songs %}
-          <div class="playlist">
+          <button class="playlist" onclick="loadAlbum('{{ song.title }}')">
               <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
-          </div> 
+            </button> 
         {% endfor %}
         </div>
     </aside>
@@ -45,14 +46,13 @@
       grid-template-columns: 50% 50%;
       grid-template-rows:33% 33% 33%;padding: 5px 5px; gap: 10px;">
         {% for song in artist_data.songs %}
-          <div class="song glass" style="display:flex; flex-direction: row; width: inherit;height: 100%;">
-              <div class="song-image" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 15%; " onclick="playSong('Song 1')">
-              </div>
-              <div style="margin-top: 7%;margin-left: 1%;">
-              <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+            <button class="song glass" style="display:flex; flex-direction: row; width: inherit;height: 100%; padding: 0;">
+                <div class="song-5" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 20%;height: 100%; " onclick="playSong('Song 1')">
+                </div>
+                <div style="margin-top: 7%;margin-left: 1%;">
+                <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
             </div>
-              <i class="fas fa-play"></i> <!-- Play Icon -->
-          </div> 
+          </button> 
         {% endfor %}
       </div>
       <div style="text-align: left; margin-left: 2%;">
@@ -62,12 +62,12 @@
         grid-template-columns: 20% 20% 20% 20% 20%;
         grid-template-rows: 200px;">
         {% for album in artist_data.albums %}
-            <div class="album" style="display: flex; flex-direction: column;text-align: center; gap : 10px; align-items: center; padding: 10%; border-radius: 10px;">
-            <div class="song-image" style="background-image: url('{{ album.image_url }}');background-size: cover; background-position: center; width: 90%; border-radius: 5px;"></div>
+          <button class="album" style="display: flex; flex-direction: column; text-align: center; gap : 10px; align-items: center; padding: 10%; border-radius: 10px; background-color: transparent;color: inherit;border: gone;"  onclick="loadAlbum('{{ album.title }}')">
+            <div class="song-image" style="background-image: url('{{ album.image_url }}');background-size: cover; background-position: center;width: 90%; border-radius: 5px;"></div>
             <div class="song-text" style="font-family: spof; color: #ffffff;">
                 <p>{{ album.title }}</p>
             </div>
-        </div>
+          </button>
         {% endfor %}    
       </div>
       <div style="text-align: left; margin-left: 2%;">
@@ -77,14 +77,14 @@
         grid-template-columns: 20% 20% 20% 20% 20%;
         grid-template-rows: 200px;">
         {% for album in artist_data.albums %}
-        <div class="album" style="display: flex; flex-direction: column; text-align: center; gap : 10px; align-items: center; padding: 10%; border-radius: 10px;">
+        <button class="album" style="display: flex; flex-direction: column; text-align: center; gap : 10px; align-items: center; padding: 10%; border-radius: 10px; background-color: transparent;color: inherit;border: gone;" onclick="loadAlbum('{{ album.title }}')">
             <div class="song-image" style="background-image: url('{{ album.image_url }}');background-size: cover; background-position: center;width: 90%; border-radius: 5px;"></div>
             <div class="song-text" style="font-family: spof; color: #ffffff;">
                 <p>{{ album.title }}</p>
             </div>
-        </div>
+          </button>
         {% endfor %}    
-      </div>
+        </div>
 
     </div>
   
@@ -95,7 +95,7 @@
     <footer>
       <div class="controls">
           <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/prev.png" alt = ""></button>
-          <button class="play-btn pause" style="bottom: 30px;">
+          <button class="play-btn pause" style="bottom: 30px;" >
               <span></span>
               <span></span>
           </button>
@@ -110,5 +110,11 @@
   </div>
   <script src="static/js/data.js"></script>
   <script src="static/js/script.js"></script>
+  <script>
+     function loadAlbum(albumName) {
+        // Use the album name to create a URL
+        location.href = `/album_page?album_name=${encodeURIComponent(albumName)}`;
+    }
+  </script>
 </body>
 </html>

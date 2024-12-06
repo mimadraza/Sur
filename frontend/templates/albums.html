@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/css/userdashboard.css">
+    <title>Dashboard</title>
+</head>
+<body style="background-color: black;">
+  <div class="grid">
+    <header>
+        <div class="section"></div>
+        <div class="section">
+          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png'); " onclick="window.location.href='/userdashboard'">
+          </button>
+          <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
+            <div class="symbol"></div>
+            <div class="line"></div>  
+            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+          </div>
+        </div>
+        <div class="section"><div class="circle-image" style="width:25%; height:75%; position: absolute; right: 0; background-image: url('static/images/user.jpg');">
+        </div></div>
+    </header>
+
+    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0; gap:2%">
+
+        <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+              <h1 style="font-family: spof;">
+                  Your Library
+              </h1>
+        </div>
+        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px; align-items: center;">
+          {% for song in artist_data.songs %}
+          <div class="playlist">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
+              </div>
+              <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+              <i class="fas fa-play"></i> <!-- Play Icon -->
+          </div> 
+        {% endfor %}
+        </div>
+    </aside>
+  
+    <div class = "main-dash glass" style="padding: 0;gap:1%">
+        <div class='glass' style="width:inherit; height: 30%;display: flex; flex-direction: row;">
+          <div class="playlist-image" style="background-image: url('static/images/dinner.jpg');margin-top: 1%; margin-left: 1%;" onclick="playSong('Song 1')">
+          </div>
+          <div style="width: 90%; height: 100%; text-align: left; margin-top: 10%; margin-left: 2%;">
+            <div class="song-title" style="flex-grow: 1; font-size: 45px;font-family: spof;">Wasteland</div>
+          </div>
+        </div>
+
+        {% for song in artist_data.songs %}
+          <div class="playlist" style="align-self: center;">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}');height: 100%; width: 10%; " onclick="playSong('Song 1')">
+              </div>
+              <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+              <i class="fas fa-play"></i> <!-- Play Icon -->
+          </div> 
+        {% endfor %}
+        
+    </div>
+  
+    <aside class="sidebar-right">
+     
+    </aside>
+    
+    <footer>
+      <div class="controls">
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/prev.png" alt = ""></button>
+          <button class="play-btn pause" style="bottom: 30px;">
+              <span></span>
+              <span></span>
+          </button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/next.png" alt = ""></button>
+      </div>
+      <div class="song-slider" >
+        <input type="range" value="0" class="seek-bar" style="width: 100%;">
+        <span class="current-time">00:00</span>
+        <span class="song-time">00:00</span>
+      </div>
+    </footer>
+  </div>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/script.js"></script>
+</body>
+</html>
