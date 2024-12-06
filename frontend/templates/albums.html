@@ -9,7 +9,7 @@
     <header>
         <div class="section"></div>
         <div class="section">
-          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');">
+          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png'); " onclick="window.location.href='/userdashboard'">
           </button>
           <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
@@ -40,7 +40,7 @@
         </div>
     </aside>
   
-    <div class = "main-dash glass" style="padding: 0;">
+    <div class = "main-dash glass" style="padding: 0;gap:1%">
         <div class='glass' style="width:inherit; height: 30%;display: flex; flex-direction: row;">
           <div class="playlist-image" style="background-image: url('static/images/dinner.jpg');margin-top: 1%; margin-left: 1%;" onclick="playSong('Song 1')">
           </div>
@@ -50,8 +50,8 @@
         </div>
 
         {% for song in artist_data.songs %}
-          <div class="playlist">
-              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
+          <div class="playlist" style="align-self: center;">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}');height: 100%; width: 10%; " onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->

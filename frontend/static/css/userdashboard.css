@@ -382,8 +382,8 @@ outline: none;
   }
   .song-image{
     height:100%;
-    border-bottom-left-radius:5px ;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius:10px ;
+    border-top-left-radius: 10px;
   }
   .song i {
     font-size: 24px;
@@ -414,4 +414,12 @@ outline: none;
   width: 20%; 
   height: 90%;
   border-radius: 5px;
+}
+
+button {
+  background-color: transparent; /* Removes default white background */
+  color: inherit; /* Inherit the text color from the parent, or set a custom color */
+  border: none; /* Remove the default border */
+  font-size: 16px; /* Adjust font size */
+  cursor: pointer; /* Change cursor to a pointer when hovered */
 }

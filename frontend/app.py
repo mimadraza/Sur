@@ -137,7 +137,7 @@ def profilesetup():
 @app.route('/userdashboard', methods=['GET', 'POST'])
 def userdashboard():
 
-    return render_template('albums.html', artist_data = artist_data)
+    return render_template('userdashboard.html', artist_data = artist_data)
 
 @app.route('/artistdashboard', methods=['GET', 'POST'])
 def artistdashboard():
@@ -163,6 +163,12 @@ def get_music_from_backend(song_name):
     else:
         return "Error fetching song", 404
 
+@app.route('/send_music_to_backend/<song_name>')
+def send_music_to_backend(song_name):
+    
+    return 'Hello'
+
+
 @app.route('/stats')
 def stats():
     # Render the stats page (you can add actual stats data here)
@@ -172,12 +178,51 @@ def stats():
 # def discover():
 #     # Render the discover page
 #     return render_template('discover.html')
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == "POST":
+        upload_type = request.form.get("uploadType")
+        
+        if upload_type == "single":
+            # Receive single song file from HTML form
+            song_file = request.files.get("songFile")
+            if song_file and song_file.filename.endswith(".mp3"):
+                # Forward the file to the backend
+                files = {'songFile': (song_file.filename, song_file.stream, song_file.content_type)}
+                data = {'uploadType': 'single'}
+                # testing, works!
+                print(files,data)
+                
+                response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
+                return f"Backend Response: {response.status_code} - {response.text}"
+            else:
+                return "Invalid MP3 file.", 400
 
-# @app.route('/upload')
-# def upload():
-#     # Render the upload page
-#     return render_template('upload.html')
-
+        elif upload_type == "album":
+            # Receive album files and metadata from HTML form
+            album_title = request.form.get("albumTitle")
+            album_type = request.form.get("albumType")
+            album_songs = request.files.getlist("albumSongs")
+            
+            if album_title and album_type and album_songs:
+                files = []
+                for song_file in album_songs:
+                    if song_file.filename.endswith(".mp3"):
+                        files.append(
+                            ('albumSongs', (song_file.filename, song_file.stream, song_file.content_type))
+                        )
+                
+                data = {'uploadType': 'album', 'albumTitle': album_title, 'albumType': album_type}
+                response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
+                return f"Backend Response: {response.status_code} - {response.text}"
+            else:
+                return "Missing album details or files.", 400
+    else:
+        return render_template('upload.html')
+    
+@app.route('/album_page')
+def album_page():
+    return render_template('albums.html', artist_data = artist_data)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
