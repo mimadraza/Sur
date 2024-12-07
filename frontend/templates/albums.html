@@ -30,12 +30,12 @@
         </div>
         <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px; align-items: center;">
           {% for song in artist_data.songs %}
-          <div class="playlist">
-              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); " onclick="playSong('Song 1')">
+          <button class="playlist" onclick="loadAlbum('{{ song.title }}')">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); margin-top: 1%;" onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
-          </div> 
+            </button> 
         {% endfor %}
         </div>
     </aside>
@@ -64,19 +64,28 @@
      
     </aside>
     
-    <footer>
-      <div class="controls">
+    <footer style="display: flex; flex-direction: row;">
+      <div style="height: 100%; width: 22.5%;">
+
+
+      </div>
+      <div style="height: 100%; width: 55%; margin-top: 1%; align-items: center;">
+        <div class="controls" style="align-items: center;">
           <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
-          <button class="play-btn pause" style="bottom: 30px;">
+          <button class="play-btn pause" style="bottom: 30px;" >
               <span></span>
               <span></span>
           </button>
-          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}" alt = ""></button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}"" alt = ""></button>
+        </div>
+        <div class="song-slider" style="bottom:20%;width: 50%; align-self: center;">
+          <input type="range" value="0" class="seek-bar" style="width: 100%;">
+          <span class="current-time">00:00</span>
+          <span class="song-time">00:00</span>
+        </div>
       </div>
-      <div class="song-slider" >
-        <input type="range" value="0" class="seek-bar" style="width: 100%;">
-        <span class="current-time">00:00</span>
-        <span class="song-time">00:00</span>
+      <div style="display:flex; flex-direction: row; height: 100%; width: 22.5%;">
+
       </div>
     </footer>
   </div>

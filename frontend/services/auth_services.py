@@ -1,4 +1,12 @@
-def validation(request, validation, gl):
+import os
+import sys
+
+import Config
+import requests
+
+# backendurl = Config.BACKEND_URL
+
+def validation_register(request, validation, gl):
     data = {
         "first_name" : request.form["first_name"],
         "last_name" : request.form["last_name"],
@@ -8,13 +16,32 @@ def validation(request, validation, gl):
         "dob" : request.form["dob"]
         }
     result = gl.validate(validation, data) #returns true if all validations passed
+    #differentiate between artist and user from database required or not
+    #url = "http://backendserver.com/your-api-route?flag=true"
+    if result.success:
+        response = requests.post(backendurl, json=data)
 
-    if result.success:  #uncoment below once backend becomes functional
-        # response = request.get_json(backendurl)
-        # if (response.statuscode == 200):    
-        #     return redirect("/login")
-        return True
-    
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+        
+def validation_login(request, validation, gl):
+    data = {
+        "email": request.form["email"],
+        "password" : request.form["password"]
+        }
+    result = gl.validate(validation, data) #returns true if all validations passed
+    #differentiate between artist and user from database required or not
+    #url = "http://backendserver.com/your-api-route?flag=true"
+    if result.success:
+        response = requests.post(backendurl, json=data)
+
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+        
 def profile(request, validation, gl):
     data = {
         "bio" : request.form["bio"],
@@ -26,22 +53,18 @@ def profile(request, validation, gl):
             if image_file :
                 # Forward the file to the backend
                 files = {'image': (image_file.filename, image_file.stream, image_file.content_type)}
-                data = {'uploadType': 'single'}
                 # testing, works!
                 print(files,data)
-                
+                response = requests.post(backendurl, files=files, data=data)
+
+                if response.status_code == 200:
+                    return True
+                else:
+                    return False
                 # response = requests.post(f"{backendurl}/get_music/{image_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
-            else:
-                return "Invalid image.", 400
-            
-            
-            
-            #uncoment below once backend becomes functional
-            # response = request.get_json(backendurl)
-            # if (response.statuscode == 200):    
-            #     return redirect("/login")
-            return True
+    else:
+        return False
     
 
      

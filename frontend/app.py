@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect
-from config import Config
 
 from flask_cors import CORS
 
@@ -9,7 +8,7 @@ from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
-backendurl = Config.BACKEND_URL
+
 
 #note FROM SAAD:
 #THESE ROUTES AND BLUEPRINTS WILL NOT EXIST IN FINAL APP.PY ARE JUST THERE FOR TROUBLESHOOTING HTML PAGES 
@@ -29,7 +28,7 @@ app.register_blueprint(userdash_blueprint, url_prefix = '/userdash')
 def index():  
     
     
-    return redirect('/artistauth/profile')
+    return redirect('/artistauth')
 
 # @app.route('/get_music_from_backend/<song_name>')
 # def get_music_from_backend(song_name):

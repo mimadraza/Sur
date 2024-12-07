@@ -1,4 +1,5 @@
 import requests
+
 #artist data and user_data should be globally declared
 artist_data = {
         'background_url': '../static/images/artistbackground.jpg',
@@ -45,7 +46,12 @@ def upload(request):
                 files = {'songFile': (song_file.filename, song_file.stream, song_file.content_type)}
                 data = {'uploadType': 'single'}
                 # testing, works!
-                print(files,data)
+                response = requests.post(backendurl, files=files, data=data)
+
+                if response.status_code == 200:
+                    return True
+                else:
+                    return False
                 
                 # response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
@@ -67,6 +73,13 @@ def upload(request):
                         )
                 
                 data = {'uploadType': 'album', 'albumTitle': album_title, 'albumType': album_type}
+                
+                response = requests.post(backendurl, files=files, data=data)
+
+                if response.status_code == 200:
+                    return True
+                else:
+                    return False
                 # response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
             else:

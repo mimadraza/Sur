@@ -21,7 +21,7 @@ profile_validations = (('bio', gl.required, gl.type_(str), gl.regex_(".{20,}")))
 @userauth_blueprint.route('/register', methods = ['GET', 'POST'])
 def register ():
     if request.method == "POST":
-       if auth_services.validation(request, register_validations, gl):
+       if auth_services.validation_register(request, register_validations, gl):
             return redirect('/userauth/login')
        else:
             return render_template('userregisterpage.html')
@@ -33,7 +33,7 @@ def register ():
 @userauth_blueprint.route('/login', methods = ['GET', 'POST'])
 def login ():
     if request.method == "POST":
-       if auth_services.validation(request, login_validations, gl):
+       if auth_services.validation_login(request, login_validations, gl):
             return redirect('/userdash/dashboard')
        else:
             return render_template('Loginpage.html')
@@ -47,7 +47,7 @@ def login ():
 @artistauth_blueprint.route('/register', methods = ['GET', 'POST'])
 def register ():
     if request.method == "POST":
-       if auth_services.validation(request, register_validations, gl):
+       if auth_services.validation_register(request, register_validations, gl):
             return redirect('/artistauth/profile')
        else:
             return render_template('artistregister.html')
@@ -71,7 +71,7 @@ def profile ():
 @artistauth_blueprint.route('/login', methods = ['GET', 'POST'])
 def login ():
     if request.method == "POST":
-       if auth_services.validation(request, login_validations, gl):
+       if auth_services.validation_login(request, login_validations, gl):
             return redirect('/artistdash/dashboard')
        else:
             return render_template('Loginpage.html')
