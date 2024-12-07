@@ -255,3 +255,10 @@ textarea:not(:focus):invalid:not(:placeholder-shown) ~ .input-group__label,
         --left: 0;
     }
 }
+.single-song, .album-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+

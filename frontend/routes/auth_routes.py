@@ -59,7 +59,7 @@ def register ():
 @artistauth_blueprint.route('/profile', methods = ['GET', 'POST'])
 def profile ():
     if request.method == "POST":
-       if auth_services.prof_validation(request, profile_validations, gl):
+       if auth_services.profile(request, profile_validations, gl):
             return redirect('/artistdash/dashboard')
        else:
             return render_template('Loginpage.html')

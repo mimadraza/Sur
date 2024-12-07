@@ -29,7 +29,7 @@ app.register_blueprint(userdash_blueprint, url_prefix = '/userdash')
 def index():  
     
     
-    return redirect('/artistauth/register')
+    return redirect('/artistauth/profile')
 
 # @app.route('/get_music_from_backend/<song_name>')
 # def get_music_from_backend(song_name):

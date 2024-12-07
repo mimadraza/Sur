@@ -17,7 +17,6 @@ def dashboard():
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.artist_dashboard()
-    print("hello")
     print(user_data)
     
     return render_template('artistdashboard.html', artist_data = user_data)
