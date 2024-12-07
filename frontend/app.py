@@ -29,7 +29,7 @@ app.register_blueprint(userdash_blueprint, url_prefix = '/userdash')
 def index():  
     
     
-    return redirect('/userdash/dashboard')
+    return redirect('/artistauth/register')
 
 # @app.route('/get_music_from_backend/<song_name>')
 # def get_music_from_backend(song_name):
@@ -54,9 +54,6 @@ def index():
 #     return render_template('Analytics.html',artist_data = artist_data)
 
     
-@app.route('/album_page')
-def album_page():
-    return render_template('albums.html', artist_data = artist_data)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

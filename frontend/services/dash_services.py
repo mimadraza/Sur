@@ -71,3 +71,8 @@ def upload(request):
                 # return f"Backend Response: {response.status_code} - {response.text}"
             else:
                 return "Missing album details or files.", 400
+            
+
+def album():
+     #should return album data
+     return artist_data

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="static/css/userdashboard.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userdashboard.css') }}">
     <title>Dashboard</title>
 </head>
 <body style="background-color: black;">
@@ -42,7 +42,7 @@
   
     <div class = "main-dash glass" style="padding: 0;gap:1%">
         <div class='glass' style="width:inherit; height: 30%;display: flex; flex-direction: row;">
-          <div class="playlist-image" style="background-image: url('static/images/dinner.jpg');margin-top: 1%; margin-left: 1%;" onclick="playSong('Song 1')">
+          <div class="playlist-image" style="background-image: url('..static/images/dinner.jpg');margin-top: 1%; margin-left: 1%;" onclick="playSong('Song 1')"> <!-- add the album pic -->
           </div>
           <div style="width: 90%; height: 100%; text-align: left; margin-top: 10%; margin-left: 2%;">
             <div class="song-title" style="flex-grow: 1; font-size: 45px;font-family: spof;">Wasteland</div>
@@ -66,12 +66,12 @@
     
     <footer>
       <div class="controls">
-          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/prev.png" alt = ""></button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
           <button class="play-btn pause" style="bottom: 30px;">
               <span></span>
               <span></span>
           </button>
-          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="static/images/next.png" alt = ""></button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}" alt = ""></button>
       </div>
       <div class="song-slider" >
         <input type="range" value="0" class="seek-bar" style="width: 100%;">

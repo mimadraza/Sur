@@ -34,7 +34,7 @@ def register ():
 def login ():
     if request.method == "POST":
        if auth_services.validation(request, login_validations, gl):
-            return redirect('/userdash')
+            return redirect('/userdash/dashboard')
        else:
             return render_template('Loginpage.html')
 
@@ -55,11 +55,12 @@ def register ():
     
     return render_template('artistregister.html')
 
+
 @artistauth_blueprint.route('/profile', methods = ['GET', 'POST'])
 def profile ():
     if request.method == "POST":
        if auth_services.prof_validation(request, profile_validations, gl):
-            return redirect('/artistdash')
+            return redirect('/artistdash/dashboard')
        else:
             return render_template('Loginpage.html')
 
@@ -71,7 +72,7 @@ def profile ():
 def login ():
     if request.method == "POST":
        if auth_services.validation(request, login_validations, gl):
-            return redirect('/artistdash')
+            return redirect('/artistdash/dashboard')
        else:
             return render_template('Loginpage.html')
 
