@@ -40,7 +40,8 @@ CREATE TABLE Song (
     playbacks INT DEFAULT 0,
     FOREIGN KEY (album_id) REFERENCES Album(album_id),
     FOREIGN KEY (genre_id) REFERENCES Genre(genre_id),
-    FOREIGN KEY (artist_id) REFERENCES Artist(artist_id)
+    FOREIGN KEY (artist_id) REFERENCES Artist(artist_id),
+    UNIQUE (title, artist_id, album_id) -- Ensure uniqueness
 );
 
 CREATE TABLE User (

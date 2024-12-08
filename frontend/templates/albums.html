@@ -5,6 +5,7 @@
     <title>Dashboard</title>
 </head>
 <body style="background-color: black;">
+  <audio src = "" id = "audio"></audio>
   <div class="grid">
     <header>
         <div class="section"></div>
@@ -50,15 +51,11 @@
         </div>
 
         {% for song in artist_data.songs %}
-          <div class="playlist" style="align-self: center;">
-              <div class="playlist-image" style="background-image: url('{{ song.image_url }}');height: 100%; width: 10%; " onclick="playSong('Song 1')">
+          <button class="playlist" style="align-self: center;">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}');height: 100%; width: 10%; " onclick="playSong('20')">
               </div>
               <div class="song-title" style="text-align: center;position: relative; top: 45%;">{{ song.title }}</div>
-              <button class="play-btn pause" style="position: absolute; right: 0; margin-right: 4%; margin-top: 1%;">
-                <span></span>
-                <span></span>
-              </button>
-          </div> 
+          </button> 
         {% endfor %}
         
     </div>
@@ -92,7 +89,7 @@
       </div>
     </footer>
   </div>
-  <script src="static/js/data.js"></script>
-  <script src="static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -235,7 +235,7 @@ header,
 aside,
 article,
 {
-padding: 1em;
+  padding: 1em;
 }
 
 header {
@@ -428,4 +428,90 @@ color: inherit; /* Inherit the text color from the parent, or set a custom color
 border: none; /* Remove the default border */
 font-size: 16px; /* Adjust font size */
 cursor: pointer; /* Change cursor to a pointer when hovered */
+}
+.playlist-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playlist-form input[type="text"],
+.playlist-form select {
+  font-family: spof2;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.playlist-form button {
+  background: linear-gradient(135deg, #6a11cb, #b892ff);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: spof;
+  transition: box-shadow 0.3s ease;
+}
+
+.playlist-form button:hover {
+  box-shadow: 0 0 10px rgba(186, 146, 255, 0.8);
+}
+
+form#playlistForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Keep it compact */
+  gap: 15px;
+}
+
+form#playlistForm input[type="text"],
+form#playlistForm select,
+form#playlistForm button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+  font-family: spof2;
+  font-size: 16px;
+  text-align: center; /* Center the text */
+}
+
+form#playlistForm button {
+  background: linear-gradient(135deg, #6a11cb, #b892ff);
+  color: white;
+  font-family: spof;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+form#playlistForm button:hover {
+  box-shadow: 0 0 10px rgba(186, 146, 255, 0.8);
+}
+
+#songResults,
+#selectedSongs {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+  border-radius: 5px;
+  text-align: center; /* Center text */
+  overflow-y: auto;
+  max-height: 150px; /* Scroll when too many items */
+}
+
+#songResults {
+  min-height: 100px;
+  background: #444;
+  color: white;
+  padding: 10px;
 }

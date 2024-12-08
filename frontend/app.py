@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect
 from flask_cors import CORS
 from frontend.config import Config
+
 app = Flask(__name__, static_folder='static')
 CORS(app)
 app.config.from_object(Config)

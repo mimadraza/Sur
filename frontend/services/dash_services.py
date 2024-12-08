@@ -29,6 +29,24 @@ artist_data = {
         ]
 }
 
+
+user_data = {
+        'songs': [
+            {'title': 'Too Sweet', 'image_url': '../static/images/images.jpg' , 'percent': '40'},
+            {'title': 'Sweet Melody', 'image_url': '../static/images/dinner.jpg', 'percent': '100'},
+            {'title': 'Angel of Sweet death and Codiene Scene', 'image_url': '../static/images/angel.jpg', 'percent': '60'},
+            {'title': 'Take me to Church', 'image_url': '../static/images/church.jpg', 'percent': '70'},
+            {'title': 'Dinner', 'image_url': '../static/images/church.jpg', 'percent': '50'}
+        ],
+        'albums' : [
+        {'title': 'Unreal Unearth', 'image_url': '../static/images/Church.jpg'},
+        {'title': 'Future Nostalgia', 'image_url': '../static/images/dinner.jpg'},
+        {'title': 'After Hours', 'image_url': '../static/images/angel.jpg'},
+        {'title': 'Wasteland Baby!', 'image_url': '../static/images/image.jpg'},
+        {'title': 'After Hours', 'image_url': '../static/images/after_hours.jpg'}
+        ]
+}
+
 def artist_dashboard():
     #will have to send query to database to get the artist data
     return artist_data
