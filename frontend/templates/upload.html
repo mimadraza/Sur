@@ -7,37 +7,24 @@
 </head>
 <body style="background: #0e0d0d;">
     <audio src = "" id = "audio"></audio>
-    <!--left bar-->
-    <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;"onclick="location.href='/artistdash/dashboard'">
-            Home
-          </button>
-        </div>
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;" onclick="location.href='/artistdash/stats'">
-            Stats
-          </button>
-        </div>
-        <!--button 3-->
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;" onclick="location.href='/artistdash/dashboard'">
-            Discover
-          </button>
-        </div>
-        <!--button 4-->
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;" onclick="location.href='/artistdash/upload'">
-            Upload
-          </button>
-        </div>      
+    <div class="parent">
+      <div class="div1">
+        <a href="#" class="nav-item active" onclick="location.href='/artistdash/dashboard'">Home</a>
+    <a href="#" class="nav-item" onclick="location.href='/artistdash/stats'">Stats</a>
+    <a href="#" class="nav-item" onclick="location.href='/artistdash/upload'">Upload</a>
+   
+      </div>
+      <div class="div2 glass">
+        <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
+        <div class="symbol"></div>
+        <div class="line"></div>  
+        <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+      </div>
     </div>
-     <!--top bar-->
-    </div>
-    <!--main board-->
-    <div class="square" style="overflow: hidden; background-color: inherit; height: 83vh; width: 75%; position: absolute; right: 10%; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 40px; overflow-y: scroll;">
-        <div class="form-container" style="position: relative; top: 100px;">
+      <div class="div3">
+        <div class="form-container glass" style="position: relative; top: 100px; height: 40%; width: 25%;">
             <form action="/artistdash/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+                <!-- Radio Buttons -->
                 <div class="radio-buttons">
                     <label>
                         <input type="radio" name="uploadType" value="single" required>
@@ -48,16 +35,18 @@
                         Upload Song With Album
                     </label>
                 </div>
-    
+            
+                <!-- Single Song Upload -->
                 <div class="single-song" id="singleSongUpload">
                     <label for="songFile">Select a Song (MP3 only):</label>
                     <input type="file" id="songFile" name="songFile" accept=".mp3">
                 </div>
-    
-                <div class="album-upload" id="albumUpload" style="display: none;">
+            
+                <!-- Album Upload -->
+                <div class="album-upload" id="albumUpload" style="display: none; ">
                     <label for="albumTitle">Album Title:</label>
                     <input type="text" id="albumTitle" name="albumTitle" placeholder="Enter album title">
-    
+            
                     <label for="albumType">Album Type:</label>
                     <select id="albumType" name="albumType">
                         <option value="single">Single</option>
@@ -65,50 +54,96 @@
                         <option value="mixed">Mixed</option>
                         <option value="custom">Custom</option>
                     </select>
-    
+            
                     <label for="albumSongs">Upload Songs (MP3 only):</label>
                     <input type="file" id="albumSongs" name="albumSongs[]" accept=".mp3" multiple>
                 </div>
-    
+            
+                <!-- Submit Button -->
                 <button type="submit" class="submit-button">Upload</button>
             </form>
+            
         </div>
-    </div>
-    
+      </div>
+      <div class="div4 glass" style="border-radius: 0;">
+        <div class="Bio-container" style=" width: 90%; height: 40%;
+          background: rgba(255, 255, 255, 0.05); 
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          overflow-y: auto; /* Scroll if content exceeds container height */
+          scrollbar-width: none;">
+  
+          <!-- Bio Image (Centered, inside the scrollable container) -->
+          <div class="bio-image" style=" width: 10%; height: 20%; border-radius: 10px;">
+          </div>
+          
+          <!-- Bio Title -->
+          <div class="song-title" style="width: 200px; height: 50px; font-family: spof2; font-size: 20px; border-radius: 20px; text-align: left; margin-top: 20px;">
+              About The Artist
+          </div>
+          
+          <!-- Bio Content (Scrollable) -->
+          <div class="bio-text" style="width: 90%; font-family: spof; font-size: 18px; color: white; margin-top: 20px;">
+              This is the bio section where you can add information about yourself or anything you'd like. Taylor Swift is the best singer of all time. Imad is the biggest swiftie EVER. Here's a bit more about this section with some longer text to fill up space. You can add whatever you want in here to make your bio more interesting.
+          </div>
+      </div>
+      </div>
+      <div class="div5">
+        <div class="controls">
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
+          <button class="play-btn pause" style="bottom: 30px;" >
+              <span></span>
+              <span></span>
+          </button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}"" alt = ""></button>
+        </div>
+        <div class="song-slider" style="bottom:20%;width: 40%; align-self: center;">
+          <input type="range" value="0" class="seek-bar" style="width: 100%;">
+          <span class="current-time">00:00</span>
+          <span class="song-time">00:00</span>
+        </div>
+      </div>
+      </div>
 
-    <!--right bar-->
-    <div class="square" style="background-color: #282424; height: 100vh; width: 15%; position: absolute; right: 0; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
-      
-</div>
-  <!--music player-->
-  <div class="square" style="background-color: linear-gradient(to top,#000000, #474747 50%, #555454); height: 150px; width: 100%; position: absolute; bottom:0; backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(10px); border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid rgb(203, 222, 221);">
-    <div class="song-slider" style="position: absolute; top: 22%; left: 50%; transform: translate(-50%, -50%); width: 60%; max-width: 300px;">
-        <input type="range" value="0" class="seek-bar" style="width: 100%;">
-        <span class="current-time">00:00</span>
-        <span class="song-time">00:00</span>
-    </div>
+      </div>
     
-</div>
-<script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/script.js"></script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Get references to the radio buttons and containers
         const singleSongUpload = document.getElementById("singleSongUpload");
         const albumUpload = document.getElementById("albumUpload");
-        const radioButtons = document.querySelectorAll("input[name='uploadType']");
-    
-        radioButtons.forEach(radio => {
-            radio.addEventListener("change", function() {
-                if (this.value === "single") {
-                    singleSongUpload.style.display = "block";
-                    albumUpload.style.display = "none";
-                } else {
-                    singleSongUpload.style.display = "none";
-                    albumUpload.style.display = "block";
+        const uploadTypeRadios = document.querySelectorAll('input[name="uploadType"]');
+
+        // Function to toggle display based on selected option
+        function toggleUploadOptions() {
+            uploadTypeRadios.forEach(radio => {
+                if (radio.checked) {
+                    if (radio.value === "single") {
+                        singleSongUpload.style.display = "flex";
+                        albumUpload.style.display = "none";
+                    } else if (radio.value === "album") {
+                        singleSongUpload.style.display = "none";
+                        albumUpload.style.display = "flex";
+                    }
                 }
             });
+        }
+
+        // Add event listeners to radio buttons
+        uploadTypeRadios.forEach(radio => {
+            radio.addEventListener("change", toggleUploadOptions);
         });
+
+        // Initialize form with correct state
+        toggleUploadOptions();
     });
-    </script>
-    
+</script>
+
 </body>
 </html>

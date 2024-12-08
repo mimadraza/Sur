@@ -12,7 +12,7 @@ artistdash_blueprint = Blueprint('artistdash', __name__)
 @userdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.user_dashboard()
-    return render_template('userdashboard.html', artist_data = user_data)
+    return render_template('playlist.html', artist_data = user_data)
 
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
@@ -45,6 +45,10 @@ def album():
     return render_template('albums.html', artist_data = artist_album)
 
 @userdash_blueprint.route('/search', methods = ['POST'])
+def search():
+    result = dash_services.search(request.form['search'])
+    return render_template('searchpage.html', artist_data = result)
+@artistdash_blueprint.route('/search', methods = ['POST'])
 def search():
     result = dash_services.search(request.form['search'])
     return render_template('searchpage.html', artist_data = result)

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userdashboard.css') }}">
+    <title>Dashboard</title>
+</head>
+<body style="background-color: black;">
+  <audio src = "" id = "audio"></audio>
+  <div class="grid">
+    <header>
+        <div class="section"></div>
+        <div class="section">
+          <button class="circle-image" style="width:80px; height:80px; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdash/dashboard'">
+          </button>
+          <div class="search" style="background-color: #282424; height:60px; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
+            <div class="symbol"></div>
+            <div class="line"></div>
+            <form action="/userdash/search" method="POST">  
+            <input type="text" name="search" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+            </form>
+          </div>
+        </div>
+        <div class="section"><div class="circle-image" style="width:80px; height:80px; position: absolute; right: 0; background-image: url('../static/images/user.jpg');">
+        </div></div>
+    </header>
+
+    <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0; gap:2%">
+
+        <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+              <h1 style="font-family: spof;">
+                  Your Library
+              </h1>
+        </div>
+        <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px; align-items: center;">
+          {% for song in artist_data.songs %}
+          <button class="playlist" onclick="loadAlbum('{{ song.title }}')">
+              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); margin-top: 1%;" onclick="playSong('Song 1')">
+              </div>
+              <div class="song-title" style="text-align: center; position: relative; top: 45%;">{{ song.title }}</div>
+              <i class="fas fa-play"></i> <!-- Play Icon -->
+            </button> 
+        {% endfor %}
+        </div>
+    </aside>
+  
+    <div class="main-dash glass" style="display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    gap: 20px; /* Space between elements */
+    background-color: #181414;
+    border-radius: 10px; 
+    overflow: auto; /* Add scroll if needed */">
+        <!-- Playlist Creation Header -->
+        <h1>Create a Playlist</h1>
+
+        <!-- Playlist Form -->
+        <form id="playlistForm">
+            <input type="text" id="playlistName" name="playlistName" placeholder="Enter Playlist Name">
+    
+            <div>
+                <input type="text" id="songSearch" placeholder="Search for songs...">
+            </div>
+    
+            <!-- Dynamic Song Results -->
+            <div id="songResults">
+                <!-- Songs will appear here -->
+            </div>
+    
+            <!-- Selected Songs -->
+            <div id="selectedSongs">
+                <h3>Selected Songs:</h3>
+                <ul id="songListDisplay"></ul>
+            </div>
+    
+            <!-- Submit Button -->
+            <button type="submit">Create Playlist</button>
+        </form>
+    </div>
+    
+    
+  
+    <aside class="sidebar-right">
+     
+    </aside>
+    
+    <footer style="display: flex; flex-direction: row;">
+      <div style="height: 100%; width: 22.5%;">
+
+
+      </div>
+      <div style="height: 100%; width: 55%; margin-top: 1%; align-items: center;">
+        <div class="controls">
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
+          <button class="play-btn pause" style="bottom: 30px;" >
+              <span></span>
+              <span></span>
+          </button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}"" alt = ""></button>
+        </div>
+        <div class="song-slider" style="bottom:20%;width: 50%; align-self: center;">
+          <input type="range" value="0" class="seek-bar" style="width: 100%;">
+          <span class="current-time">00:00</span>
+          <span class="song-time">00:00</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction: row; height: 100%; width: 22.5%;">
+
+      </div>
+    </footer>
+    
+  </div>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/script.js"></script>
+    <script>
+     function loadAlbum(albumName) {
+        // Use the album name to create a URL
+        location.href = `/userdash/album?album_name=${encodeURIComponent(albumName)}`;
+    }
+    </script>
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("songSearch");
+        const songResults = document.getElementById("songResults");
+        const songListDisplay = document.getElementById("songListDisplay");
+        const selectedSongs = new Set(); // Set to track selected song IDs
+    
+        // Fetch songs based on user search
+        searchInput.addEventListener("input", function() {
+            const query = searchInput.value.trim();
+    
+            // Fetch songs from the backend
+            fetch(`/get-songs?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    songResults.innerHTML = ''; // Clear previous results
+    
+                    // Display fetched songs
+                    data.songs.forEach(song => {
+                        const songItem = document.createElement("div");
+                        songItem.textContent = song.title;
+                        songItem.style.cursor = "pointer";
+                        songItem.style.padding = "5px";
+                        songItem.style.color = "#fff";
+    
+                        // Add song to the selected list when clicked
+                        songItem.addEventListener("click", function() {
+                            if (!selectedSongs.has(song.id)) {
+                                selectedSongs.add(song.id);
+    
+                                const li = document.createElement("li");
+                                li.textContent = song.title;
+                                songListDisplay.appendChild(li);
+                            }
+                        });
+    
+                        songResults.appendChild(songItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching songs:', error));
+        });
+    
+        // Handle form submission
+        document.getElementById("playlistForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+    
+            const playlistName = document.getElementById("playlistName").value;
+    
+            fetch('/create-playlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    playlistName: playlistName,
+                    songIds: Array.from(selectedSongs)
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => console.error('Error creating playlist:', error));
+        });
+    });
+    </script>
+    
+        
+</body>
+</html>
