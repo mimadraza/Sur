@@ -10,15 +10,15 @@
     <header>
         <div class="section"></div>
         <div class="section">
-          <button class="circle-image" style="width:7.5%; height:70%; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdash/dashboard'">
+          <button class="circle-image" style="width:80px; height:80px; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdash/dashboard'">
           </button>
-          <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
+          <div class="search" style="background-color: #282424; height:60px; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
             <div class="line"></div>  
             <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
           </div>
         </div>
-        <div class="section"><div class="circle-image" style="width:25%; height:75%; position: absolute; right: 0; background-image: url('../static/images/user.jpg');">
+        <div class="section"><div class="circle-image" style="width:80px; height:80px; position: absolute; right: 0; background-image: url('../static/images/user.jpg');">
         </div></div>
     </header>
 
@@ -34,7 +34,7 @@
           <button class="playlist" onclick="loadAlbum('{{ song.title }}')">
               <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); margin-top: 1%;" onclick="playSong('Song 1')">
               </div>
-              <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
+              <div class="song-title" style="text-align: center; position: relative; top: 45%;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
             </button> 
         {% endfor %}
@@ -64,14 +64,21 @@
         gap: 5px; /* Add spacing between grid items */
         align-items: center;
         justify-items: center;">
-    {% for album in artist_data.albums %}
-      <button class="album" style="display: flex; flex-direction: column; text-align: center;align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 200px; width: 200px;"  onclick="loadAlbum('{{ album.title }}')">
-        <div class="song-image" style="background-image: url('{{ album.image_url }}'); background-size: cover; background-position: center; width: 100px; border-radius: 5px; height: 200%;"></div>
-        <div class="song-text" style="font-family: spof; color: #ffffff;">
-            <p>{{ album.title }}</p>
-        </div>
-      </button>
-    {% endfor %}    
+        {% for album in artist_data.albums %}
+          <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="loadAlbum('{{ album.title }}')">
+              <div class="song-image" style="background-image: url('{{ album.image_url }}'); 
+                  background-size: cover; background-position: center; 
+                  width: 90%; height: 100%;
+                  border-radius: 10px; /* Rounded corners */
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Border shadow */
+                  transition: box-shadow 0.3s ease; /* Smooth hover effect */">
+              </div>
+              <div class="song-text" style="font-family: spof; color: #ffffff; margin-top: 10px;">
+                  <p>{{ album.title }}</p>
+              </div>
+          </button>
+      {% endfor %}  
+
 </div>
 
       <div style="text-align: left; margin-left: 2%;">
@@ -81,13 +88,19 @@
         grid-template-columns: 20% 20% 20% 20% 20%;
         grid-template-rows: 200px;">
         {% for album in artist_data.albums %}
-        <button class="album" style="display: flex; flex-direction: column; text-align: center;align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 200px; width: 200px;"  onclick="loadAlbum('{{ album.title }}')">
-          <div class="song-image" style="background-image: url('{{ album.image_url }}'); background-size: cover; background-position: center; width: 100px; border-radius: 5px; height: 200%;"></div>
-          <div class="song-text" style="font-family: spof; color: #ffffff;">
-              <p>{{ album.title }}</p>
-          </div>
+        <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="loadAlbum('{{ album.title }}')">
+            <div class="song-image" style="background-image: url('{{ album.image_url }}'); 
+                background-size: cover; background-position: center; 
+                width: 90%; height: 100%;
+                border-radius: 10px; /* Rounded corners */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Border shadow */
+                transition: box-shadow 0.3s ease; /* Smooth hover effect */">
+            </div>
+            <div class="song-text" style="font-family: spof; color: #ffffff; margin-top: 10px;">
+                <p>{{ album.title }}</p>
+            </div>
         </button>
-        {% endfor %}    
+  {% endfor %}
         </div>
 
     </div>

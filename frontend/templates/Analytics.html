@@ -7,74 +7,47 @@
 </head>
 <body style="background: #0e0d0d;">
     <audio src = "" id = "audio"></audio>
-    <!--left bar-->
-    <div class="square" style="background-color: #282424; height: 100vh; width: 15%;">
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 90px;"onclick="location.href='/artistdash/dashboard'">
-            Home
-          </button>
-        </div>
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 100px;" onclick="location.href='/artistdash/stats'">
-            Stats
-          </button>
-        </div>
-        <!--button 3-->
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 110px;" onclick="location.href='/artistdash/dashboard'">
-            Discover
-          </button>
-        </div>
-        <!--button 4-->
-        <div class ="side-buttons">
-          <button type="submit" style="width: 200px; height: 50px; position: relative; left: 23px; font-family: spof; font-size: 20px; border-radius: 20px; top: 120px;" onclick="location.href='/artistdash/upload'">
-            Upload
-          </button>
-        </div>      
-    </div>
-     <!--top bar-->
-    <div class="square" style="background-color:linear-gradient(to top, 
-        #000000, #474747 50%, #555454); width: 70%;height: 100px;backdrop-filter: blur(50px); position: absolute;right: 15%;top: 0;
-        -webkit-backdrop-filter: blur(50px);z-index: 3; display: flex;">
+    <div class="parent">
+      <div class="div1">
+        <header class="header" role="banner">
+            <div class="nav-wrap">
+              <nav class="main-nav" role="navigation">
+                <ul class="unstyled list-hover-slide">
+                  <li onclick="location.href='/artistdash/dashboard'"><a href="#">Home</a></li>
+                  <li onclick="location.href='/artistdash/stats'"><a href="#">Stats</a></li>
+                  <li  onclick="location.href='/artistdash/upload'"><a href="#">Upload</a></li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+          
+      </div>
+      <div class="div2 glass">
         <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
-            <div class="symbol"></div>
-            <div class="line"></div>  
-            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
-        </div>
+        <div class="symbol"></div>
+        <div class="line"></div>  
+        <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+      </div>
     </div>
-    <!--main board-->
-    <div class="square" style="overflow: hidden; background-color: inherit; height: 83vh; width: 75%; position: absolute; right: 10%; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; padding-top: 40px;overflow: hidden;overflow-y: scroll;">
-        
-        <div class="square" style="width: 100%;height: 300px; position: relative; top: 100px;">
-            <div class="chart-container" >
-                <div class="chart">
-                    <ul class="numbers">
-                        <li><span>100%</span></li>
-                        <li><span>50%</span></li>
-                        <li><span>0%</span></li>
-                    </ul>
-                    <ul class="bars glass">
-                        {% for song in artist_data.songs %}
-                        <li><div class ='bar' data-percentage="{{ song.percent }}"></div><span>{{ song.title }}</span></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="square glass flex-container" style="width: 600px; height: 300px; position: relative; bottom: 300px; left: 100px;border-radius: 10px; gap: 20px;">
-                <p style="font-family: spof;color: white; font-size: 4.5cap;align-self: center;">Artist Rank</p>
-                <div class="circle-image" style="display: flex;flex-direction: column;width: 150px; height: 150px;:hover{
-                        transform: scale(1.01);}">
-                    <p style="font-family: spof;color: white; font-size: 6.5cap;align-self: center;margin-top: 30%;">{{ artist_data.Artist_rank }}</p>
-                </div>
+    <div class="div3" style=" grid-area: 2 / 2 / 5 / 5; /* Place div3 in the grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 equal-width columns */
+    grid-template-rows: 1fr 1fr;    /* 2 equal-height rows */
+    gap: 20px; /* Space between items */
+    padding: 20px; /* Add some spacing inside */
+    box-sizing: border-box;
+    height: 100%; /* Ensure it fills the parent grid area */
+    width: 100%;">
+        <!-- First Square -->
+        <div class="square">
+            <p style="font-size: 2em;">Artist Rank</p>
+            <div class="circle-image" style="width: 100px; height: 100px;">
+                <p style="font-size: 1.5em; margin: 0;">{{ artist_data.Artist_rank }}</p>
             </div>
         </div>
-         <div class="square glass flex-container" style="width: 600px; height:500px;position: absolute; top: 60%; right : 51%;">
-            <p style="font-family: spof2;color: white; font-size: 4.5cap;align-self: center;">Media Statistics</p>
-            <p style="font-family: spof2;color: white;font-size: 4.5cap;align-self:center;"> Likes : {{ artist_data.Artist_likes }}</p>
-            <p style="font-family: spof2;color: white;font-size: 4.5cap;align-self:center;"> Followers : {{ artist_data.Artist_Followers }}</p>
-        </div>
-
-        <div class="chart-container"  style="height: 400px; width: 500px; position: absolute; top: 60%; left: 53%;">
+    
+        <!-- Second Chart -->
+        <div class="chart-container">
             <div class="chart">
                 <ul class="numbers">
                     <li><span>100%</span></li>
@@ -83,36 +56,87 @@
                 </ul>
                 <ul class="bars glass">
                     {% for song in artist_data.songs %}
-                    <li><div class ='bar' data-percentage="{{ song.percent }}"></div><span>{{ song.title }}</span></li>
+                    <li>
+                        <div class="bar" data-percentage="{{ song.percent }}"></div>
+                        <span>{{ song.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Third Square -->
+        <div class="square">
+            <p style="font-size: 1.5em;">Likes: {{ artist_data.Artist_likes }}</p>
+            <p style="font-size: 1.5em;">Followers: {{ artist_data.Artist_Followers }}</p>
+        </div>
+    
+        <!-- Fourth Chart -->
+        <div class="chart-container">
+            <div class="chart">
+                <ul class="numbers">
+                    <li><span>100%</span></li>
+                    <li><span>50%</span></li>
+                    <li><span>0%</span></li>
+                </ul>
+                <ul class="bars glass">
+                    {% for song in artist_data.songs %}
+                    <li>
+                        <div class="bar" data-percentage="{{ song.percent }}"></div>
+                        <span>{{ song.title }}</span>
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
     </div>
+    
+      <div class="div4 glass" style="border-radius: 0;">
+        <div class="Bio-container" style=" width: 90%; height: 40%;
+          background: rgba(255, 255, 255, 0.05); 
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          overflow-y: auto; /* Scroll if content exceeds container height */
+          scrollbar-width: none;">
+  
+          <!-- Bio Image (Centered, inside the scrollable container) -->
+          <div class="bio-image" style=" width: 10%; height: 20%; border-radius: 10px;">
+          </div>
+          
+          <!-- Bio Title -->
+          <div class="song-title" style="width: 200px; height: 50px; font-family: spof2; font-size: 20px; border-radius: 20px; text-align: left; margin-top: 20px;">
+              About The Artist
+          </div>
+          
+          <!-- Bio Content (Scrollable) -->
+          <div class="bio-text" style="width: 90%; font-family: spof; font-size: 18px; color: white; margin-top: 20px;">
+              This is the bio section where you can add information about yourself or anything you'd like. Taylor Swift is the best singer of all time. Imad is the biggest swiftie EVER. Here's a bit more about this section with some longer text to fill up space. You can add whatever you want in here to make your bio more interesting.
+          </div>
+      </div>
+      </div>
+      <div class="div5">
+        <div class="controls">
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
+          <button class="play-btn pause" style="bottom: 30px;" >
+              <span></span>
+              <span></span>
+          </button>
+          <button class="btn backward-btn" style="position: relative;bottom: 30px;"><img src="{{ url_for('static', filename='images/next.png') }}"" alt = ""></button>
+        </div>
+        <div class="song-slider" style="bottom:20%;width: 40%; align-self: center;">
+          <input type="range" value="0" class="seek-bar" style="width: 100%;">
+          <span class="current-time">00:00</span>
+          <span class="song-time">00:00</span>
+        </div>
+      </div>
+      </div>
 
-    <!--right bar-->
-    <div class="square" style="background-color: #282424; height: 100vh; width: 15%; position: absolute; right: 0; top: 0; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;">
-      
-</div>
-  <!--music player-->
-  <div class="square" style="background-color: linear-gradient(to top,#000000, #474747 50%, #555454); height: 150px; width: 100%; position: absolute; bottom:0; backdrop-filter: blur(20px); 
-    -webkit-backdrop-filter: blur(10px); border-top-left-radius: 15px; border-top-right-radius: 15px; border-top: 1px solid rgb(203, 222, 221);">
-    <div class="song-slider" style="position: absolute; top: 22%; left: 50%; transform: translate(-50%, -50%); width: 60%; max-width: 300px;">
-        <input type="range" value="0" class="seek-bar" style="width: 100%;">
-        <span class="current-time">00:00</span>
-        <span class="song-time">00:00</span>
-    </div>
-    <div class="controls">
-        <button class="btn backward-btn" style="top: 50px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
-        <button class="play-btn pause" style="top: 40px;">
-            <span></span>
-            <span></span>
-        </button>
-        <button class="btn backward-btn" style="top: 50px;"><img src="{{ url_for('static', filename='images/prev.png') }}" alt = ""></button>
-    </div>
-</div>
-
-
+      </div>
+    
   <script src="static/js/data.js"></script>
   <script src="static/js/script.js"></script>
   <script>

@@ -4,9 +4,14 @@
     box-sizing: border-box;
 }
 
-.square{
-     
-}
+.grid {
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-template-rows: 10vh 72vh 10vh; 
+    grid-gap: 0.5em;
+    min-height: 100%;
+  }
+  
 
 .circle-image {
     position: relative;
@@ -128,19 +133,19 @@
 }
 .seek-bar{
     -webkit-appearance: none;
-    width: 30%;
-    height: 5px;
-    border-radius: 10px;
-    background-color: #7fc8a9;
-    overflow: hidden;
-    cursor: pointer;
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #6b6c6c;
+  overflow: hidden;
+  cursor: pointer;
 }
 .seek-bar::-webkit-slider-thumb{
     -webkit-appearance: none;
-    width: 1px;
+    width: 0px;
     height: 20px;
     background-color: #000;
-    box-shadow: -400px 0 0 400px #d5eebb;
+    box-shadow: -400px 0 0 400px #d6d9d5;
 }
 .current-time,.song-time{
     font-size: 25px;
@@ -165,21 +170,21 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: #d5eebb ;
+    background: #fdfdfd ;
     cursor: pointer;
     border: none;
 }
 .play-btn span{
     position:absolute;
-    top: 50%;
-    left: 25%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 30px;
-    border-radius: 2px;
-    background:#5f7a61 ;
-    transition: .5s;
-    clip-path: polygon(0 0,100% 0 ,100% 100%,0% 100%);
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 30px;
+  border-radius: 2px;
+  background:#0a0a0a ;
+  transition: .5s;
+  clip-path: polygon(0 0,100% 0 ,100% 100%,0% 100%);
 }
 .play-btn :nth-child(2)
 {
@@ -234,14 +239,13 @@
   }
 
   .song-title {
-    position: relative;
+    flex-grow: 1; /* Allow it to take remaining space */
+    text-align: left;
     font-family: spof;
-    font-size: 25px;
-    font-weight: bold;
-    color: #fdfdfd;
-    
-  }
-
+    font-size: 18px;
+    color: white;
+    margin-left: 20px; /* Space between image and title */
+}
   .song-title span {
     color: #999;
     font-size: 14px;
@@ -312,7 +316,7 @@
 input[type="text"]:focus {
   outline: none;
 }
-.search:hover,.album:hover {
+.search:hover,.album:hover,.playlist:hover {
     background-color: #333;
     box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
 }
@@ -433,7 +437,6 @@ input[type="text"]:focus {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
     border:1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -444,3 +447,81 @@ input[type="text"]:focus {
     gap: 50px; /* Space between items */
     padding-top: 20px;
 }
+
+.parent {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(3, 1fr) 0.6fr;
+    grid-template-rows: 1fr repeat(3, 2fr) 1fr; /* Proportional row heights */
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100vh; /* Ensures the grid fills the entire viewport */
+    width: 100%; /* Optional for full width */
+}
+
+    
+    .div1 { 
+        grid-area: 1 / 1 / 5 / 2;
+        background-color: #282424
+    }
+    .div2 { grid-area: 1 / 2 / 2 / 6;
+        display: flex;
+        flex-direction: row;
+        background-color:linear-gradient(to top, 
+        #000000, #474747 50%, #555454);
+        border-radius: 0;
+    }
+    .div3 {
+        grid-area: 2 / 2 / 5 / 5; /* Spans grid rows and columns */
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        justify-content: flex-start; /* Align items from the top */
+        align-items: center;    /* Center horizontally */
+        margin-top: 10px;
+        gap: 30px; /* Add spacing between items */
+        overflow: hidden;
+        overflow-y: auto; /* Scroll if content exceeds container height */
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+    }
+    
+    .div4 { grid-area: 2 / 5 / 5 / 6;
+        grid-area: 2 / 5 / 5 / 6;
+        display: flex;
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center vertically */
+        gap: 20px; /* Optional: Add spacing between children */
+        margin: 0; /* Remove any margins */
+        padding: 0; /* Remove padding */
+    }
+    .div5 { grid-area: 5 / 1 / 6 / 6; 
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    button {
+        background-color: transparent; /* Removes default white background */
+        color: inherit; /* Inherit the text color from the parent, or set a custom color */
+        border: none; /* Remove the default border */
+        font-size: 16px; /* Adjust font size */
+        cursor: pointer; /* Change cursor to a pointer when hovered */
+    }
+
+    .playlist {
+        display: flex; /* Use Flexbox for alignment */
+        align-items: center; /* Vertically center items */
+        justify-content: space-between; /* Space out content */
+        width: 80%; /* Ensure proper width */
+        height: 100px; /* Set a consistent height */
+        gap :10px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.05); /* Optional background */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    }
+    
+    .playlist-image {
+        width: 90px; /* Consistent size */
+        height: 90px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0;
+    }
