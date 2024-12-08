@@ -19,6 +19,7 @@ def login():
 
 @auth_blueprint.route('/user/register', methods=['POST'])
 def user_register():
+    print("reached register route")
     data = request.json
     # Extract the correct fields
     first_name = data.get('first_name')

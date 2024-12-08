@@ -5,6 +5,7 @@ from backend.utils.tokens import generate_token
 
 
 def login_user(email, password):
+    print("reached login_user")
     user = get_user_by_email(email)
     if not user:
         return jsonify({'status': 'failure', 'message': 'User not found'})
@@ -13,6 +14,7 @@ def login_user(email, password):
 
     token = generate_token(user['user_id'])
     response_data = {'status': 'success', 'user_id': user['user_id']}
+    print("responding")
     response = make_response(jsonify(response_data), 200)
     response.set_cookie('token', token, httponly=True, secure=True)
     return response  # Response object is returned with data and headers
@@ -20,6 +22,7 @@ def login_user(email, password):
 
 def register_user(first_name, last_name, date_of_birth, country, email, password):
     # Check if the email already exists in the database
+    print("reached register_user function")
     existing_user = get_user_by_email(email)
     if existing_user:
         return {'status': 'failure', 'message': 'Email already in use'}
@@ -34,7 +37,8 @@ def register_user(first_name, last_name, date_of_birth, country, email, password
     try:
         # Call procedure to insert user into the database
         call_procedure('create_user', params)
-        return {'status': 'success', 'message': 'User registered successfully'}
+        print("User created")
+        return login_user(email, password)
     except Exception as e:
         return {'status': 'failure', 'message': str(e)}
 

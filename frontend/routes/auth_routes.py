@@ -18,7 +18,7 @@ profile_validations = (('bio', gl.required, gl.type_(str), gl.regex_(".{20,}")))
 def register ():
     if request.method == "POST":
        if auth_services.validation_register(request, register_validations, gl):
-            return redirect('/userauth/login')
+            return redirect('/userdash/dashboard')
        else:
             return render_template('userregisterpage.html')
 

@@ -1,6 +1,7 @@
 from backend.db.db_connection import get_db_connection
 
 def get_user_by_email(email):
+    print("reached query function")
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM User WHERE email = %s", (email,))
