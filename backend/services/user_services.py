@@ -16,7 +16,7 @@ def get_home_page_data():
 
     # Add random songs and their files
     for song in songs:
-        song_id = song['id']  # Assuming the song dictionary has an 'id'
+        song_id = song['song_id']  # Assuming the song dictionary has an 'id'
         song_file = get_song_metadata_and_file(song_id)
         random_song_data.append(song_file)
 
@@ -24,7 +24,7 @@ def get_home_page_data():
     for album in albums:
         album_data = []  # This will hold the songs in the album
         for song in album['songs']:  # Assuming album has a 'songs' key with a list of songs
-            song_id = song['id']
+            song_id = song['song_id']
             song_file = get_song_metadata_and_file(song_id)
             album_data.append(song_file)
         album_song_data.append(album_data)  # Add the list of songs for this album to album_song_data

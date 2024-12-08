@@ -25,9 +25,10 @@ def upload_new_album():
     album_id = upload_album(**data)
     return jsonify({"message": "Album uploaded successfully", "album_id": album_id}), 201
 
-@user_blueprint.route("/search", methods=["GET"])
+@user_blueprint.route("/search", methods=["POST"])
 def search():
-    query = request.args.get('query')
+    data = request.json
+    query = data["search"]
     if not query:
         return jsonify({"message": "Query parameter is required"}), 400
 
