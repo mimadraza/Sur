@@ -1,7 +1,7 @@
 from flask import make_response, jsonify
-from db.queries import get_user_by_email, call_procedure
-from utils.hashing import hash_password, check_password
-from utils.tokens import generate_token
+from backend.db.queries import get_user_by_email, call_procedure
+from backend.utils.hashing import hash_password, check_password
+from backend.utils.tokens import generate_token
 
 def login_user(email, password):
     user = get_user_by_email(email)
@@ -14,11 +14,11 @@ def login_user(email, password):
     response.set_cookie('token', token, httponly=True, secure=True)
     return response
 
-def register_user(firstName, lastName, dateOfBirth, country, email, password):
+def register_user(first_name, last_name, date_of_birth, country, email, password):
     hashed_password = hash_password(password)
-    params = [firstName, lastName, dateOfBirth, country, email, hashed_password]
+    params = [first_name, last_name, date_of_birth, country, email, hashed_password]
     try:
-        call_procedure('GetUsers', params)
+        call_procedure('create_user', params)
         return jsonify({'status': 'success'}), 201
     except Exception as e:
         return jsonify({'status': 'failure', 'message': str(e)})

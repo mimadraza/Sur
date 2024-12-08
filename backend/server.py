@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, make_response, send_file, request
 from flask_cors import CORS
-from routes import auth_blueprint
-from routes import user_blueprint
+from backend.routes.auth_routes import auth_blueprint
+from backend.routes.user_routes import user_blueprint
 
 app = Flask(__name__)
 CORS(app)

@@ -1,6 +1,10 @@
 from flask import Flask, render_template, redirect
-
 from flask_cors import CORS
+from frontend.routes.auth_routes import userauth_blueprint
+from frontend.routes.auth_routes import artistauth_blueprint
+from frontend.routes.dash_routes import userdash_blueprint
+from frontend.routes.dash_routes import artistdash_blueprint
+from config import Config
 
 #Use session to dictate whether artist is trying to log in or user
 # from flask import session
@@ -8,16 +12,7 @@ from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
-
-
-#note FROM SAAD:
-#THESE ROUTES AND BLUEPRINTS WILL NOT EXIST IN FINAL APP.PY ARE JUST THERE FOR TROUBLESHOOTING HTML PAGES 
-from routes.auth_routes import userauth_blueprint
-from routes.auth_routes import artistauth_blueprint
-
-#JUST FOR TEST
-from routes.dash_routes import userdash_blueprint 
-from routes.dash_routes import artistdash_blueprint 
+app.config.from_object(Config)
 
 app.register_blueprint(userauth_blueprint, url_prefix = '/userauth')
 app.register_blueprint(artistauth_blueprint, url_prefix = '/artistauth')
@@ -25,9 +20,7 @@ app.register_blueprint(artistdash_blueprint, url_prefix = '/artistdash')
 app.register_blueprint(userdash_blueprint, url_prefix = '/userdash')
 
 @app.route('/')
-def index():  
-    
-    
+def index():
     return redirect('/userdash/dashboard')
 
 # @app.route('/get_music_from_backend/<song_name>')

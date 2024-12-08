@@ -1,10 +1,5 @@
 from flask import Blueprint, request, redirect, render_template
-
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
-from services import dash_services
+from frontend.services import dash_services
 
 userdash_blueprint = Blueprint('userdash', __name__)
 artistdash_blueprint = Blueprint('artistdash', __name__)
