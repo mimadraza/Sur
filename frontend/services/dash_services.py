@@ -116,7 +116,8 @@ def album():
 
 def search(string):
      #query database to get one song back
-     response = requests.post(get_backend_url(), json={"search": string})
+     url = f'{get_backend_url()}/user/search'
+     response = requests.post(url, json={"search": string})
      if response.status_code == 200:
         return response.json()
      else:
