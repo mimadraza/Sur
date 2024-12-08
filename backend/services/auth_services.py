@@ -10,7 +10,7 @@ def login_user(email, password):
     if not check_password(user['password'], password):
         return {'status': 'failure', 'message': 'Invalid credentials'}
     token = generate_token(user['id'])
-    response = make_response(jsonify({'status': 'success', 'user_id': user['id']}))
+    response = make_response(jsonify({'status': 'success', 'user_id': user['id']}), 200)
     response.set_cookie('token', token, httponly=True, secure=True)
     return response
 
@@ -19,7 +19,7 @@ def register_user(first_name, last_name, date_of_birth, country, email, password
     params = [first_name, last_name, date_of_birth, country, email, hashed_password]
     try:
         call_procedure('create_user', params)
-        return jsonify({'status': 'success'}), 201
+        return login_user(email, password)
     except Exception as e:
         return jsonify({'status': 'failure', 'message': str(e)})
 
