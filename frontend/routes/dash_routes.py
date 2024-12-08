@@ -43,3 +43,8 @@ def album():
 def album():
     artist_album = dash_services.album()
     return render_template('albums.html', artist_data = artist_album)
+
+@userdash_blueprint.route('/search', methods = ['POST'])
+def search():
+    result = dash_services.search(request.form['search'])
+    return render_template('searchpage.html', artist_data = result)

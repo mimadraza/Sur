@@ -1,10 +1,8 @@
-import os
-import sys
-
-import Config
 import requests
-
-# backendurl = Config.BACKEND_URL
+import sys,os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
+from Config import Config
+backendurl = Config.BACKEND_URL
 
 def validation_register(request, validation, gl):
     data = {

@@ -1,4 +1,8 @@
 import requests
+import sys,os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
+from Config import Config
+backendurl = Config.BACKEND_URL
 
 #artist data and user_data should be globally declared
 artist_data = {
@@ -89,3 +93,11 @@ def upload(request):
 def album():
      #should return album data
      return artist_data
+
+def search(string):
+     #query database to get one song back
+     response = requests.post(backendurl, json={"search": string})
+     if response.status_code == 200:
+        return response.json()
+     else:
+        return None

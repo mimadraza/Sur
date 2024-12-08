@@ -14,8 +14,10 @@
           </button>
           <div class="search" style="background-color: #282424; height: 80%; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
-            <div class="line"></div>  
-            <input type="text" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+            <div class="line"></div>
+            <form action="/userdash/search" method="POST">  
+            <input type="text" name="search" placeholder="Search music, artist, album..." style="position: relative;left: 35px;bottom:25px;font-family: spof2;" />
+            </form>
           </div>
         </div>
         <div class="section"><div class="circle-image" style="width:25%; height:75%; position: absolute; right: 0; background-image: url('../static/images/user.jpg');">
