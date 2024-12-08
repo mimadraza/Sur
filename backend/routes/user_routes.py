@@ -37,7 +37,14 @@ def search():
 @user_blueprint.route("/song/<int:song_id>/file", methods=["GET"])
 def get_song_file(song_id):
     song_metadata = get_song_metadata_and_file(song_id)
-    if song_metadata["file_name"]:
-        return send_from_directory("D:/songs", song_metadata["file_name"]), 200
+
+    # Check if song_metadata contains the file_name
+    if "file_name" in song_metadata:
+        file_name = song_metadata["file_name"]
+        if file_name:
+            return send_from_directory("D:/songs", file_name), 200
+        else:
+            return jsonify({"message": "Song file not found"}), 404
     else:
-        return jsonify({"message": "Song file not found"}), 404
+        # In case the song was not found or another issue
+        return song_metadata

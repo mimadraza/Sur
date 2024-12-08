@@ -39,4 +39,3 @@ def search_songs_albums_artists(query):
     }
 
     return results
-

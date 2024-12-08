@@ -3,7 +3,7 @@ from backend.db.db_connection import get_db_connection
 def get_user_by_email(email):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+    cursor.execute("SELECT * FROM User WHERE email = %s", (email,))
     user = cursor.fetchone()
     cursor.close()
     conn.close()
@@ -17,7 +17,7 @@ def call_procedure(proc_name, params):
             cursor.callproc(proc_name, params)
         else:
             cursor.callproc(proc_name)
-
+        connection.commit()
         # Fetch results if the procedure returns data
         results = []
         for result in cursor.stored_results():
@@ -120,3 +120,28 @@ def search_artists_by_name(name):
     cursor.close()
     conn.close()
     return artists
+
+
+# Fetch artist by email (for login)
+def get_artist_by_email(email):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Artist WHERE email = %s", (email,))
+    artist = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return artist
+
+# Insert a new artist (for registration)
+def create_artist(first_name, last_name, email, password_hash, date_of_birth, bio, country):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO Artist (first_name, last_name, email, password_hash, date_of_birth, bio, country)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """, (first_name, last_name, email, password_hash, date_of_birth, bio, country))
+    artist_id = cursor.lastrowid
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return artist_id
