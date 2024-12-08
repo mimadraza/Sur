@@ -1,10 +1,6 @@
 from flask import Blueprint, request, redirect, render_template
 import gladiator as gl
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
-from services import auth_services
+from frontend.services import auth_services
 
 userauth_blueprint = Blueprint('userauth', __name__)
 artistauth_blueprint = Blueprint('artistauth', __name__)

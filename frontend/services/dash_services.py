@@ -1,8 +1,10 @@
 import requests
-import sys,os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
-from Config import Config
-backendurl = Config.BACKEND_URL
+from flask import current_app
+
+# Access the backend URL
+def get_backend_url():
+    # Access the configuration when needed
+    return current_app.config['BACKEND_URL']
 
 #artist data and user_data should be globally declared
 artist_data = {
@@ -50,14 +52,14 @@ def upload(request):
                 files = {'songFile': (song_file.filename, song_file.stream, song_file.content_type)}
                 data = {'uploadType': 'single'}
                 # testing, works!
-                response = requests.post(backendurl, files=files, data=data)
+                response = requests.post(get_backend_url(), files=files, data=data)
 
                 if response.status_code == 200:
                     return True
                 else:
                     return False
                 
-                # response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
+                # response = requests.post(f"{get_backend_url()}/get_music/{song_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
             else:
                 return "Invalid MP3 file.", 400
@@ -78,13 +80,13 @@ def upload(request):
                 
                 data = {'uploadType': 'album', 'albumTitle': album_title, 'albumType': album_type}
                 
-                response = requests.post(backendurl, files=files, data=data)
+                response = requests.post(get_backend_url(), files=files, data=data)
 
                 if response.status_code == 200:
                     return True
                 else:
                     return False
-                # response = requests.post(f"{backendurl}/get_music/{song_file.filename}", files=files, data=data)
+                # response = requests.post(f"{get_backend_url()}/get_music/{song_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
             else:
                 return "Missing album details or files.", 400
@@ -96,7 +98,7 @@ def album():
 
 def search(string):
      #query database to get one song back
-     response = requests.post(backendurl, json={"search": string})
+     response = requests.post(get_backend_url(), json={"search": string})
      if response.status_code == 200:
         return response.json()
      else:

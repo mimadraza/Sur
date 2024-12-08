@@ -1,8 +1,11 @@
 import requests
-import sys,os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) #adding parent to PYTHONPATH
-from Config import Config
-backendurl = Config.BACKEND_URL
+from flask import current_app
+
+# Access the backend URL
+def get_backend_url():
+    # Access the configuration when needed
+    return current_app.config['BACKEND_URL']
+
 
 def validation_register(request, validation, gl):
     data = {
@@ -17,9 +20,9 @@ def validation_register(request, validation, gl):
     #differentiate between artist and user from database required or not
     #url = "http://backendserver.com/your-api-route?flag=true"
     if result.success:
-        response = requests.post(backendurl, json=data)
+        response = requests.post(get_backend_url(), json=data)
 
-        if response.status_code == 200:
+        if response.status_code == 201:
             return True
         else:
             return False
@@ -33,9 +36,9 @@ def validation_login(request, validation, gl):
     #differentiate between artist and user from database required or not
     #url = "http://backendserver.com/your-api-route?flag=true"
     if result.success:
-        response = requests.post(backendurl, json=data)
+        response = requests.post(get_backend_url(), json=data)
 
-        if response.status_code == 200:
+        if response.status_code == 201:
             return True
         else:
             return False
@@ -53,13 +56,13 @@ def profile(request, validation, gl):
                 files = {'image': (image_file.filename, image_file.stream, image_file.content_type)}
                 # testing, works!
                 print(files,data)
-                response = requests.post(backendurl, files=files, data=data)
+                response = requests.post(get_backend_url(), files=files, data=data)
 
                 if response.status_code == 200:
                     return True
                 else:
                     return False
-                # response = requests.post(f"{backendurl}/get_music/{image_file.filename}", files=files, data=data)
+                # response = requests.post(f"{get_backend_url(}/get_music/{image_file.filename}", files=files, data=data)
                 # return f"Backend Response: {response.status_code} - {response.text}"
     else:
         return False

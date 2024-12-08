@@ -43,41 +43,35 @@
         </div>
     </aside>
   
-    <div class="main-dash glass" style="display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    gap: 20px; /* Space between elements */
-    background-color: #181414;
-    border-radius: 10px; 
-    overflow: auto; /* Add scroll if needed */">
-        <!-- Playlist Creation Header -->
-        <h1>Create a Playlist</h1>
-
+    <div class="main-dash glass" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+        <!-- Playlist Header -->
+        <h1 style="color: white; font-family: spof;">Create a Playlist</h1>
+    
         <!-- Playlist Form -->
-        <form id="playlistForm">
-            <input type="text" id="playlistName" name="playlistName" placeholder="Enter Playlist Name">
+        <form id="playlistForm" style="display: flex; flex-direction: column; gap: 15px; align-items: center; width: 80%;">
+            <input type="text" id="playlistName" placeholder="Enter Playlist Name" style="width: 100%; padding: 10px; background: #333; color: white; border-radius: 5px;">
     
-            <div>
-                <input type="text" id="songSearch" placeholder="Search for songs...">
-            </div>
+            <!-- Search Bar -->
+            <input type="text" id="songSearch" placeholder="Search for songs..." 
+                   style="width: 100%; padding: 10px; background: #444; color: white; border-radius: 5px;">
     
-            <!-- Dynamic Song Results -->
-            <div id="songResults">
-                <!-- Songs will appear here -->
+            <!-- Results Container -->
+            <div id="songResults" style="width: 100%; max-height: 150px; overflow-y: auto; background: #222; color: white; border-radius: 5px; padding: 10px;">
+                <!-- Dynamic song results will appear here -->
             </div>
     
             <!-- Selected Songs -->
-            <div id="selectedSongs">
-                <h3>Selected Songs:</h3>
-                <ul id="songListDisplay"></ul>
+            <div id="selectedSongs" style="width: 100%; background: #333; color: white; border-radius: 5px; padding: 10px; font-family: spof;">
+                <h3 style="margin-bottom: 10px;">Selected Songs:</h3>
+                <ul id="songListDisplay" style="list-style: none; padding: 0;"></ul>
             </div>
     
             <!-- Submit Button -->
-            <button type="submit">Create Playlist</button>
+            <button type="submit" style="padding: 10px 20px; background: #6a11cb; color: white; border-radius: 5px; border: none; cursor: pointer;">
+                Create Playlist
+            </button>
         </form>
     </div>
-    
     
   
     <aside class="sidebar-right">
@@ -119,68 +113,67 @@
     }
     </script>
    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const searchInput = document.getElementById("songSearch");
-        const songResults = document.getElementById("songResults");
-        const songListDisplay = document.getElementById("songListDisplay");
-        const selectedSongs = new Set(); // Set to track selected song IDs
-    
-        // Fetch songs based on user search
-        searchInput.addEventListener("input", function() {
-            const query = searchInput.value.trim();
-    
-            // Fetch songs from the backend
-            fetch(`/get-songs?query=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    songResults.innerHTML = ''; // Clear previous results
-    
-                    // Display fetched songs
-                    data.songs.forEach(song => {
-                        const songItem = document.createElement("div");
-                        songItem.textContent = song.title;
-                        songItem.style.cursor = "pointer";
-                        songItem.style.padding = "5px";
-                        songItem.style.color = "#fff";
-    
-                        // Add song to the selected list when clicked
-                        songItem.addEventListener("click", function() {
-                            if (!selectedSongs.has(song.id)) {
-                                selectedSongs.add(song.id);
-    
-                                const li = document.createElement("li");
-                                li.textContent = song.title;
-                                songListDisplay.appendChild(li);
-                            }
-                        });
-    
-                        songResults.appendChild(songItem);
-                    });
-                })
-                .catch(error => console.error('Error fetching songs:', error));
-        });
-    
-        // Handle form submission
-        document.getElementById("playlistForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-    
-            const playlistName = document.getElementById("playlistName").value;
-    
-            fetch('/create-playlist', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    playlistName: playlistName,
-                    songIds: Array.from(selectedSongs)
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-            })
-            .catch(error => console.error('Error creating playlist:', error));
-        });
+   document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("songSearch");
+    const songResults = document.getElementById("songResults");
+    const songListDisplay = document.getElementById("songListDisplay");
+    const selectedSongs = new Set(); // To track selected song IDs
+
+    // Prevent Enter from submitting/reloading
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Stop page reload on Enter
+        }
     });
+
+    // Fetch songs dynamically as the user types
+    searchInput.addEventListener("input", function () {
+    const query = searchInput.value.trim();
+    console.log("Query Sent:", query);
+
+    if (query.length > 0) {
+        fetch(`http://127.0.0.1:5000/get-songs?query=${encodeURIComponent(query)}`)
+    .then((response) => response.json())
+    .then((data) => {
+        songResults.innerHTML = ""; // Clear previous results
+
+        // Display fetched songs dynamically
+        data.songs.forEach((song) => {
+            const songItem = document.createElement("div");
+            songItem.textContent = song.title;
+            songItem.style.cursor = "pointer";
+            songItem.style.padding = "5px";
+            songItem.style.color = "#fff";
+            songItem.style.borderBottom = "1px solid #444";
+
+            // Add song to the selected list when clicked
+            songItem.addEventListener("click", function () {
+                if (!selectedSongs.has(song.id)) {
+                    selectedSongs.add(song.id); // Prevent duplicates
+
+                    // Display the selected song
+                    const li = document.createElement("li");
+                    li.textContent = song.title;
+                    li.style.color = "#fff";
+                    li.style.padding = "5px 0";
+
+                    songListDisplay.appendChild(li);
+
+                    // Provide a visual cue for the selected song
+                    songItem.style.backgroundColor = "#444";
+                    songItem.style.color = "#6a11cb";
+                }
+            });
+
+            songResults.appendChild(songItem); // Add song to results
+        });
+    })
+    .catch((error) => console.error("Error fetching songs:", error));
+}
+});
+
+});
+
     </script>
     
         

@@ -235,7 +235,7 @@ header,
 aside,
 article,
 {
-padding: 1em;
+  padding: 1em;
 }
 
 header {
@@ -507,4 +507,11 @@ form#playlistForm button:hover {
   text-align: center; /* Center text */
   overflow-y: auto;
   max-height: 150px; /* Scroll when too many items */
+}
+
+#songResults {
+  min-height: 100px;
+  background: #444;
+  color: white;
+  padding: 10px;
 }
