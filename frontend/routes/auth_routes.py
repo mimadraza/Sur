@@ -58,7 +58,7 @@ def profile ():
        if auth_services.profile(request, profile_validations, gl):
             return redirect('/artistdash/dashboard')
        else:
-            return render_template('Loginpage.html')
+            return render_template('artistloginpage.html')
 
     
     return render_template('profileSetup.html')
@@ -70,10 +70,10 @@ def login ():
        if auth_services.validation_login(request, login_validations, gl):
             return redirect('/artistdash/dashboard')
        else:
-            return render_template('Loginpage.html')
+            return render_template('artistlogin.html')
 
     
-    return render_template('Loginpage.html')
+    return render_template('artistlogin.html')
 
 
 

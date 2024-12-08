@@ -32,7 +32,7 @@ def upload():
 @artistdash_blueprint.route('/album', methods = ['GET', 'POST'])
 def album():
     artist_album = dash_services.album()
-    return render_template('albums.html', artist_data = artist_album)
+    return render_template('artistalbum.html', artist_data = artist_album)
 
 @userdash_blueprint.route('/album', methods = ['GET', 'POST'])
 def album():

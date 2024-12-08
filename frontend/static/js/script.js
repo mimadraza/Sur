@@ -60,8 +60,8 @@ backwardBtn.addEventListener('click' , () =>
 {
     
 })
-function playSong(songName) {
-    fetch(`/get_music_from_backend/${songName}`)
+function playSong(songId) {
+    fetch(`http://127.0.0.1:5000/user/song/${songId}/file`)
         .then(response => response.blob())  // Response as a blob (binary data)
         .then(data => {
             const audioURL = URL.createObjectURL(data);  // Create a URL for the audio blob

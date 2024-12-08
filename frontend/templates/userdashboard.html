@@ -49,7 +49,7 @@
       grid-template-rows:33% 33% 33%;padding: 5px 5px; gap: 10px;">
         {% for song in artist_data.songs %}
             <button class="song glass" style="display:flex; flex-direction: row; width: inherit;height: 100%; padding: 0;">
-                <div class="song-5" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 20%;height: 100%; " onclick="playSong('Song 1')">
+                <div class="song-5" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 20%;height: 100%; " onclick="playSong('20')">
                 </div>
                 <div style="margin-top: 7%;margin-left: 1%;">
                 <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
@@ -137,10 +137,9 @@
     </footer>
     
   </div>
-  <script src="static/js/data.js"></script>
-  <script src="static/js/script.js"></script>
-  <script>
-     function loadAlbum(albumName) {
+  <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>     function loadAlbum(albumName) {
         // Use the album name to create a URL
         location.href = `/userdash/album?album_name=${encodeURIComponent(albumName)}`;
     }

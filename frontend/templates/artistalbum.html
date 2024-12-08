@@ -9,17 +9,9 @@
     <audio src = "" id = "audio"></audio>
     <div class="parent">
       <div class="div1">
-        <header class="header" role="banner">
-            <div class="nav-wrap">
-              <nav class="main-nav" role="navigation">
-                <ul class="unstyled list-hover-slide">
-                  <li onclick="location.href='/artistdash/dashboard'"><a href="#">Home</a></li>
-                  <li onclick="location.href='/artistdash/stats'"><a href="#">Stats</a></li>
-                  <li  onclick="location.href='/artistdash/upload'"><a href="#">Upload</a></li>
-                </ul>
-              </nav>
-            </div>
-          </header>
+        <a href="#" class="nav-item active" onclick="location.href='/artistdash/dashboard'">Home</a>
+        <a href="#" class="nav-item" onclick="location.href='/artistdash/stats'">Stats</a>
+        <a href="#" class="nav-item" onclick="location.href='/artistdash/upload'">Upload</a>
       </div>
       <div class="div2 glass">
         <div class="search" style="background-color: #282424; height: 50px; width: 300px; position: absolute; right: 120px; top: 25px; border-radius: 10px;">
@@ -95,8 +87,7 @@
       </div>
 
       </div>
-    
-  <script src="static/js/data.js"></script>
-  <script src="static/js/script.js"></script>
+      <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
