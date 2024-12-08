@@ -3,7 +3,7 @@ from flask import current_app
 
 # Access the backend URL
 def get_backend_url():
-    # Access the configuration when needed
+    # Access the configuration when the app is initialized
     return current_app.config['BACKEND_URL']
 
 
@@ -20,9 +20,10 @@ def validation_register(request, validation, gl):
     #differentiate between artist and user from database required or not
     #url = "http://backendserver.com/your-api-route?flag=true"
     if result.success:
-        response = requests.post(get_backend_url(), json=data)
+        url =f'{get_backend_url()}/auth/user/register'
+        response = requests.post(url, json=data)
 
-        if response.status_code == 201:
+        if response.status_code == 200:
             return True
         else:
             return False
@@ -36,9 +37,10 @@ def validation_login(request, validation, gl):
     #differentiate between artist and user from database required or not
     #url = "http://backendserver.com/your-api-route?flag=true"
     if result.success:
-        response = requests.post(get_backend_url(), json=data)
+        url = f'{get_backend_url()}/auth/user/login'
+        response = requests.post(url, json=data)
 
-        if response.status_code == 201:
+        if response.status_code == 200:
             return True
         else:
             return False

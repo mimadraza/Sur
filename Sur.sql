@@ -387,3 +387,10 @@ BEGIN
 END; //
 
 DELIMITER ;
+
+INSERT INTO Genre(genre_name) VALUES ('Pop');
+INSERT INTO Genre(genre_name) VALUES ('Jazz');
+INSERT INTO Genre(genre_name) VALUES ('Rap');
+INSERT INTO Genre(genre_name) VALUES ('Classic');
+
+

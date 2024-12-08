@@ -1,33 +1,41 @@
-from flask import app, jsonify, request
+from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name
 
 
-@app.route('/get-songs', methods=['GET'])
-def get_songs():
-    query = request.args.get('query', '').lower()
-    
-    # Dummy list of songs (replace this with a database query)
-    all_songs = [
-        {'id': 1, 'title': 'Song One'},
-        {'id': 2, 'title': 'Song Two'},
-        {'id': 3, 'title': 'Song Three'},
-        {'id': 4, 'title': 'Another Song'},
-        {'id': 5, 'title': 'Final Song'},
-    ]
-    
-    # Filter songs based on the query
-    filtered_songs = [song for song in all_songs if query in song['title'].lower()]
+def follow_artist(user_id, artist_id):
+    params = [user_id, artist_id]
+    call_procedure('follow_artist', params)
 
-    return jsonify({'songs': filtered_songs})
+def get_home_page_data():
+    songs = get_random_songs()
+    albums = get_random_albums()
+    return {"songs": songs, "albums": albums}
 
-@app.route('/create-playlist', methods=['POST'])
-def create_playlist():
-    data = request.get_json()
-    playlist_name = data.get('playlistName')
-    song_ids = data.get('songIds')
+def get_song_metadata_and_file(song_id):
+    song = get_song_by_id(song_id)
+    if not song:
+        return {"message": "Song not found"}, 404
+    file_name = f"{song_id}.mp3"
+    return {"metadata": song, "file_name": file_name}
 
-    # Log or store the playlist
-    print(f"New Playlist Created: {playlist_name}")
-    print(f"Song IDs: {song_ids}")
+def upload_song(title, duration, release_date, album_id, genre_id, artist_id):
+    song_id = create_song(title, duration, release_date, album_id, genre_id, artist_id)
+    return song_id
 
-    # Return success message
-    return jsonify({'message': f'Playlist "{playlist_name}" created successfully!'})
+def upload_album(title, genre_id, artist_id, album_type, release_date):
+    album_id = create_album(title, genre_id, artist_id, album_type, release_date)
+    return album_id
+
+def search_songs_albums_artists(query):
+    # Search for songs, albums, and artists that match the query
+    song_results = search_songs_by_name(query)
+    album_results = search_albums_by_name(query)
+    artist_results = search_artists_by_name(query)
+
+    # Combine the results into a single dictionary
+    results = {
+        "songs": song_results,
+        "albums": album_results,
+        "artists": artist_results
+    }
+
+    return results
