@@ -53,8 +53,11 @@ def artist_dashboard():
 
 
 def user_dashboard():
-    #will have to send query to get the user data 
-    return artist_data
+    url =f'{get_backend_url()}/user/home'
+    response = requests.post(url)
+
+    return response
+   
 
 def stats():
     #will have to send query to get artist stats

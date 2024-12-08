@@ -32,7 +32,7 @@ def call_procedure(proc_name, params):
 def get_random_songs():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM Song ORDER BY RAND() LIMIT 5")
+    cursor.execute("SELECT * FROM Song")
     songs = cursor.fetchall()
     cursor.close()
     conn.close()

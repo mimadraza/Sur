@@ -113,6 +113,11 @@
     
       <script src="{{ url_for('static', filename='js/data.js') }}"></script>
       <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <script>     function loadAlbum(albumName) {
+        // Use the album name to create a URL
+        location.href = `/artistdash/album?album_name=${encodeURIComponent(albumName)}`;
+      }
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get references to the radio buttons and containers
