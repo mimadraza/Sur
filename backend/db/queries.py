@@ -32,7 +32,7 @@ def call_procedure(proc_name, params):
 def get_random_songs():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM Song")
+    cursor.execute("SELECT * FROM Song ORDER BY RAND() LIMIT 5")
     songs = cursor.fetchall()
     cursor.close()
     conn.close()
@@ -59,6 +59,17 @@ def create_song(title, duration, release_date, album_id, genre_id, artist_id):
     cursor.close()
     conn.close()
     return song_id
+
+def get_songs_by_album_id(album_id):
+    # Assuming you have a function that retrieves all songs for a given album ID
+    # This function would query your database and return a list of songs for the given album
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Song WHERE album_id = %s", (album_id,))
+    songs = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return songs
 
 # Albums
 def get_random_albums():
@@ -113,8 +124,9 @@ def search_artists_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT artist_id, CONCAT(first_name, last_name) FROM Artist
-        WHERE CONCAT(first_name, last_name) LIKE %s
+        SELECT artist_id, CONCAT(first_name, ' ', last_name) AS full_name
+        FROM Artist
+        WHERE CONCAT(first_name, ' ', last_name) LIKE %s
     """
     cursor.execute(query, ('%' + name + '%',))
     artists = cursor.fetchall()

@@ -1,16 +1,24 @@
-from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name
+import datetime
+
+from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, \
+    create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name, get_songs_by_album_id
 
 
 def follow_artist(user_id, artist_id):
     params = [user_id, artist_id]
     call_procedure('follow_artist', params)
 
+
+def custom_serializer(obj):
+    if isinstance(obj, datetime):
+        return obj.isoformat()  # Convert datetime objects to ISO format string
+    raise TypeError(f"Type {type(obj)} not serializable")
+
 def get_home_page_data():
     # Fetch random songs and albums
     songs = get_random_songs()
     albums = get_random_albums()
 
-    # Initialize lists to store the song metadata and file data
     random_song_data = []
     album_song_data = []
 
@@ -18,29 +26,51 @@ def get_home_page_data():
     for song in songs:
         song_id = song['song_id']  # Assuming the song dictionary has an 'id'
         song_file = get_song_metadata_and_file(song_id)
-        random_song_data.append(song_file)
+        if isinstance(song_file, dict):
+            random_song_data.append(song_file)
 
     # Add album songs and their files
     for album in albums:
         album_data = []  # This will hold the songs in the album
-        for song in album['songs']:  # Assuming album has a 'songs' key with a list of songs
+
+        # Fetch songs associated with the album
+        album_songs = get_songs_by_album_id(album['album_id'])  # Replace with actual function
+
+        for song in album_songs:
             song_id = song['song_id']
             song_file = get_song_metadata_and_file(song_id)
-            album_data.append(song_file)
-        album_song_data.append(album_data)  # Add the list of songs for this album to album_song_data
+            if isinstance(song_file, dict):
+                album_data.append(song_file)
 
-    # Return both random songs and album songs in separate lists
+        album_song_data.append(album_data)
+
+    # Return the final data (ensure all objects are serializable)
     return {
         "songs": random_song_data,  # 1D list of random songs
-        "albums": album_song_data   # 2D list of songs within albums
+        "albums": album_song_data  # 2D list of songs within albums
     }
+
 
 def get_song_metadata_and_file(song_id):
     song = get_song_by_id(song_id)
     if not song:
         return {"message": "Song not found"}, 404
+
+    # Convert release_date to string if it's a datetime object
+    release_date = song['release_date']
+    if isinstance(release_date, datetime):  # Correctly check if release_date is a datetime object
+        release_date = release_date.isoformat()  # Convert to ISO string
+
+    song_metadata = {
+        'song_id': song['song_id'],
+        'title': song['title'],
+        'duration': song['duration'],
+        'release_date': release_date,  # Now it is a string if it was datetime
+        # Add any other fields you need that are simple types
+    }
+
     file_name = f"{song_id}.mp3"
-    return {"metadata": song, "file_name": file_name}
+    return {"metadata": song_metadata, "file_name": file_name}
 
 
 def upload_song(title, duration, release_date, album_id, genre_id, artist_id):
