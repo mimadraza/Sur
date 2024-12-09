@@ -55,7 +55,6 @@ def artist_dashboard():
 def user_dashboard():
     url =f'{get_backend_url()}/user/home'
     response = requests.get(url)
-
     return response
    
 

@@ -1,6 +1,3 @@
-import datetime
-import json
-
 from flask import Flask, jsonify, make_response, send_file, request
 from flask_cors import CORS
 from backend.routes.auth_routes import auth_blueprint
@@ -19,17 +16,6 @@ app.register_blueprint(user_blueprint, url_prefix='/user')
 @app.route('/')
 def hello_world():
     return make_response({"message": "Hello, Saad!"})
-
-class CustomJSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, datetime):
-            # If the object is a datetime, format it as a string
-            return obj.isoformat()
-        # Let the base class default method handle other types
-        return super().default(obj)
-
-# Set the custom JSON encoder for Flask
-app.json_encoder = CustomJSONEncoder
 
 # @app.route('/get_music/<song_name>', methods=['GET'])
 # def get_music(song_name):
