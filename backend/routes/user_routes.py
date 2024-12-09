@@ -8,7 +8,7 @@ user_blueprint = Blueprint('user', __name__)
 artist_blueprint = Blueprint('artist', __name__)
 
 @artist_blueprint.route("/home/", methods=["GET"])
-def home_page(artist_id):
+def home_page():
     # Get the token from cookies
     token = request.cookies.get('token')
 

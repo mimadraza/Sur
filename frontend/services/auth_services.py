@@ -1,5 +1,5 @@
 import requests
-from flask import current_app
+from flask import current_app, request
 
 # Access the backend URL
 def get_backend_url():
@@ -28,10 +28,10 @@ def validation_register(request, validation, gl):
         else:
             return False
         
-def validation_login(request, validation, gl):
+def validation_login(request1, validation, gl):
     data = {
-        "email": request.form["email"],
-        "password" : request.form["password"]
+        "email": request1.form["email"],
+        "password" : request1.form["password"]
         }
     result = gl.validate(validation, data) #returns true if all validations passed
     #differentiate between artist and user from database required or not
