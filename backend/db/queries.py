@@ -98,7 +98,7 @@ def search_songs_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT song_id, title FROM Song
+        SELECT * FROM Song
         WHERE title LIKE %s
     """
     cursor.execute(query, ('%' + name + '%',))
@@ -111,7 +111,7 @@ def search_albums_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT album_id, title FROM Album
+        SELECT * FROM Album
         WHERE title LIKE %s
     """
     cursor.execute(query, ('%' + name + '%',))
@@ -124,7 +124,7 @@ def search_artists_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT artist_id, CONCAT(first_name, ' ', last_name) AS full_name
+        SELECT *
         FROM Artist
         WHERE CONCAT(first_name, ' ', last_name) LIKE %s
     """
