@@ -1,5 +1,3 @@
-import datetime
-
 from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, \
     create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name, get_songs_by_album_id, \
     get_random_albums_for_artist, get_random_songs_for_artist

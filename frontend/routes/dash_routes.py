@@ -12,7 +12,7 @@ def dashboard():
         albums = data['albums']
         songs = data['songs']
         return render_template('userdashboard.html', albums=albums, songs=songs)
-    return render_template('userdashboard.html', artist_data = user_data)
+    return render_template('userdashboard.html')
 
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():

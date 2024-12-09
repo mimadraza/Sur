@@ -85,7 +85,7 @@ def get_song_file(song_id):
     if "file_name" in song_metadata:
         file_name = song_metadata["file_name"]
         if file_name:
-            return send_from_directory("E:\Songs", file_name), 200
+            return send_from_directory("D:\Songs", file_name), 200
         else:
             return jsonify({"message": "Song file not found"}), 404
     else:
