@@ -54,9 +54,11 @@ def artist_dashboard():
 
 def user_dashboard():
     url =f'{get_backend_url()}/user/home'
-    response = requests.post(url)
+    response = requests.get(url)
 
-    return response
+    if response.status_code == 200:
+        return response    
+    return None
    
 
 def stats():
