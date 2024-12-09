@@ -38,6 +38,15 @@ def get_random_songs():
     conn.close()
     return songs
 
+def get_random_songs_for_artist(artist_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Song ORDER BY RAND() LIMIT 5 WHERE artist_id = %s", (artist_id,))
+    songs = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return songs
+
 def get_song_by_id(song_id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
@@ -76,6 +85,15 @@ def get_random_albums():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM Album ORDER BY RAND() LIMIT 5")
+    albums = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return albums
+
+def get_random_albums_for_artist(artist_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Album ORDER BY RAND() LIMIT 5 WHERE artist_id = %s", (artist_id,))
     albums = cursor.fetchall()
     cursor.close()
     conn.close()
