@@ -1,8 +1,76 @@
 import requests
 from flask import current_app, request
 
+artist_data = {
+    'name': 'Hozier',
+    'Artist_rank':1,
+    'image_url': '/static/images/Hozier.webp',
+    'likes': 2100000,
+    'followers': 35000000,
+    'songs': [
+        {
+            'title': 'Take Me to Church',
+            'duration': '4:01',
+            'url': '/static/images/church.jpg'
+        },
+        {
+            'title': 'Cherry Wine',
+            'duration': '4:00',
+            'url': '/static/images/angel.jpg'
+        },
+        {
+            'title': 'From Eden',
+            'duration': '3:41',
+            'url': '/static/images/dinner.jpg'
+        },
+        {
+            'title': 'Dinner and Diatribes',
+            'duration': '4:06',
+            'url': '/static/images/church.jpg'
+        },
+        {
+            'title': 'Almost (Sweet Music)',
+            'duration': '3:56',
+            'url': '/static/images/church.jpg'
+        }
+    ],
+    'albums': [
+        {
+            'title': 'Hozier',
+            'release_date': '2014-09-19',
+            'url': '/static/images/church.jpg',
+            'tracks': [
+                'Take Me to Church', 'From Eden', 'Cherry Wine', 'Jackie and Wilson', 'Someone New'
+            ]
+        },
+        {
+            'title': 'Wasteland, Baby!',
+            'release_date': '2019-03-01',
+            'url': '/static/images/church.jpg',
+            'tracks': [
+                'Movement', 'Almost (Sweet Music)', 'Dinner and Diatribes', 'Would That I', 'Sunlight'
+            ]
+        },
+        {
+            'title': 'Wasteland, Baby!',
+            'release_date': '2019-03-01',
+            'url': '/static/images/church.jpg',
+            'tracks': [
+                'Movement', 'Almost (Sweet Music)', 'Dinner and Diatribes', 'Would That I', 'Sunlight'
+            ]
+        },
+        {
+            'title': 'Wasteland, Baby!',
+            'release_date': '2019-03-01',
+            'url': '/static/images/church.jpg',
+            'tracks': [
+                'Movement', 'Almost (Sweet Music)', 'Dinner and Diatribes', 'Would That I', 'Sunlight'
+            ]
+        }
+    ]
+}
 
-user_response = None
+
 
 # Access the backend URL
 def get_backend_url():
@@ -17,7 +85,7 @@ def get_backend_url():
 def artist_dashboard():
     url = f'{get_backend_url()}/artist/home'
     response = requests.get(url, cookies=request.cookies)
-    return response
+    return artist_data
 
 
 def user_dashboard():
@@ -30,7 +98,7 @@ def user_dashboard():
 def stats():
     #will have to send query to get artist stats
     
-    return None
+    return artist_data
 
 def upload(request):
     upload_type = request.form.get("uploadType")
@@ -84,7 +152,9 @@ def upload(request):
 
 def user_album():
      #should return album data
-     return user_response
+        url =f'{get_backend_url()}/user/home'
+        response = requests.get(url, cookies=request.cookies)
+        return response
 
 def search(string):
      #query database to get one song back

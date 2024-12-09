@@ -10,7 +10,7 @@
     <header>
         <div class="section"></div>
         <div class="section">
-          <button class="circle-image" style="width:80px; height:80px; position: absolute; left: 0;background-image: url('static/images/icons8-home-24.png');" onclick="window.location.href='/userdash/dashboard'">
+          <button class="circle-image" style="width:80px; height:80px; position: absolute; left: 0;background-image: url('static/images/images.png');" onclick="window.location.href='/userdash/dashboard'">
           </button>
           <div class="search" style="background-color: #282424; height:60px; width: 75%; position: absolute; border-radius: 10px; position: absolute; right: 0;">
             <div class="symbol"></div>
@@ -26,15 +26,15 @@
 
     <aside class="sidebar-left" style="display: flex; flex-direction: column;padding: 0; gap:2%">
 
-        <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); display: flex; flex-direction: row;">
-              <h1 style="font-family: spof;">
-                  Your Library
-              </h1>
-        </div>
+      <div style="color:white; width: inherit; height: 10%; border-top-left-radius: 10px; border-top-right-radius: 10px;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+      <h1 style="font-family: spof;">
+          Your Library
+      </h1>
+</div>
         <div style="display: flex;flex-direction: column; width: inherit; height: 100%;gap: 10px; align-items: center;">
           {% for song in songs %}
           <button class="playlist" onclick="loadAlbum('{{ song.title }}')">
-              <div class="playlist-image" style="background-image: url('{{ song.image_url }}'); margin-top: 1%;" onclick="playSong('Song 1')">
+              <div class="playlist-image" style="background-image: url('/static/images/default.png'); margin-top: 1%;" onclick="playSong('Song 1')">
               </div>
               <div class="song-title" style="text-align: center; position: relative; top: 45%;">{{ song.title }}</div>
               <i class="fas fa-play"></i> <!-- Play Icon -->
@@ -49,7 +49,7 @@
       grid-template-rows:33% 33% 33%;padding: 5px 5px; gap: 10px;">
         {% for song in songs %}
             <button class="song glass" style="display:flex; flex-direction: row; width: inherit;height: 100%; padding: 0;">
-                <div class="song-5" style="align-self: left;background-image: url('{{ song.image_url }}'); background-size: cover; background-position: center; width: 20%;height: 100%; " onclick="playSong({{song.song_id}})">
+                <div class="song-5" style="align-self: left;background-image: url('/static/images/default.png'); background-size: cover; background-position: center; width: 20%;height: 100%; " onclick="playSong({{song.song_id}})">
                 </div>
                 <div style="margin-top: 7%;margin-left: 1%;">
                 <div class="song-title" style="flex-grow: 1; text-align: center;">{{ song.title }}</div>
@@ -67,8 +67,8 @@
         align-items: center;
         justify-items: center;">
         {% for album in albums %}
-          <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="sendAlbumDataToBackend({{ album|tojson }})">
-              <div class="song-image" style="background-image: url('{{ album.image_url }}'); 
+          <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="loadAlbum({{ album.album_id }})">
+              <div class="song-image" style="background-image: url('/static/images/default.png'); 
                   background-size: cover; background-position: center; 
                   width: 90%; height: 100%;
                   border-radius: 10px; /* Rounded corners */
@@ -90,8 +90,8 @@
         grid-template-columns: 20% 20% 20% 20% 20%;
         grid-template-rows: 200px;">
         {% for album in albums %}
-        <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="sendAlbumDataToBackend({{ album|tojson }})">
-            <div class="song-image" style="background-image: url('{{ album.image_url }}'); 
+        <button class="album" style="display: flex; flex-direction: column; text-align: center; align-items: center; padding: 10px; border-radius: 10px; background-color: transparent; color: inherit; border: none; height: 250px; width: 200px;" onclick="loadAlbum({{ album.album_id }})">
+            <div class="song-image" style="background-image: url('/static/images/default.png'); 
                 background-size: cover; background-position: center; 
                 width: 90%; height: 100%;
                 border-radius: 10px; /* Rounded corners */
@@ -139,24 +139,10 @@
   </div>
   <script src="{{ url_for('static', filename='js/data.js') }}"></script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  <script>     function sendAlbumDataToBackend(albumData) {
-    fetch('userdash/album', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',  // Indicate that we are sending JSON
-      },
-      body: JSON.stringify(albumData)  // Convert the album data to a JSON string
-    })
-    .then(response => response.json())  // Parse the JSON response from Flask
-    .then(data => {
-      console.log("Success:", data);
-      alert("Album data sent successfully!");
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("There was an error sending the album data.");
-    });
-  }
+  <script>     function loadAlbum(albumTitle) {
+    // Redirect to the album's page
+    window.location.href = `/userdash/album/${albumTitle}`;
+}
   </script>
 </body>
 </html>
