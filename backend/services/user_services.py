@@ -1,7 +1,9 @@
 import datetime
 
 from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, \
-    create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name, get_songs_by_album_id
+    create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name, get_songs_by_album_id, \
+    get_random_albums_for_artist, get_random_songs_for_artist
+
 
 def serialize_song(song):
     return {
@@ -29,6 +31,32 @@ def follow_artist(user_id, artist_id):
     params = [user_id, artist_id]
     call_procedure('follow_artist', params)
 
+def get_home_page_data_for_artist(artist_id):
+    # Fetch random songs and albums
+    albums = get_random_albums_for_artist(artist_id)
+
+    all_albums_data = []
+
+    for album in albums:
+        album_id = album["album_id"]
+
+        # Fetch songs for the current album
+        songs = get_songs_by_album_id(album_id)
+
+        # Serialize songs
+        serialized_songs = [serialize_song(song) for song in songs]
+
+        # Serialize album data along with its songs
+        serialized_album = serialize_album(album, serialized_songs)
+        all_albums_data.append(serialized_album)
+
+    songs = get_random_songs_for_artist(artist_id)
+    serialized_songs = [serialize_song(song) for song in songs]
+
+    return {
+        "albums": all_albums_data,  # 5 random albums with their songs
+        "songs": serialized_songs  # 5 random songs (independently)
+    }
 
 def get_home_page_data():
     # Fetch random songs and albums

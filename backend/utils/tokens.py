@@ -30,3 +30,14 @@ def verify_token(provided_token):
         return True, user_id  # Token is valid, return user_id
     else:
         return False, 'Invalid or expired token'
+
+def get_user_from_token(token):
+    try:
+        # Decode the token using the secret key
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        user_id = decoded_token.get('user_id')
+        return user_id
+    except jwt.ExpiredSignatureError:
+        return None  # Token has expired
+    except jwt.InvalidTokenError:
+        return None  # Invalid token

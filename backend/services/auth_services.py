@@ -12,6 +12,7 @@ def login_user(email, password):
     if not check_password(user['password_hash'], password):
         return jsonify({'status': 'failure', 'message': 'Invalid credentials'})
 
+    print(password, user['password_hash'])
     token = generate_token(user['user_id'])
     response_data = {'status': 'success', 'user_id': user['user_id']}
     print("responding")

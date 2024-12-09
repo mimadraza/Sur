@@ -38,6 +38,15 @@ def get_random_songs():
     conn.close()
     return songs
 
+def get_random_songs_for_artist(artist_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Song ORDER BY RAND() LIMIT 5 WHERE artist_id = %s", (artist_id,))
+    songs = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return songs
+
 def get_song_by_id(song_id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
@@ -81,6 +90,15 @@ def get_random_albums():
     conn.close()
     return albums
 
+def get_random_albums_for_artist(artist_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Album ORDER BY RAND() LIMIT 5 WHERE artist_id = %s", (artist_id,))
+    albums = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return albums
+
 def create_album(title, genre_id, artist_id, album_type, release_date):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -98,7 +116,7 @@ def search_songs_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT song_id, title FROM Song
+        SELECT * FROM Song
         WHERE title LIKE %s
     """
     cursor.execute(query, ('%' + name + '%',))
@@ -111,7 +129,7 @@ def search_albums_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT album_id, title FROM Album
+        SELECT * FROM Album
         WHERE title LIKE %s
     """
     cursor.execute(query, ('%' + name + '%',))
@@ -124,7 +142,7 @@ def search_artists_by_name(name):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
-        SELECT artist_id, CONCAT(first_name, ' ', last_name) AS full_name
+        SELECT *
         FROM Artist
         WHERE CONCAT(first_name, ' ', last_name) LIKE %s
     """

@@ -17,9 +17,12 @@ def dashboard():
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.artist_dashboard()
-    print(user_data)
-    
-    return render_template('artistdashboard.html', artist_data = user_data)
+    if user_data.status_code == 200:
+        data = user_data.json()
+        albums = data['albums']
+        songs = data['songs']
+        return render_template('artistdashboard.html', albums=albums, songs=songs)
+    return render_template('artistdashboard.html', artist_data=user_data)
 
 @artistdash_blueprint.route('/stats', methods = ['GET', 'POST'])
 def stats():

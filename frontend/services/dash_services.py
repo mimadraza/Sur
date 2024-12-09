@@ -1,5 +1,6 @@
 import requests
-from flask import current_app
+from flask import current_app, request
+
 
 user_response = None
 
@@ -14,14 +15,16 @@ def get_backend_url():
 
 
 def artist_dashboard():
-    #will have to send query to database to get the artist data
-    return None
+    url = f'{get_backend_url()}/artist/home'
+    response = requests.get(url, cookies=request.cookies)
+    return response
 
 
 def user_dashboard():
+    
     url =f'{get_backend_url()}/user/home'
-    user_response = requests.get(url)
-    return user_response
+    response = requests.get(url, cookies=request.cookies)
+    return response
    
 
 def stats():
