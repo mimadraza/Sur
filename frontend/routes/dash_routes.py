@@ -17,12 +17,9 @@ def dashboard():
 @artistdash_blueprint.route('/dashboard', methods = ['GET', 'POST'])
 def dashboard():
     user_data = dash_services.artist_dashboard()
-    if user_data.status_code == 200:
-        data = user_data.json()
-        albums = data['albums']
-        songs = data['songs']
-        return render_template('artistdashboard.html', albums=albums, songs=songs)
-    return render_template('artistdashboard.html', artist_data=user_data)
+    print(user_data)
+    
+    return render_template('artistdashboard.html', artist_data = user_data)
 
 @artistdash_blueprint.route('/stats', methods = ['GET', 'POST'])
 def stats():
@@ -42,12 +39,26 @@ def album():
     artist_album = dash_services.album()
     return render_template('artistalbum.html', artist_data = artist_album)
 
-@userdash_blueprint.route('/album', methods=['GET', 'POST'])
+@userdash_blueprint.route('/album/<album_id>', methods=['GET', 'POST'])
 def album():
     # Get the album name from the URL query parameters
-    album_data = request.get_json()
+    user_data = dash_services.user_album()
+    out = None
+    if user_data.status_code == 200:
+        data = user_data.json()
+        albums = data['albums']
+    # Loop through the albums and find the one matching the album_id
+    for album in albums:
+        if album['title'] == album_id:
+                out = album
+    
+    # If no album is found, you can handle this scenario here
+    if not out:
+        return "Album not found", 404
+    
     # Pass the album data to the template
-    return render_template('albums.html', album=album_data)
+    return render_template('albums.html', album=out)
+
 
 @userdash_blueprint.route('/search', methods = ['POST'])
 def search():
