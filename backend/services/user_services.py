@@ -114,10 +114,10 @@ def get_home_page_data():
     #     "albums": albums  # 2D list of songs within albums
     # }
 
-
 def get_song_metadata_and_file(song_id):
     song = get_song_by_id(song_id)
     if not song:
+        print(404)
         return {"message": "Song not found"}, 404
     file_name = f"{song_id}.mp3"
     return {"metadata": song, "file_name": file_name}
