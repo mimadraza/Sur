@@ -9,7 +9,7 @@ login_validations = (('email',gl.required, gl.format_email), ('password', gl.req
 register_validations = (('first_name', gl.required, gl.type_(str), gl.regex_('^[^0-9]*$')),
                         ('last_name', gl.required, gl.type_(str),gl.regex_('^[^0-9]*$')),
                         ('email',gl.required, gl.format_email), ('password', gl.required),
-                        ('country', gl.required, gl.regex_('^[^0-9]*$')), 
+                        ('country', gl.required, gl.regex_('^[^0-9]*$')),
                         ('dob', gl.required))
 profile_validations = (('bio', gl.required, gl.type_(str), gl.regex_(".{20,}")))
 
@@ -22,7 +22,7 @@ def register ():
        else:
             return render_template('userregisterpage.html')
 
-    
+
     return render_template('userregisterpage.html')
 
 
@@ -34,7 +34,7 @@ def login ():
        else:
             return render_template('Loginpage.html')
 
-    
+
     return render_template('Loginpage.html')
 
 
@@ -48,7 +48,7 @@ def register ():
        else:
             return render_template('artistregister.html')
 
-    
+
     return render_template('artistregister.html')
 
 
@@ -60,7 +60,7 @@ def profile ():
        else:
             return render_template('artistloginpage.html')
 
-    
+
     return render_template('profileSetup.html')
 
 
@@ -72,7 +72,7 @@ def login ():
        else:
             return render_template('artistlogin.html')
 
-    
+
     return render_template('artistlogin.html')
 
 

@@ -1,6 +1,7 @@
 from backend.db.queries import call_procedure, get_random_songs, get_random_albums, get_song_by_id, create_song, \
     create_album, search_songs_by_name, search_albums_by_name, search_artists_by_name, get_songs_by_album_id, \
-    get_random_albums_for_artist, get_random_songs_for_artist
+    get_random_albums_for_artist, get_random_songs_for_artist, get_playlists_for_user, get_songs_in_playlist, \
+    remove_song_from_playlist, add_song_to_playlist, create_playlist
 
 
 def serialize_song(song):
@@ -145,3 +146,51 @@ def search_songs_albums_artists(query):
     }
 
     return results
+
+
+# Create a new playlist
+def create_new_playlist(user_id, title, description=None):
+    playlist_id = create_playlist(user_id, title, description)
+    return {"message": "Playlist created successfully", "playlist_id": playlist_id}
+
+
+# Add a song to an existing playlist
+def add_song_to_playlist_service(user_id, playlist_id, song_id):
+    # Check if the playlist exists and belongs to the user
+    playlists = get_playlists_for_user(user_id)
+    if not any(playlist['playlist_id'] == playlist_id for playlist in playlists):
+        return {"message": "Playlist not found or doesn't belong to this user"}
+
+    add_song_to_playlist(playlist_id, song_id)
+    return {"message": "Song added to playlist successfully"}
+
+
+# Remove a song from a playlist
+def remove_song_from_playlist_service(user_id, playlist_id, song_id):
+    # Check if the playlist exists and belongs to the user
+    playlists = get_playlists_for_user(user_id)
+    if not any(playlist['playlist_id'] == playlist_id for playlist in playlists):
+        return {"message": "Playlist not found or doesn't belong to this user"}
+
+    remove_song_from_playlist(playlist_id, song_id)
+    return {"message": "Song removed from playlist successfully"}
+
+
+# Get all playlists for a user
+def get_playlists_for_user_service(user_id):
+    playlists = get_playlists_for_user(user_id)
+    if not playlists:
+        return {"message": "No playlists found for this user"}
+
+    return {"playlists": playlists}
+
+
+# Get all songs in a playlist
+def get_songs_in_playlist_service(user_id, playlist_id):
+    # Check if the playlist exists and belongs to the user
+    playlists = get_playlists_for_user(user_id)
+    if not any(playlist['playlist_id'] == playlist_id for playlist in playlists):
+        return {"message": "Playlist not found or doesn't belong to this user"}
+
+    songs = get_songs_in_playlist(playlist_id)
+    return {"songs": songs}

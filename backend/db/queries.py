@@ -176,3 +176,66 @@ def create_artist(first_name, last_name, email, password_hash, date_of_birth, bi
     cursor.close()
     conn.close()
     return artist_id
+
+# Create a new playlist
+def create_playlist(user_id, title, description=None):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO Playlist (title, description, user_id)
+        VALUES (%s, %s, %s)
+    """, (title, description, user_id))
+    playlist_id = cursor.lastrowid
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return playlist_id
+
+# Add a song to a playlist
+def add_song_to_playlist(playlist_id, song_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO Playlist_Song (playlist_id, song_id)
+        VALUES (%s, %s)
+    """, (playlist_id, song_id))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+# Remove a song from a playlist
+def remove_song_from_playlist(playlist_id, song_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        DELETE FROM Playlist_Song
+        WHERE playlist_id = %s AND song_id = %s
+    """, (playlist_id, song_id))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+# Get all playlists for a user
+def get_playlists_for_user(user_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Playlist WHERE user_id = %s", (user_id,))
+    playlists = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return playlists
+
+# Get all songs in a specific playlist
+def get_songs_in_playlist(playlist_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT s.song_id, s.title, s.duration, s.release_date, s.album_id, s.genre_id, s.artist_id, s.playbacks
+        FROM Playlist_Song ps
+        JOIN Song s ON ps.song_id = s.song_id
+        WHERE ps.playlist_id = %s
+    """, (playlist_id,))
+    songs = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return songs

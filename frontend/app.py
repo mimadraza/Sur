@@ -1,16 +1,16 @@
 from flask import Flask, render_template, redirect
 from flask_cors import CORS
-from frontend.config import Config
+from config import Config
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
 app.config.from_object(Config)
 print(app.config['BACKEND_URL'])
 
-from frontend.routes.auth_routes import userauth_blueprint
-from frontend.routes.auth_routes import artistauth_blueprint
-from frontend.routes.dash_routes import userdash_blueprint
-from frontend.routes.dash_routes import artistdash_blueprint
+from routes.auth_routes import userauth_blueprint
+from routes.auth_routes import artistauth_blueprint
+from routes.dash_routes import userdash_blueprint
+from routes.dash_routes import artistdash_blueprint
 
 app.register_blueprint(userauth_blueprint, url_prefix = '/userauth')
 app.register_blueprint(artistauth_blueprint, url_prefix = '/artistauth')
@@ -19,7 +19,8 @@ app.register_blueprint(userdash_blueprint, url_prefix = '/userdash')
 
 @app.route('/')
 def index():
-    return redirect('/userauth/register')
+    return render_template('homepage.html')
+    # return redirect('artistdash/dashboard')
 
 # @app.route('/get_music_from_backend/<song_name>')
 # def get_music_from_backend(song_name):
