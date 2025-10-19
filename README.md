@@ -34,17 +34,23 @@ Smooth navigation between login, register, and dashboard pages.
 🎬 1. Dive In Page
 <img width="615" height="344" alt="image" src="https://github.com/user-attachments/assets/fe46bec6-4ada-498e-9a94-a1ebccacc68e" />
 
+
+
 Entry page for role selection (Artist or User).
 
 
 📝 2. Register Page
 <img width="616" height="334" alt="image" src="https://github.com/user-attachments/assets/b7298180-2bd4-49d3-b6e3-0b9e5d1a6b91" />
 
+
+
 User registration form with fields for name, email, password, country, and date of birth.
 
 
 🔐 3. Login Page
 <img width="610" height="417" alt="image" src="https://github.com/user-attachments/assets/3293e9ae-22fa-4fbe-b262-296178ee72d1" />
+
+
 
 Secure login interface with validation and sign-up redirection.
 
